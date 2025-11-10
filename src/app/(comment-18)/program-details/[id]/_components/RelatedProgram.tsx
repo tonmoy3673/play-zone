@@ -1,0 +1,57 @@
+import ProgramCard, { ProgramProp } from "@/components/shared/ProgramCard";
+import { SectionHeader } from "@/components/shared/SectionHeader";
+
+export const newReleaseData: ProgramProp[] = [
+  {
+    title: "James Wilson Elite Soccer Club",
+    coach: "Coach James Wilson",
+    coachImage:
+      "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?auto=format&fit=crop&w=200&q=80",
+    banner:
+      "https://images.unsplash.com/photo-1631801751858-9f4f5a2fbdb4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1032",
+    price: 100,
+    rating: 4.0,
+    students: "3.4K+",
+    badge: "Live",
+  },
+  {
+    title: "Advanced Basketball Drills",
+    coach: "Coach Michael Carter",
+    coachImage:
+      "https://images.unsplash.com/photo-1546539782-6fc531453083?auto=format&fit=crop&w=200&q=80",
+    banner:
+      "https://images.unsplash.com/photo-1707126458822-cb3f2458a3b9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=580",
+    price: 120,
+    rating: 4.5,
+    students: "5.2K+",
+    badge: "Featured",
+  },
+  {
+    title: "Pro Tennis Training Camp",
+    coach: "Coach Serena Ellis",
+    coachImage:
+      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=200&q=80",
+    banner:
+      "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=800&q=80",
+    price: 150,
+    rating: 4.8,
+    students: "6.1K+",
+    badge: "Beginner",
+  },
+];
+
+const RelatedProgram = () => {
+  return (
+    <div className="p-5 rounded-2xl border backdrop-blur-3xl bg-[#ffffff4d] border-white">
+      <SectionHeader title="Related Programs" href="/" />
+
+      <div className="grid gap-4">
+        {newReleaseData.map((program, index) => (
+          <ProgramCard isOptions={false} key={index} program={program} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default RelatedProgram;
