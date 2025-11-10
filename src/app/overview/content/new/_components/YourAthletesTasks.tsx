@@ -133,7 +133,16 @@ export default function YourAthletesTasks({
                         Majority Completion
                       </p>
                       <div className="flex items-center gap-1">
-                        <span className="inline-block size-3 rounded-[4px] border-t border-[#68b0ea]" />
+                        <span
+                          style={{
+                            borderTopColor: "#68B0EA",
+                            background:
+                              "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)",
+                            width: "12px",
+                            height: "12px",
+                          }}
+                          className="inline-block size-3 rounded-[4px] border-t border-[#68b0ea]"
+                        />
                         <p className="text-[10px] font-medium leading-[1.4] text-[#141b34]">
                           {Math.round(task.progressPercent)}% Complete
                         </p>
@@ -142,7 +151,12 @@ export default function YourAthletesTasks({
                     <div className="mt-2 h-[7px] w-full rounded-[40px] bg-[#c4d4fd]">
                       <div
                         className="h-full rounded-[80px] bg-gradient-to-r from-[#68b0ea] to-[#1556d8]"
-                        style={{ width: `${Math.max(0, Math.min(100, task.progressPercent))}%` }}
+                        style={{
+                          width: `${Math.max(
+                            0,
+                            Math.min(100, task.progressPercent)
+                          )}%`,
+                        }}
                       />
                     </div>
                   </div>
@@ -155,5 +169,3 @@ export default function YourAthletesTasks({
     </div>
   );
 }
-
-
