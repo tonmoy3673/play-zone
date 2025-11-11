@@ -1,12 +1,15 @@
 "use client";
 import { AnimatedButton } from "@/components/ui/Button";
-import React from "react";
+import React, { useState } from "react";
+
 
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
+import ProfileModal from "@/components/Modal/ProfileModal";
+import ProgramStartModal from "./ProgramStart";
 
 type DayPill = {
   id: string;
@@ -51,20 +54,31 @@ export default function TodaysTask({
   days?: DayPill[];
   tasks?: TaskItem[];
 }): JSX.Element {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="relative w-min-[416px] overflow-hidden rounded-[24px] bg-white/30 border border-white">
       <div className="p-5">
         {/* Header */}
         <div className="flex items-center justify-between">
           <h2 className="text-[20px] font-semibold leading-[1.5] text-[#141b34]">
-            Today’s Task
+            Today's Task
           </h2>
           <AnimatedButton
+            onClick={handleOpenModal}
             style={{
               borderRadius: "40px",
               background: "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)",
             }}
-            className="flex items-center justify-center gap-1 text-white font-normal text-[10px] px-4 py-2.5 rounded-full hover:bg-blue-700"
+            className="flex items-center justify-center gap-1 text-white font-normal text-[10px] px-4 py-2.5 rounded-full hover:bg-blue-700 cursor-pointer"
           >
             View Entire Schedule
           </AnimatedButton>
@@ -150,6 +164,11 @@ export default function TodaysTask({
           ))}
         </div>
       </div>
+
+      {/* Modal - positioned inside Today's Task section */}
+      <ProfileModal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <ProgramStartModal onClose={handleCloseModal} />
+      </ProfileModal>
     </div>
   );
 }
