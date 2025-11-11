@@ -90,7 +90,7 @@ export default function CommunityFeed({
   items?: FeedItem[];
 }): JSX.Element {
   return (
-    <div className="w-[416px] overflow-hidden rounded-[24px] bg-white/30 border border-white">
+    <div className="max-w-[530px] overflow-hidden rounded-[24px] bg-white/30 border border-white">
       <div className="p-5">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -100,12 +100,12 @@ export default function CommunityFeed({
           <button
             type="button"
             aria-label="Next"
-            className="inline-flex items-center justify-center rounded-full border border-white bg-white/60 p-2"
+            className="inline-flex items-center justify-center rounded-full border border-white bg-white/60 py-[10px] px-3"
           >
             <img
               src={imgArrow}
               alt="arrow"
-              className="w-[10px] h-[15px] rotate-90 scale-y-[-1]"
+              className="size-5 rotate-90 scale-y-[-1] w-[10px] h-[15px]"
             />
           </button>
         </div>

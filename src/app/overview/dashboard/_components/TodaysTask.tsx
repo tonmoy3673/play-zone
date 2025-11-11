@@ -52,7 +52,7 @@ export default function TodaysTask({
   tasks?: TaskItem[];
 }): JSX.Element {
   return (
-    <div className="relative w-[416px] overflow-hidden rounded-[24px] bg-white/30 border border-white">
+    <div className="relative w-min-[416px] overflow-hidden rounded-[24px] bg-white/30 border border-white">
       <div className="p-5">
         {/* Header */}
         <div className="flex items-center justify-between">

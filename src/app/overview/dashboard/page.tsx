@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import CommunityFeed from "../content/new/_components/CommunityFeed";
-import YourAthletesTasks from "../content/new/_components/YourAthletesTasks";
+
 import FigmaCardGrid from "./_components/FigmaCardGrid";
 import FinancialOverview from "./_components/FinancialOverview";
+import FinancialOverview2 from "./_components/FinancialOverview2";
 import News from "./_components/News";
 import PremiumUpsell from "./_components/PremiumUpsell";
 import ProgramLiveCongrats from "./_components/ProgramLiveCongrats";
@@ -11,6 +12,7 @@ import ProgramStart from "./_components/ProgramStart";
 import RecentActivity from "./_components/RecentActivity";
 import TodaysTask from "./_components/TodaysTask";
 import WelcomeIntro from "./_components/WelcomeIntro";
+import YourAthletesTasks from "./_components/YourAthletesTasks";
 
 export default function page() {
   return (
@@ -18,21 +20,19 @@ export default function page() {
       {/* news card */}
       <div className="flex-2 flex flex-col gap-y-4">
         <News />
-        <FinancialOverview />
-         <YourAthletesTasks />
+        <FinancialOverview2 />
+        <YourAthletesTasks />
         <WelcomeIntro />
         <ProgramShowcase />
         <PremiumUpsell />
         <ProgramLiveCongrats />
         <FigmaCardGrid />
-        
       </div>
       <div className="flex-1 flex flex-col gap-y-4">
         <RecentActivity />
         <TodaysTask />
-         <CommunityFeed />
+        <CommunityFeed />
         {/* <ProgramStart /> */}
-
       </div>
 
       {/* <News />

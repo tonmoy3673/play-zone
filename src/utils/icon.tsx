@@ -576,8 +576,8 @@ const ICON = {
         >
           <stop stopColor="#5C8FF7" />
           <stop offset="1" stopColor="#276AEE" />
-          <stop stop-color="#5C8FF7" />
-          <stop offset="1" stop-color="#276AEE" />
+          <stop stopColor="#5C8FF7" />
+          <stop offset="1" stopColor="#276AEE" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_3780_19934"
@@ -589,8 +589,8 @@ const ICON = {
         >
           <stop stopColor="#5C8FF7" />
           <stop offset="1" stopColor="#276AEE" />
-          <stop stop-color="#5C8FF7" />
-          <stop offset="1" stop-color="#276AEE" />
+          <stop stopColor="#5C8FF7" />
+          <stop offset="1" stopColor="#276AEE" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_3780_19934"
@@ -602,8 +602,8 @@ const ICON = {
         >
           <stop stopColor="#5C8FF7" />
           <stop offset="1" stopColor="#276AEE" />
-          <stop stop-color="#5C8FF7" />
-          <stop offset="1" stop-color="#276AEE" />
+          <stop stopColor="#5C8FF7" />
+          <stop offset="1" stopColor="#276AEE" />
         </linearGradient>
       </defs>
     </svg>
@@ -1220,8 +1220,8 @@ const ICON = {
           y2="9.66635"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#5C8FF7" />
-          <stop offset="1" stop-color="#276AEE" />
+          <stop stopColor="#5C8FF7" />
+          <stop offset="1" stopColor="#276AEE" />
         </linearGradient>
       </defs>
     </svg>
@@ -1283,8 +1283,8 @@ const ICON = {
           y2="17.7365"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#5C8FF7" />
-          <stop offset="1" stop-color="#276AEE" />
+          <stop stopColor="#5C8FF7" />
+          <stop offset="1" stopColor="#276AEE" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_3149_19717"
@@ -1294,8 +1294,8 @@ const ICON = {
           y2="17.7893"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#5C8FF7" />
-          <stop offset="1" stop-color="#276AEE" />
+          <stop stopColor="#5C8FF7" />
+          <stop offset="1" stopColor="#276AEE" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_3149_19717"
@@ -1305,8 +1305,8 @@ const ICON = {
           y2="5.52185"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#5C8FF7" />
-          <stop offset="1" stop-color="#276AEE" />
+          <stop stopColor="#5C8FF7" />
+          <stop offset="1" stopColor="#276AEE" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_3149_19717"
@@ -1316,8 +1316,8 @@ const ICON = {
           y2="5.5491"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#5C8FF7" />
-          <stop offset="1" stop-color="#276AEE" />
+          <stop stopColor="#5C8FF7" />
+          <stop offset="1" stopColor="#276AEE" />
         </linearGradient>
         <linearGradient
           id="paint4_linear_3149_19717"
@@ -1327,8 +1327,8 @@ const ICON = {
           y2="4.54184"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#5C8FF7" />
-          <stop offset="1" stop-color="#276AEE" />
+          <stop stopColor="#5C8FF7" />
+          <stop offset="1" stopColor="#276AEE" />
         </linearGradient>
         <linearGradient
           id="paint5_linear_3149_19717"
@@ -1338,8 +1338,8 @@ const ICON = {
           y2="11.9246"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#5C8FF7" />
-          <stop offset="1" stop-color="#276AEE" />
+          <stop stopColor="#5C8FF7" />
+          <stop offset="1" stopColor="#276AEE" />
         </linearGradient>
         <linearGradient
           id="paint6_linear_3149_19717"
@@ -1349,8 +1349,8 @@ const ICON = {
           y2="11.9246"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#5C8FF7" />
-          <stop offset="1" stop-color="#276AEE" />
+          <stop stopColor="#5C8FF7" />
+          <stop offset="1" stopColor="#276AEE" />
         </linearGradient>
         <linearGradient
           id="paint7_linear_3149_19717"
@@ -1360,8 +1360,8 @@ const ICON = {
           y2="18.7254"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#5C8FF7" />
-          <stop offset="1" stop-color="#276AEE" />
+          <stop stopColor="#5C8FF7" />
+          <stop offset="1" stopColor="#276AEE" />
         </linearGradient>
         <linearGradient
           id="paint8_linear_3149_19717"
@@ -1371,8 +1371,8 @@ const ICON = {
           y2="12.0646"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#5C8FF7" />
-          <stop offset="1" stop-color="#276AEE" />
+          <stop stopColor="#5C8FF7" />
+          <stop offset="1" stopColor="#276AEE" />
         </linearGradient>
       </defs>
     </svg>

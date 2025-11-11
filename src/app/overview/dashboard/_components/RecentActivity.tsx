@@ -57,7 +57,7 @@ export default function RecentActivity({
   items?: ActivityItem[];
 }) {
   return (
-    <div className="w-full overflow-hidden rounded-[24px] bg-white/30 border border-white">
+    <div className="w-full w-min-[416px] overflow-hidden rounded-[24px] bg-white/30 border border-white">
       <div className="p-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
