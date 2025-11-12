@@ -215,7 +215,9 @@ function CardOverlay({
   compact?: boolean;
 }): JSX.Element {
   return (
-    <div  className="absolute inset-0 flex flex-col justify-between pt-3 px-5">
+    <div style={{
+  background: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 23.3%, rgba(255, 255, 255, 0.30) 41.73%, rgba(255, 255, 255, 0.75) 57.98%, #FFF 75%)"
+}} className="absolute inset-0 flex flex-col justify-between pt-3 px-5">
       {/* Top row: Featured + more */}
       <div className="flex items-start justify-between">
         {program.featured ? (
