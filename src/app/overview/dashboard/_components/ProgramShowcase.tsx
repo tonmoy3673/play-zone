@@ -91,7 +91,13 @@ export default function ProgramShowcase({
 
       {/* Modal Container */}
       <div className="relative bg-white/30 bg-[url('/overview/modalBG.png')] w-[90vw] max-w-[800px] max-h-[85vh] backdrop-blur-lg rounded-[24px] border border-white/30 shadow-2xl overflow-hidden">
-        <div className="h-full flex flex-col">
+        <div
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 23.3%, rgba(255, 255, 255, 0.74) 41.73%, #FFF 57.98%, #FFF 66.3%, #FFF 99.37%)",
+          }}
+          className="h-full flex flex-col"
+        >
           <div className="p-6 flex-shrink-0">
             {/* Header with Close Button */}
             <div className="flex items-center justify-between mb-4">

@@ -1,5 +1,5 @@
 // News.tsx
-"use client"
+"use client";
 /* eslint-disable @next/next/no-img-element */
 import WelcomeModal from "@/components/Modal/WelcomeModal";
 import { AnimatedButton } from "@/components/ui/Button";
@@ -26,11 +26,11 @@ function News() {
   };
 
   const handleNextStep = () => {
-    setCurrentModalStep(prev => prev + 1);
+    setCurrentModalStep((prev) => prev + 1);
   };
 
   const handlePrevStep = () => {
-    setCurrentModalStep(prev => prev - 1);
+    setCurrentModalStep((prev) => prev - 1);
   };
 
   const renderModalContent = () => {
@@ -71,13 +71,7 @@ function News() {
           />
         );
       case 5:
-        return (
-          <ProgramLiveCongrats
-            isOpen={isWelcomeModalOpen}
-            onClose={handleCloseWelcomeModal}
-            onPrev={handlePrevStep}
-          />
-        );
+        return <ProgramLiveCongrats onClose={handleCloseWelcomeModal} />;
       default:
         return (
           <WelcomeIntro
@@ -107,7 +101,7 @@ function News() {
           </div>
 
           <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
-            <div className="bg-white bg-[url('/image341.svg')] h-[285px] bg-cover bg-center bg-no-repeat rounded-3xl border-2 max-w-md border-blue-300 p-6 flex flex-col items-center justify-center min-h-64 transition-shadow hover:shadow-lg">
+            <div className="bg-white bg-[url('/image341.svg')] h-[285px] bg-cover bg-center bg-no-repeat rounded-3xl border-2 max-w-md border-white p-6 flex flex-col items-center justify-center min-h-64 transition-shadow hover:shadow-lg">
               <div className="flex h-full flex-col justify-between">
                 <div className="space-y-2">
                   <div className="inline-flex size-10 items-center justify-center rounded-full bg-white/60 p-[9px]">
@@ -120,9 +114,9 @@ function News() {
                     </p>
                     <p className="w-full max-w-[342px] font-inter text-[12px] font-normal leading-[1.4] text-[#141b34]/70">
                       Exciting news! You can now build your brand by posting in
-                      the Community Feed. Share insights, drills, and connect with
-                      athletes globally. Turn your expertise into influence and
-                      income on PlayerZone
+                      the Community Feed. Share insights, drills, and connect
+                      with athletes globally. Turn your expertise into influence
+                      and income on PlayerZone
                     </p>
                   </div>
                 </div>
@@ -172,7 +166,7 @@ function News() {
       </div>
 
       <WelcomeModal
-        isOpen={isWelcomeModalOpen} 
+        isOpen={isWelcomeModalOpen}
         onClose={handleCloseWelcomeModal}
         position="center"
       >

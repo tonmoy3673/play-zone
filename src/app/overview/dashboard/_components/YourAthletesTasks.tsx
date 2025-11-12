@@ -1,3 +1,4 @@
+import Icon from "@/utils/icon";
 import React from "react";
 
 type AthleteTask = {
@@ -8,11 +9,9 @@ type AthleteTask = {
   creatorName: string;
   creatorAvatarSrc?: string;
   imageSrc?: string;
-  progressPercent: number; // 0 - 100
+  progressPercent: number;
 };
 
-const imgArrow =
-  "https://www.figma.com/api/mcp/asset/dfa79fb6-4235-4448-b3e1-946d4db37bbb";
 const imgDefaultCreator =
   "https://www.figma.com/api/mcp/asset/4e46797c-eff9-4558-98b4-81c3e5b31e90"; // rectangle avatar from figma context
 const imgTaskIcon1 =
@@ -62,11 +61,7 @@ export default function YourAthletesTasks({
             aria-label="Next"
             className="relative inline-flex size-10 items-center justify-center rounded-full border border-white bg-white/65"
           >
-            <img
-              src={imgArrow}
-              alt=""
-              className="size-5 rotate-90 scale-y-[-1] w-[10px] h-[15px]"
-            />
+            <Icon name="right_arrow" width={20} height={20} />
           </button>
         </div>
 

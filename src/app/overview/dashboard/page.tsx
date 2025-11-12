@@ -24,10 +24,7 @@ export default function page() {
         <News />
         <FinancialOverview2 />
         <YourAthletesTasks />
-
-        {/* ======= 5th ======== */}
-        <ProgramLiveCongrats />
-        <FigmaCardGrid />
+        
       </div>
       <div className="flex-1 flex flex-col gap-y-4">
         <RecentActivity />
@@ -39,7 +36,7 @@ export default function page() {
       {/* <News />
       <FinancialOverview />
       <RecentActivity />
-      
+      <FigmaCardGrid />
       <YourAthletesTasks />
       <CommunityFeed /> */}
     </div>
