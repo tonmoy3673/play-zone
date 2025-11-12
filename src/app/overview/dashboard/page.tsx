@@ -4,8 +4,10 @@ import CommunityFeed from "../content/new/_components/CommunityFeed";
 import FigmaCardGrid from "./_components/FigmaCardGrid";
 import FinancialOverview from "./_components/FinancialOverview";
 import FinancialOverview2 from "./_components/FinancialOverview2";
+import FirstProgram from "./_components/FirstProgram";
 import News from "./_components/News";
 import PremiumUpsell from "./_components/PremiumUpsell";
+import ProgramCreationSteps from "./_components/ProgramCreationSteps";
 import ProgramLiveCongrats from "./_components/ProgramLiveCongrats";
 import ProgramShowcase from "./_components/ProgramShowcase";
 import ProgramStart from "./_components/ProgramStart";
@@ -22,9 +24,17 @@ export default function page() {
         <News />
         <FinancialOverview2 />
         <YourAthletesTasks />
-        <WelcomeIntro />
-        <ProgramShowcase />
+        {/* <WelcomeIntro /> */}
+        {/* =========2nd ======= */}
+        {/* <ProgramShowcase /> */}
+
+        {/* ========== 3rd ========= */}
+        <FirstProgram/>
+        {/* ======= 4th ====== */}
         <PremiumUpsell />
+
+
+        {/* ======= 5th ======== */}
         <ProgramLiveCongrats />
         <FigmaCardGrid />
       </div>

@@ -1,4 +1,4 @@
-
+// News.tsx
 "use client"
 /* eslint-disable @next/next/no-img-element */
 import WelcomeModal from "@/components/Modal/WelcomeModal";
@@ -6,16 +6,87 @@ import { AnimatedButton } from "@/components/ui/Button";
 import Icon from "@/utils/icon";
 import React, { useState } from "react";
 import WelcomeIntro from "./WelcomeIntro";
+import ProgramShowcase from "./ProgramShowcase";
+import FirstProgram from "./FirstProgram";
+import PremiumUpsell from "./PremiumUpsell";
+import ProgramLiveCongrats from "./ProgramLiveCongrats";
 
 function News() {
   const [isWelcomeModalOpen, setIsWelcomeModalOpen] = useState(false);
+  const [currentModalStep, setCurrentModalStep] = useState(1);
 
   const handleOpenWelcomeModal = () => {
     setIsWelcomeModalOpen(true);
+    setCurrentModalStep(1);
   };
 
   const handleCloseWelcomeModal = () => {
     setIsWelcomeModalOpen(false);
+    setCurrentModalStep(1);
+  };
+
+  const handleNextStep = () => {
+    setCurrentModalStep(prev => prev + 1);
+  };
+
+  const handlePrevStep = () => {
+    setCurrentModalStep(prev => prev - 1);
+  };
+
+  const renderModalContent = () => {
+    switch (currentModalStep) {
+      case 1:
+        return (
+          <WelcomeIntro
+            isOpen={isWelcomeModalOpen}
+            onClose={handleCloseWelcomeModal}
+            onNext={handleNextStep}
+          />
+        );
+      case 2:
+        return (
+          <ProgramShowcase
+            isOpen={isWelcomeModalOpen}
+            onClose={handleCloseWelcomeModal}
+            onNext={handleNextStep}
+            onPrev={handlePrevStep}
+          />
+        );
+      case 3:
+        return (
+          <FirstProgram
+            isOpen={isWelcomeModalOpen}
+            onClose={handleCloseWelcomeModal}
+            onNext={handleNextStep}
+            onPrev={handlePrevStep}
+          />
+        );
+      case 4:
+        return (
+          <PremiumUpsell
+            isOpen={isWelcomeModalOpen}
+            onClose={handleCloseWelcomeModal}
+            onNext={handleNextStep}
+            onPrev={handlePrevStep}
+          />
+        );
+      case 5:
+        return (
+          <ProgramLiveCongrats
+            isOpen={isWelcomeModalOpen}
+            onClose={handleCloseWelcomeModal}
+            onPrev={handlePrevStep}
+          />
+        );
+      default:
+        return (
+          <WelcomeIntro
+            isOpen={isWelcomeModalOpen}
+            onClose={handleCloseWelcomeModal}
+            onNext={handleNextStep}
+          />
+        );
+    }
   };
 
   return (
@@ -36,7 +107,6 @@ function News() {
           </div>
 
           <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
-            {/* Left card */}
             <div className="bg-white bg-[url('/image341.svg')] h-[285px] bg-cover bg-center bg-no-repeat rounded-3xl border-2 max-w-md border-blue-300 p-6 flex flex-col items-center justify-center min-h-64 transition-shadow hover:shadow-lg">
               <div className="flex h-full flex-col justify-between">
                 <div className="space-y-2">
@@ -72,7 +142,6 @@ function News() {
               </div>
             </div>
 
-            {/* Right card */}
             <div className="relative h-[285px] bg-cover bg-[url('/bg.png')] w-full overflow-hidden rounded-[24px] bg-[#3c6bda] p-6 text-white">
               <div className="relative flex h-full flex-col">
                 <div className="inline-flex size-[40.5px] items-center justify-center rounded-full bg-white/10 p-[9px]">
@@ -102,16 +171,12 @@ function News() {
         </div>
       </div>
 
-      {/* Welcome Modal */}
       <WelcomeModal
         isOpen={isWelcomeModalOpen} 
         onClose={handleCloseWelcomeModal}
         position="center"
       >
-        <WelcomeIntro
-          isOpen={isWelcomeModalOpen} 
-          onClose={handleCloseWelcomeModal} 
-        />
+        {renderModalContent()}
       </WelcomeModal>
     </>
   );
