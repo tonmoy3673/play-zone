@@ -208,7 +208,7 @@ export default function ProgramShowcase({
 function CardImage({ image }: { image: string }): JSX.Element {
   return (
     <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
-      <img src={image} alt="" className="size-full object-cover" />
+      <img src={image} alt="" className="size-full w-full object-cover" />
     </div>
   );
 }
@@ -221,7 +221,9 @@ function CardOverlay({
   compact?: boolean;
 }): JSX.Element {
   return (
-    <div className="absolute inset-0 flex flex-col justify-between p-5">
+    <div style={{
+  background: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 23.3%, rgba(255, 255, 255, 0.15) 45%, rgba(255, 255, 255, 0.60) 65%, #FFF 85%)"
+}} className="absolute  inset-0 flex flex-col justify-between pt-3 px-5">
       {/* Top row: Featured + more */}
       <div className="flex items-start justify-between">
         {program.featured ? (
@@ -240,7 +242,7 @@ function CardOverlay({
       </div>
 
       {/* Content block */}
-      <div className="space-y-3">
+      <div className="space-y-1 pt-6">
         <div className="space-y-1">
           <p
             className={[
@@ -251,7 +253,7 @@ function CardOverlay({
             {program.title}
           </p>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <span className="inline-block size-4 rounded-full bg-white/60" />
               <p className="text-[12px] font-medium leading-[1.4] text-[#141b34]">
                 {program.coachName}
@@ -266,19 +268,19 @@ function CardOverlay({
         <div className="h-px w-full bg-[#141b34]/10" />
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             <span className="inline-block size-4 rounded-full bg-[#1556d8]/10" />
             <p className="text-[12px] font-semibold leading-[1.4] text-[#141b34]">
               {program.participants}
             </p>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             <span className="inline-block size-4 rounded-full bg-[#1556d8]/10" />
             <p className="text-[12px] font-medium leading-[1.4] text-[#141b34]">
               {program.duration}
             </p>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             <div className="flex">
               {Array.from({ length: 5 }).map((_, i) => {
                 const filled = i < Math.round(program.rating);
@@ -306,7 +308,7 @@ function CardOverlay({
 
         <button
           type="button"
-          className="inline-flex h-[26px] w-full items-center justify-center rounded-[61px] border border-[#1556d8]/30 bg-[#5c8ff7]/30 px-3 text-[12px] font-medium text-white hover:bg-[#5c8ff7]/50 cursor-pointer transition-colors"
+          className="inline-flex h-[26px] w-full items-center justify-center rounded-[61px] border border-[#1556d8]/30 bg-[#5c8ff7]/60 px-3 text-[12px] font-medium text-white hover:bg-[#5c8ff7]/50 cursor-pointer transition-colors"
         >
           View Details
         </button>

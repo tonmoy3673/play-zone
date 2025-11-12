@@ -215,7 +215,7 @@ function CardOverlay({
   compact?: boolean;
 }): JSX.Element {
   return (
-    <div className="absolute inset-0 flex flex-col justify-between p-5">
+    <div  className="absolute inset-0 flex flex-col justify-between pt-3 px-5">
       {/* Top row: Featured + more */}
       <div className="flex items-start justify-between">
         {program.featured ? (
@@ -234,7 +234,7 @@ function CardOverlay({
       </div>
 
       {/* Content block */}
-      <div className="space-y-3">
+      <div className="space-y-1">
         <div className="space-y-1">
           <p
             className={[
