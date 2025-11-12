@@ -1,3 +1,4 @@
+import { AnimatedButton } from "@/components/ui/Button";
 import React from "react";
 
 type ProgramLiveCongratsProps = {
@@ -6,17 +7,7 @@ type ProgramLiveCongratsProps = {
   className?: string;
 };
 
-// Remote assets exported from Figma (expire after ~7 days)
-const imgGlowA =
-  "https://www.figma.com/api/mcp/asset/314ab5ae-8bdc-4f77-977c-857b5ba94c1f";
-const imgGlowB =
-  "https://www.figma.com/api/mcp/asset/11d74467-997f-42e3-928a-cb208e23f2c2";
-const imgMedallion =
-  "https://www.figma.com/api/mcp/asset/f6007c19-dbc7-4ca8-9729-bcfddcb8cfb6";
-const imgStar1 =
-  "https://www.figma.com/api/mcp/asset/0bc5bff1-5a65-4777-9c30-7b7d9dcf4551";
-const imgStar2 =
-  "https://www.figma.com/api/mcp/asset/8c3f101a-9962-4939-80a3-c26c19b096d2";
+
 
 export default function ProgramLiveCongrats(
   props: ProgramLiveCongratsProps
@@ -26,7 +17,7 @@ export default function ProgramLiveCongrats(
   return (
     <section
       className={[
-        "relative w-full overflow-hidden rounded-[16px] bg-white",
+        "relative overflow-hidden rounded-[16px] w-[90vw] max-w-[850px] bg-white/80",
         // Give it a comfortable height while staying responsive
         "min-h-[520px] md:min-h-[560px]",
         className || "",
@@ -45,7 +36,7 @@ export default function ProgramLiveCongrats(
           } as React.CSSProperties
         }
       >
-        <div className="absolute left-1/2 top-[18%] -translate-x-1/2 rotate-[210deg] -scale-y-100">
+        {/* <div className="absolute left-1/2 top-[18%] -translate-x-1/2 rotate-[210deg] -scale-y-100">
           <img
             src={imgGlowA}
             alt=""
@@ -65,7 +56,7 @@ export default function ProgramLiveCongrats(
             alt=""
             className="h-[340px] w-[420px] blur-md opacity-30"
           />
-        </div>
+        </div> */}
       </div>
 
       {/* Top border row */}
@@ -95,22 +86,11 @@ export default function ProgramLiveCongrats(
       {/* Center content */}
       <div className="mx-auto flex w-full max-w-[990px] flex-col items-center gap-12 px-6 pt-28 pb-12 md:pt-32">
         {/* Medallion + sparkles */}
-        <div className="relative">
+        <div className="border-3 p-5 rounded-full border-white/50 bg-white">
           <img
-            src={imgMedallion}
+            src={"/overview/logoIcon.png"}
             alt=""
             className="h-[69px] w-[77px] object-contain"
-          />
-
-          <img
-            src={imgStar1}
-            alt=""
-            className="pointer-events-none absolute -right-10 -top-6 h-[183px] w-[183px]"
-          />
-          <img
-            src={imgStar2}
-            alt=""
-            className="pointer-events-none absolute -right-7 -top-3 h-[165px] w-[165px]"
           />
         </div>
 
@@ -140,17 +120,19 @@ export default function ProgramLiveCongrats(
 
         {/* CTA */}
         <div>
-          <button
-            type="button"
+          <AnimatedButton
             onClick={onGoToDashboard}
-            className="inline-flex items-center justify-center rounded-full border border-[#1556d8]/30 bg-gradient-to-r from-[#2c6ae8] to-[#7aa5fa] px-6 py-3 text-[14px] font-medium text-white shadow-[0_8px_24px_-8px_rgba(21,86,216,0.45)]"
+            style={{
+              borderRadius: "30px",
+              background:
+                "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)",
+            }}
+            className="flex items-center justify-center gap-1 text-white font-normal text-[10px] px-4 py-2 rounded-full hover:scale-105 transition-all"
           >
             Go to Dashboard
-          </button>
+          </AnimatedButton>
         </div>
       </div>
     </section>
   );
 }
-
-

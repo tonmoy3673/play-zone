@@ -24,15 +24,6 @@ export default function page() {
         <News />
         <FinancialOverview2 />
         <YourAthletesTasks />
-        {/* <WelcomeIntro /> */}
-        {/* =========2nd ======= */}
-        {/* <ProgramShowcase /> */}
-
-        {/* ========== 3rd ========= */}
-        <FirstProgram/>
-        {/* ======= 4th ====== */}
-        <PremiumUpsell />
-
 
         {/* ======= 5th ======== */}
         <ProgramLiveCongrats />

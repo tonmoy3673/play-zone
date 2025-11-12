@@ -172,7 +172,7 @@ export default function ProgramShowcase({
                 {/* Progress Dots */}
                 <div className="flex items-center gap-2 mt-4 mb-4">
                   <span className="h-2 w-2 rounded-full bg-gray-300"></span>
-                  <span className="h-2 w-6 rounded-full bg-blue-500"></span>
+                  <span className="h-2 w-8 rounded-full bg-blue-500"></span>
                   <span className="h-2 w-2 rounded-full bg-gray-300"></span>
                   <span className="h-2 w-2 rounded-full bg-gray-300"></span>
                   <span className="h-2 w-2 rounded-full bg-gray-300"></span>
