@@ -9,15 +9,6 @@ interface ModalProps {
   onPrev?: () => void;
 }
 
-const imgRing =
-  "https://www.figma.com/api/mcp/asset/0ecc8566-b28e-40f6-9b0e-c609ce3b7476";
-const imgEllipse7633 =
-  "https://www.figma.com/api/mcp/asset/bfcc4bef-2a99-465f-973e-ec1748c62f69";
-const imgCrown =
-  "https://www.figma.com/api/mcp/asset/3dd759f1-8604-4991-a936-cf2a0b654350";
-const imgCheckCircle =
-  "https://www.figma.com/api/mcp/asset/bd3d18f8-adfe-48df-b404-c38d14234a69";
-
 type Feature = {
   id: string;
   label: string;
@@ -92,12 +83,12 @@ export default function PremiumUpsell({
                 <div className="relative h-12 w-12">
                   <img
                     alt=""
-                    src={imgRing}
+                    src={"/overview/imgRing.svg"}
                     className="absolute inset-0 size-full"
                   />
                   <img
                     alt=""
-                    src={imgEllipse7633}
+                    src={"/overview/imgEllipse7633.png"}
                     className="absolute left-1/2 top-1/2 size-9 -translate-x-1/2 -translate-y-1/2"
                   />
                   <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[12px] font-medium text-[#141b34]">
@@ -164,7 +155,11 @@ export default function PremiumUpsell({
                     <p className="text-[12px] font-medium text-[#141b34]">
                       {f.label}
                     </p>
-                    <img alt="" src={imgCheckCircle} className="size-4" />
+                    <img
+                      alt=""
+                      src={"/overview/imgCheckCircle.svg"}
+                      className="size-4"
+                    />
                   </li>
                 ))}
               </ul>

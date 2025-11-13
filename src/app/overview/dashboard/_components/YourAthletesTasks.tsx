@@ -12,10 +12,8 @@ type AthleteTask = {
   progressPercent: number;
 };
 
-const imgDefaultCreator =
-  "https://www.figma.com/api/mcp/asset/4e46797c-eff9-4558-98b4-81c3e5b31e90"; // rectangle avatar from figma context
-const imgTaskIcon1 =
-  "https://www.figma.com/api/mcp/asset/37a05253-9f5f-457e-971b-488184219d47";
+// rectangle avatar from figma context
+
 const imgTaskIcon2 =
   "https://www.figma.com/api/mcp/asset/5bc67d26-b406-4ac6-a3eb-ed0bd4a26c44";
 
@@ -27,8 +25,8 @@ const defaultTasks: AthleteTask[] = [
     description:
       "This task focused on foundational techniques for disengaging blocks and pursuing the ball carrier. It included a video demonstration, a drill checklist, and a required video submission of athletes performing the drill.",
     creatorName: "Jason M.",
-    creatorAvatarSrc: imgDefaultCreator,
-    imageSrc: imgTaskIcon1,
+    creatorAvatarSrc: "/overview/imgDefaultCreator.png",
+    imageSrc: "/overview/imgTaskIcon1.png",
     progressPercent: 70,
   },
   {
@@ -38,8 +36,8 @@ const defaultTasks: AthleteTask[] = [
     description:
       "This task focused on foundational techniques for disengaging blocks and pursuing the ball carrier. It included a video demonstration, a drill checklist, and a required video submission of athletes performing the drill.",
     creatorName: "Jason M.",
-    creatorAvatarSrc: imgDefaultCreator,
-    imageSrc: imgTaskIcon2,
+    creatorAvatarSrc: "/overview/imgDefaultCreator.png",
+    imageSrc: "/overview/imgTaskIcon2.png",
     progressPercent: 70,
   },
 ];
@@ -109,7 +107,10 @@ export default function YourAthletesTasks({
                         <div className="flex items-center gap-1">
                           <span className="relative inline-block size-4 shrink-0 overflow-hidden rounded-[37px]">
                             <img
-                              src={task.creatorAvatarSrc ?? imgDefaultCreator}
+                              src={
+                                task.creatorAvatarSrc ??
+                                "/overview/imgDefaultCreator.png"
+                              }
                               alt=""
                               className="absolute inset-0 size-full max-w-none object-cover"
                             />
