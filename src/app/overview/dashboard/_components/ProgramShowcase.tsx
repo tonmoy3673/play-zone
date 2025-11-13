@@ -21,25 +21,13 @@ type ProgramCard = {
   featured?: boolean;
 };
 
-// Images from the provided Figma node for quick parity
-const imgCenter =
-  "https://www.figma.com/api/mcp/asset/fe5fbd0e-c951-4d4c-a4af-e1e9e0da78a1"; // image 47
-const imgLeft =
-  "https://www.figma.com/api/mcp/asset/a4645bc1-3b9b-4437-bb6c-6c7032ea20c5"; // image 380
-const imgRight =
-  "https://www.figma.com/api/mcp/asset/741406da-b8fc-48ee-ae42-4bbd20ca9a60"; // image 401 (alt)
-const imgBackgroun19 =
-  "https://www.figma.com/api/mcp/asset/6c0987a2-7815-427b-85ad-70efac592f50";
-const imgImage341 =
-  "https://www.figma.com/api/mcp/asset/a12520e4-fd03-4f5f-9a4b-8acfd4bcb1c3";
-
 const defaultPrograms: ProgramCard[] = [
   {
     id: "p1",
     title: "James Wilson Elite Soccer Club",
     coachName: "Coach James Wilson",
     price: "$100",
-    image: imgCenter,
+    image: "/overview/imgCenter.png",
     participants: "3.4K+",
     duration: "6 months",
     rating: 4.0,
@@ -50,7 +38,7 @@ const defaultPrograms: ProgramCard[] = [
     title: "MMA Long Beach",
     coachName: "Coach Rivera",
     price: "$59",
-    image: imgRight,
+    image: "/overview/imgRight.png",
     participants: "2.1K+",
     duration: "8 weeks",
     rating: 4.7,
@@ -60,7 +48,7 @@ const defaultPrograms: ProgramCard[] = [
     title: "Youth Academy – Finishing School",
     coachName: "Coach Martins",
     price: "$79",
-    image: imgLeft,
+    image: "/overview/imageLeft.png",
     participants: "1.2K+",
     duration: "10 weeks",
     rating: 4.5,
@@ -123,13 +111,17 @@ export default function ProgramShowcase({
                 <div className="pointer-events-none absolute inset-0 -z-10">
                   <div className="absolute left-1/2 top-[60px] h-[540px] w-[663px] -translate-x-1/2 rotate-[60deg] -scale-y-100 blur-md opacity-30">
                     <img
-                      src={imgImage341}
+                      src={"/public/overview/imgImage341.png"}
                       alt=""
                       className="size-full object-cover"
                     />
                   </div>
                   <div className="absolute left-1/2 top-[120px] h-[650px] w-[650px] -translate-x-1/2 rotate-[210deg] -scale-y-100 blur-[60px] opacity-80">
-                    <img src={imgBackgroun19} alt="" className="size-full" />
+                    <img
+                      src={"/overview/showBG.png"}
+                      alt=""
+                      className="size-full"
+                    />
                   </div>
                 </div>
 
@@ -221,9 +213,13 @@ function CardOverlay({
   compact?: boolean;
 }): JSX.Element {
   return (
-    <div style={{
-  background: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 23.3%, rgba(255, 255, 255, 0.15) 45%, rgba(255, 255, 255, 0.60) 65%, #FFF 85%)"
-}} className="absolute  inset-0 flex flex-col justify-between pt-3 px-5">
+    <div
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 23.3%, rgba(255, 255, 255, 0.15) 45%, rgba(255, 255, 255, 0.60) 65%, #FFF 85%)",
+      }}
+      className="absolute  inset-0 flex flex-col justify-between pt-3 px-5"
+    >
       {/* Top row: Featured + more */}
       <div className="flex items-start justify-between">
         {program.featured ? (

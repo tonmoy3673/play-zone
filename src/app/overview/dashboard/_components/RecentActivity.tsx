@@ -3,15 +3,6 @@
 import { AnimatedButton } from "@/components/ui/Button";
 import Icon from "@/utils/icon";
 
-const imgEllipse4 =
-  "https://www.figma.com/api/mcp/asset/b7cc0a8a-3924-4fdf-929a-a9d64b512cd8";
-const imgFaders =
-  "https://www.figma.com/api/mcp/asset/92dd04f5-8f09-49ab-96b2-e372f541ddd3";
-const imgFamiconsLogoVue =
-  "https://www.figma.com/api/mcp/asset/d42a5a00-2fa5-48ec-b46c-727d9aeaed45";
-const imgFamiconsLogoVue1 =
-  "https://www.figma.com/api/mcp/asset/693af2d9-bda5-4d95-86d2-5a1bbd4a3766";
-
 type ActivityItem = {
   id: string;
   title: string;
@@ -26,28 +17,28 @@ const defaultItems: ActivityItem[] = [
     title: "Johnny Manziel completed 'Strength Training’",
     body: "Check the itinerary for optimization suggestions.",
     timeAgo: "1min ago",
-    avatarSrc: imgFamiconsLogoVue,
+    avatarSrc: "/overview/logoView.svg",
   },
   {
     id: "2",
     title: "Johnny Manziel completed 'Strength Training’",
     body: "Each workout adds momentum to his progress. Consistency is turning effort into real results.”",
     timeAgo: "1min ago",
-    avatarSrc: imgFamiconsLogoVue1,
+    avatarSrc: "/overview/logoView.svg",
   },
   {
     id: "3",
     title: "Johnny Manziel completed 'Strength Training’",
     body: "Check the itinerary for optimization suggestions.",
     timeAgo: "1min ago",
-    avatarSrc: imgFamiconsLogoVue1,
+    avatarSrc: "/overview/logoView.svg",
   },
   {
     id: "4",
     title: "Johnny Manziel completed 'Strength Training’",
     body: "Check the itinerary for optimization suggestions.",
     timeAgo: "1min ago",
-    avatarSrc: imgFamiconsLogoVue1,
+    avatarSrc: "/overview/logoView2.svg",
   },
 ];
 
@@ -91,16 +82,16 @@ export default function RecentActivity({
             >
               View Progress
             </button> */}
-             <AnimatedButton
-                      style={{
-                        borderRadius: "40px",
-                        background:
-                          "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)",
-                      }}
-                      className=" flex items-center justify-center gap-1 text-white font-normal text-[10px] px-4 py-2.5 rounded-full hover:bg-blue-700 "
-                    >
-                     View Progress
-                    </AnimatedButton>
+            <AnimatedButton
+              style={{
+                borderRadius: "40px",
+                background:
+                  "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)",
+              }}
+              className=" flex items-center justify-center gap-1 text-white font-normal text-[10px] px-4 py-2.5 rounded-full hover:bg-blue-700 "
+            >
+              View Progress
+            </AnimatedButton>
           </div>
         </div>
 
@@ -114,7 +105,7 @@ export default function RecentActivity({
                 <div className="col-[1] row-[1] size-12 rounded-[38.4px] border border-white bg-white/60" />
                 <div className="col-[1] row-[1] ml-[12.32px] mt-[12.32px] flex size-6 items-center justify-center">
                   <img
-                    src={item.avatarSrc ?? imgFamiconsLogoVue}
+                    src={item.avatarSrc ?? "/overview/logoView.svg"}
                     alt=""
                     className="size-6"
                   />
