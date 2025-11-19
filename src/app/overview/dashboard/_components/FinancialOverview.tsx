@@ -102,7 +102,6 @@ const chartData = {
         borderRadiusApplication: "around",
       },
     },
-    // :white_check_mark: Color setup — Withdraws (blue), Earnings (#bdd0ff)
     colors: ["#276AEE", "#bdd0ff"],
     fill: {
       type: "solid",
@@ -141,7 +140,6 @@ const chartData = {
       },
       background: { enabled: false },
     },
-    // :white_check_mark: Disable hover/dim effect
     states: {
       normal: { filter: { type: "none", value: 0 } },
       hover: { filter: { type: "none", value: 0 } },
@@ -200,7 +198,7 @@ const chartData = {
     legend: {
       show: true,
       position: "top",
-      horizontalAlign: "left",
+      horizontalAlign: "center",
       fontSize: "14px",
       fontWeight: 400,
       offsetY: -5,
@@ -266,11 +264,28 @@ export default function FinancialOverview2() {
         ))}
       </div>
 
-      <Card className="p-6 ">
-        <div className="flex items-center justify-between mb-6">
+      <Card className="p-6">
+        <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold text-gray-900">
             Earning Calculation
           </h2>
+
+          {/* ============= Withdraws & Earnings ============ */}
+          <div className="flex-1 flex justify-center px-4">
+            <div className="flex items-center gap-4">
+               <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#bdd0ff]"></div>
+                <span className="text-sm text-gray-700">Earnings</span>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#276AEE]"></div>
+                <span className="text-sm text-gray-700">Withdraws</span>
+              </div>
+             
+            </div>
+          </div>
+
           <div className="flex items-center gap-2">
             {["Week", "Month", "Yearly"].map((item) => (
               <AnimatedButton
@@ -287,12 +302,21 @@ export default function FinancialOverview2() {
             ))}
           </div>
         </div>
+
+      
         <ReactApexChart
-          options={chartData.options}
+          options={{
+            ...chartData.options,
+            legend: {
+              ...chartData.options.legend,
+              show: false,
+            },
+          }}
           series={chartData.series}
           type="bar"
           height={380}
         />
+
         <style>{`
           .apexcharts-datalabel:has(tspan:contains('-$11,678')) tspan {
             fill: #ff0033 !important;

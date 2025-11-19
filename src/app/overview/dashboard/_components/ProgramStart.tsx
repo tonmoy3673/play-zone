@@ -1,9 +1,6 @@
 "use client";
 import React, { useState } from "react";
 
-const imgImage341 =
-  "https://www.figma.com/api/mcp/asset/8317cf7f-0e9f-4656-b7eb-3ed493a9aba0";
-
 type FrameProps = {
   className?: string;
   property1?: "Check" | "uncheck";
