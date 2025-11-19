@@ -109,8 +109,19 @@ export default function ProgramStartModal({ onClose }: ProgramStartModalProps) {
 
   return (
     <div
-      style={{ boxShadow: "0 30px 35.8px 11px rgba(8, 44, 114, 0.30)" }}
-      className="bg-white/40 backdrop-blur-lg border-2 border-white relative rounded-[21px] w-[380px] h-[420px] overflow-hidden"
+      style={{
+        backgroundImage: `
+    linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%),
+    url('/overview/cardBG.png')
+  `,
+
+        backgroundPosition: "center, center",
+        backgroundRepeat: "no-repeat",
+        backgroundBlendMode: "normal, multiply",
+        boxShadow: "0 30px 35.8px 11px rgba(8, 44, 114, 0.30)",
+        aspectRatio: "689.69 / 561.59",
+      }}
+      className="bg-white backdrop-blur-lg border-2 border-white relative rounded-[21px] w-[380px] h-[420px] overflow-hidden"
     >
       <div className="overflow-clip relative rounded-[inherit] size-full">
         {/* Background Image */}
