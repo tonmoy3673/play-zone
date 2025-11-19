@@ -3,7 +3,7 @@
 import React from "react";
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode } from "swiper/modules";
+import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import Card from "@/components/ui/Card";
@@ -111,11 +111,15 @@ export default function CommunityFeed({
 
       <div className="mt-4 grid">
         <Swiper
-          modules={[FreeMode]}
+          modules={[Autoplay,FreeMode]}
           spaceBetween={16}
           slidesPerView="auto"
           freeMode={true}
           grabCursor={true}
+           autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
           className="!py-2 w-full"
         >
           {items.map((item) => (

@@ -19,8 +19,6 @@ type AthleteTask = {
 
 // rectangle avatar from figma context
 
-const imgTaskIcon2 =
-  "https://www.figma.com/api/mcp/asset/5bc67d26-b406-4ac6-a3eb-ed0bd4a26c44";
 
 const defaultTasks: AthleteTask[] = [
   {
