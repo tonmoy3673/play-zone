@@ -149,10 +149,10 @@ export default function CompleteProfile() {
   return (
     <div className=" bg-[#ffffff4D] border border-white max-w-2xl w-full text-sm px-12 rounded-xl py-12 mx-auto">
       <div className="flex flex-col items-center mb-8">
-        <h1 className="text-3xl font-bold text-dark-100  mb-2 text-center">
+        <h1 className="text-3xl font-bold text-dark  mb-2 text-center">
           Complete Your Profile
         </h1>
-        <p className="text-gray-600 text-center">Tell us about yourself</p>
+        <p className="text-[#141b3499] text-center">Tell us about yourself</p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -162,7 +162,7 @@ export default function CompleteProfile() {
             className="text-blue-500 flex flex-col items-center mb-8 cursor-pointer font-medium hover:text-blue-600 transition-colors"
             htmlFor="photo-upload"
           >
-            <div className="w-32 h-32 rounded-full bg-white/60 backdrop-blur-sm border border-white flex items-center justify-center mb-3">
+            <div className="w-24 h-24 rounded-full bg-white/60 backdrop-blur-sm border border-white flex items-center justify-center mb-3">
               {mainImage ? (
                 <Image
                   src={mainImage}
@@ -173,16 +173,40 @@ export default function CompleteProfile() {
                 />
               ) : (
                 <svg
-                  className="w-12 h-12 text-gray-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="27"
+                  height="27"
+                  viewBox="0 0 27 27"
                   fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
                 >
                   <path
+                    opacity="0.4"
+                    d="M0.75 13.4167C0.75 7.44554 0.75 4.45998 2.60499 2.60499C4.45998 0.75 7.44554 0.75 13.4167 0.75C19.3878 0.75 22.3734 0.75 24.2283 2.60499C26.0833 4.45998 26.0833 7.44554 26.0833 13.4167C26.0833 19.3878 26.0833 22.3734 24.2283 24.2283C22.3734 26.0833 19.3878 26.0833 13.4167 26.0833C7.44554 26.0833 4.45998 26.0833 2.60499 24.2283C0.75 22.3734 0.75 19.3878 0.75 13.4167Z"
+                    fill="#5B5F71"
+                  />
+                  <path
+                    d="M24.229 24.2273C22.374 26.0823 19.3884 26.0823 13.4173 26.0823H13.4173C8.90563 26.0823 6.09843 26.0823 4.19552 25.2821C9.99734 18.3324 16.5107 9.31687 26.0805 15.4884C26.0559 20.1046 25.8556 22.6006 24.229 24.2273Z"
+                    fill="white"
+                  />
+                  <circle
+                    cx="7.41699"
+                    cy="7.41602"
+                    r="2"
+                    fill="white"
+                    stroke="#5B5F71"
+                    strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                  <path
+                    d="M0.75 13.4167C0.75 7.44554 0.75 4.45998 2.60499 2.60499C4.45998 0.75 7.44554 0.75 13.4167 0.75C19.3878 0.75 22.3734 0.75 24.2283 2.60499C26.0833 4.45998 26.0833 7.44554 26.0833 13.4167C26.0833 19.3878 26.0833 22.3734 24.2283 24.2283C22.3734 26.0833 19.3878 26.0833 13.4167 26.0833C7.44554 26.0833 4.45998 26.0833 2.60499 24.2283C0.75 22.3734 0.75 19.3878 0.75 13.4167Z"
+                    stroke="#5B5F71"
+                    strokeWidth="1.5"
+                  />
+                  <path
+                    d="M4.08398 25.4159C9.91393 18.4493 16.4494 9.26135 26.0806 15.4725"
+                    stroke="#5B5F71"
+                    strokeWidth="1.5"
                   />
                 </svg>
               )}
@@ -261,13 +285,13 @@ export default function CompleteProfile() {
             borderRadius: "100px",
           }}
           disabled={!isValid}
-          className={`w-full py-4 rounded-full mt-7 font-semibold  transition-all ${
+          className={`w-full py-4 rounded-full mt-7 font-normal text-base  transition-all ${
             isValid
               ? "bg-gradient-to-br text-white from-[#5C8FF7] to-[#276AEE] hover:shadow-lg active:scale-[0.98]"
-              : "bg-[#141b341A] text-dark-100 cursor-not-allowed"
+              : "bg-[#141b341A] text-dark cursor-not-allowed"
           }`}
         >
-          Continue
+          Complete Profile
         </button>
       </form>
     </div>

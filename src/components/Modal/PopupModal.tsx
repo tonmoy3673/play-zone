@@ -3,7 +3,7 @@ import { ReactNode, useEffect } from "react";
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  title: string;
+  title?: string;
   children: ReactNode;
   height?: string;
   widthClass?: string;
@@ -33,7 +33,7 @@ const PopupModal = ({
       style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       className={`${
         isOpen ? " visible" : " invisible"
-      } w-full h-screen  fixed top-0 left-0 z-50  bg-[#595f7045] flex items-center overflow-hidden justify-center transition-all duration-300  inset-0  bg-opacity-40  ${zIndex}`}
+      } w-full h-screen !fixed top-0 left-0 z-50  bg-[#595f7045] flex items-center overflow-hidden justify-center transition-all duration-300  inset-0  bg-opacity-40  ${zIndex}`}
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <div
@@ -41,7 +41,7 @@ const PopupModal = ({
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         className={` ${
           isOpen ? " scale-[1] opacity-100" : " scale-[0] opacity-0"
-        }  backdrop-blur-[2.5px] bg-transparent rounded-lg p-4 transition-all fixed overflow-hidden left-[50%] -translate-x-[50%]   z-50  overflow-y-auto  px-4 duration-500  w-full h-full flex items-center justify-center`}
+        }  backdrop-blur-[2.5px] bg-transparent rounded-lg p-4 transition-all fixed overflow-hidden left-[50%] -translate-x-[50%]  z-[999999999]  overflow-y-auto  px-4 duration-500  w-full h-full flex items-center justify-center`}
       >
         {/* <div className="flex mb-6 px-2 pt-2 items-center justify-between"> */}
         {/* <h2 className="text-2xl font-medium text-[#131523]">{title}</h2> */}

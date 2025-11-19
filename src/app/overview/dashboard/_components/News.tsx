@@ -1,18 +1,18 @@
-// News.tsx
 "use client";
 /* eslint-disable @next/next/no-img-element */
-import WelcomeModal from "@/components/Modal/WelcomeModal";
-import { AnimatedButton } from "@/components/ui/Button";
 import Icon from "@/utils/icon";
 import React, { useState } from "react";
+import Card from "@/components/ui/Card";
 import WelcomeIntro from "./WelcomeIntro";
-import ProgramShowcase from "./ProgramShowcase";
 import FirstProgram from "./FirstProgram";
 import PremiumUpsell from "./PremiumUpsell";
+import ProgramShowcase from "./ProgramShowcase";
+import { AnimatedButton } from "@/components/ui/Button";
 import ProgramLiveCongrats from "./ProgramLiveCongrats";
+import WelcomeModal from "@/components/Modal/WelcomeModal";
 
 function News() {
-  const [isWelcomeModalOpen, setIsWelcomeModalOpen] = useState(false);
+  const [isWelcomeModalOpen, setIsWelcomeModalOpen] = useState(true);
   const [currentModalStep, setCurrentModalStep] = useState(1);
 
   const handleOpenWelcomeModal = () => {
@@ -85,74 +85,80 @@ function News() {
 
   return (
     <>
-      <div className="relative w-full overflow-hidden rounded-[24px] bg-white/30 border border-white">
-        <div className="p-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-[20px] font-semibold leading-[1.5] text-[#141b34]">
-              News
-            </h2>
-            <button
-              type="button"
-              aria-label="Next"
-              className="relative inline-flex size-10 items-center justify-center rounded-full border border-white bg-white/65 cursor-pointer hover:bg-white/80 transition-colors"
-            >
-              <Icon name="right_arrow" width={20} height={20} />
-            </button>
-          </div>
+      <Card className="space-y-5 p-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-[20px] font-semibold leading-[1.5] text-dark">
+            News
+          </h2>
 
-          <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
-            <div className="bg-white bg-[url('/image341.svg')] h-[285px] bg-cover bg-center bg-no-repeat rounded-3xl border-2 max-w-md border-white p-6 flex flex-col items-center justify-center min-h-64 transition-shadow hover:shadow-lg">
-              <div className="flex h-full flex-col justify-between">
-                <div className="space-y-2">
-                  <div className="inline-flex size-10 items-center justify-center rounded-full bg-white/60 p-[9px]">
-                    <Icon name="sunburstIcon" width={20} height={20} />
-                  </div>
+          <button
+            type="button"
+            aria-label="Next"
+            className="relative inline-flex size-10 items-center justify-center rounded-full border border-white bg-white/65 cursor-pointer hover:bg-white/80 transition-colors"
+          >
+            <Icon name="right_arrow" width={20} height={20} />
+          </button>
+        </div>
 
-                  <div className="space-y-2">
-                    <p className="w-full max-w-[345px] text-[18px] font-inter font-semibold leading-[1.5] text-[#141b34]">
-                      Share your expertise with the community!
-                    </p>
-                    <p className="w-full max-w-[342px] font-inter text-[12px] font-normal leading-[1.4] text-[#141b34]/70">
-                      Exciting news! You can now build your brand by posting in
-                      the Community Feed. Share insights, drills, and connect
-                      with athletes globally. Turn your expertise into influence
-                      and income on PlayerZone
-                    </p>
-                  </div>
-                </div>
-                <div className="mt-3">
-                  <AnimatedButton
-                    onClick={handleOpenWelcomeModal}
-                    style={{
-                      borderRadius: "40px",
-                      background:
-                        "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)",
-                    }}
-                    className="flex items-center justify-center gap-1 text-white font-normal text-[10px] px-4 py-2.5 rounded-full hover:bg-blue-700 cursor-pointer transition-all"
-                  >
-                    Explore Community
-                  </AnimatedButton>
-                </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          <Card className="md:p-6">
+            <div className="bg-[url('/card-bottom-blur-image.svg')] absolute left-0 bottom-0 bg-no-repeat bg-left-bottom h-[540px] w-[663px] z-[-1]" />
+            <div className="space-y-4">
+              <div className="inline-flex size-10 items-center justify-center rounded-full bg-white/60">
+                <Icon name="sunburstIcon" width={20} height={20} />
+              </div>
+
+              <div className="space-y-2">
+                <p className="min-h-14 w-full text-lg font-semibold text-dark">
+                  Share your expertise with the community!
+                </p>
+                <p className="min-h-[68px] text-xs line-clamp-4 text-dark/70">
+                  Exciting news! You can now build your brand by posting in the
+                  Community Feed. Share insights, drills, and connect with
+                  athletes globally. Turn your expertise into influence and
+                  income on PlayerZone
+                </p>
+              </div>
+
+              <div>
+                <AnimatedButton
+                  onClick={handleOpenWelcomeModal}
+                  style={{
+                    borderRadius: "40px",
+                    background:
+                      "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)",
+                  }}
+                  className="flex items-center justify-center gap-1 text-white font-normal text-[10px] px-4 py-2.5 rounded-full hover:bg-blue-700 cursor-pointer transition-all"
+                >
+                  Explore Community
+                </AnimatedButton>
               </div>
             </div>
+          </Card>
 
-            <div className="relative h-[285px] bg-cover bg-[url('/bg.png')] w-full overflow-hidden rounded-[24px] bg-[#3c6bda] p-6 text-white">
-              <div className="relative flex h-full flex-col">
-                <div className="inline-flex size-[40.5px] items-center justify-center rounded-full bg-white/10 p-[9px]">
-                  <Icon name="crown" width={22} height={22} />
-                </div>
+          <Card className="md:p-6 border-2 bg-cover bg-[url('/bg.png')] bg-[#3c6bda]text-white">
+            <div className="space-y-4">
+              <div className="inline-flex size-10 items-center justify-center rounded-full bg-white/5 border border-white/10">
+                <Icon
+                  name="crown"
+                  width={22}
+                  height={22}
+                  className="text-white"
+                />
+              </div>
 
-                <div className="mt-4 space-y-2">
-                  <p className="text-[18px] font-semibold leading-[1.5]">
-                    Unlock Premium
-                  </p>
-                  <p className="text-[12px] font-normal leading-[1.4]">
-                    Access advanced analytics, gain priority visibility for your
-                    programs, and unlock exclusive tools designed to grow your
-                    coaching business on PlayerZone.
-                  </p>
-                </div>
+              <div className="space-y-2">
+                <p className="min-h-14 w-full text-lg font-semibold text-white">
+                  Unlock Premium
+                </p>
+                <p className="min-h-[68px] text-xs line-clamp-4 text-white">
+                  Access advanced analytics, gain priority visibility for your
+                  programs, and unlock exclusive tools designed to grow your
+                  coaching business on PlayerZone.
+                </p>
+              </div>
 
+              <div>
                 <button
                   type="button"
                   className="mt-auto inline-flex h-[35px] w-[127px] items-center justify-center rounded-full bg-white px-[7px] py-[8px] text-[10px] font-medium text-[#1556d8] hover:bg-gray-100 cursor-pointer transition-colors"
@@ -161,9 +167,9 @@ function News() {
                 </button>
               </div>
             </div>
-          </div>
+          </Card>
         </div>
-      </div>
+      </Card>
 
       <WelcomeModal
         isOpen={isWelcomeModalOpen}

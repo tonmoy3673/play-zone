@@ -1,5 +1,6 @@
 "use client";
 
+import Container from "@/components/ui/Container";
 import Image from "next/image";
 
 export default function Achievements() {
@@ -31,6 +32,7 @@ export default function Achievements() {
   ];
 
   return (
+    <Container>
     <div
       style={{ borderRadius: "30px", background: "rgba(255, 255, 255, 0.30)" }}
       className="w-full space-y-5 backdrop-blur-3xl p-8 border border-white"
@@ -54,5 +56,6 @@ export default function Achievements() {
         </div>
       </div>
     </div>
+    </Container>
   );
 }

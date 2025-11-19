@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import Icon from "@/utils/icon";
 import { useState, useRef, useEffect } from "react";
 import type React from "react";
 
@@ -12,6 +13,7 @@ export interface SelectOption {
 
 interface SelectProps {
   label?: string;
+  labelClassName?: string;
   error?: string;
   placeholder?: string;
   options: SelectOption[];
@@ -22,6 +24,7 @@ interface SelectProps {
 
 const Select = ({
   label,
+  labelClassName,
   error,
   placeholder = "Select an option",
   options,
@@ -62,7 +65,12 @@ const Select = ({
   return (
     <div ref={containerRef}>
       {label && (
-        <label className="mb-2 block text-sm font-medium text-dark">
+        <label
+          className={cn(
+            "mb-2 block text-sm font-medium text-dark",
+            labelClassName
+          )}
+        >
           {label}
         </label>
       )}
@@ -71,35 +79,34 @@ const Select = ({
           type="button"
           onClick={() => setIsOpen(!isOpen)}
           className={cn(
-            `w-full rounded-xl border border-white bg-[#ffffff80] backdrop-blur-sm px-4 py-4 text-left text-dark placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all flex items-center justify-between ${
+            `w-full rounded-2xl border border-white bg-[#ffffff80] backdrop-blur-sm px-4 py-4 text-left text-dark placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all flex items-center justify-between ${
               error ? "border-red-500" : ""
             }`,
             className
           )}
         >
-          <span className={selectedOption ? "text-dark" : "text-[#141b34b3]"}>
+          <span
+            className={cn(
+              "whitespace-nowrap text-sm font-medium text-dark",
+              selectedOption ? "text-dark" : "text-[#141b34b3]"
+            )}
+          >
             {selectedOption ? selectedOption.label : placeholder}
           </span>
-          <svg
-            className={`w-5 h-5 text-gray-500 transition-transform ${
+          <Icon
+            name="chevron_down"
+            height={20}
+            width={20}
+            className={cn(
+              "text-[#5C8FF7] transition-transform",
               isOpen ? "rotate-180" : ""
-            }`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
+            )}
+          />
         </button>
 
         {/* Dropdown */}
         {isOpen && (
-          <div className="absolute z-50 w-full px-2 space-y-1 py-4 mt-2 rounded-xl border border-white bg-white/95 backdrop-blur-sm shadow-lg overflow-hidden">
+          <div className="absolute z-[9999999] w-full px-2 space-y-1 py-4 mt-2 rounded-xl border border-white bg-white/95 backdrop-blur-sm shadow-lg overflow-hidden">
             {options.map((option) => {
               const isSelected = option.value === value;
               return (
@@ -113,11 +120,11 @@ const Select = ({
                 >
                   <div className="flex items-center gap-3">
                     {option.icon && (
-                      <div className="text-gray-600 w-5 h-5 flex items-center justify-center">
+                      <div className="text-[#141b3499] w-5 h-5 flex items-center justify-center">
                         {option.icon}
                       </div>
                     )}
-                    <span className="text-dark text-sm font-normal">
+                    <span className="text-dark whitespace-nowrap text-sm font-normal">
                       {option.label}
                     </span>
                   </div>

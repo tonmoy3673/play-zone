@@ -72,13 +72,13 @@ export default function CommunityFeed({
   items = defaultItems,
 }: {
   items?: FeedItem[];
-}): JSX.Element {
+}) {
   return (
     <div className="max-w-[530px] overflow-hidden rounded-[24px] bg-white/30 border border-white">
       <div className="p-5">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <h2 className="text-[20px] font-semibold leading-[1.5] text-[#141b34]">
+          <h2 className="text-[20px] font-semibold leading-[1.5] text-dark">
             Community Feed
           </h2>
           <button
@@ -123,7 +123,7 @@ export default function CommunityFeed({
 
                       {/* Minutes Ago */}
                       <div className="absolute left-[10px] top-[10px] inline-flex h-[20px] items-center justify-center rounded-[37.5px] bg-white/80 px-[3.75px] py-[2.25px]">
-                        <span className="text-[10px] leading-none tracking-[-0.3px] text-[#141b34]">
+                        <span className="text-[10px] leading-none tracking-[-0.3px] text-dark">
                           {item.minutesAgo}
                         </span>
                       </div>
@@ -137,7 +137,7 @@ export default function CommunityFeed({
                           alt=""
                           className="w-4 h-4"
                         />
-                        <span className="text-[10px] font-medium text-[#141b34]">
+                        <span className="text-[10px] font-medium text-dark">
                           {item.likes} Likes
                         </span>
                       </div>
@@ -147,7 +147,7 @@ export default function CommunityFeed({
                           alt=""
                           className="w-4 h-4"
                         />
-                        <span className="text-[10px] font-medium text-[#141b34]">
+                        <span className="text-[10px] font-medium text-dark">
                           {item.replies} Replies
                         </span>
                       </div>
@@ -163,12 +163,12 @@ export default function CommunityFeed({
                             className="absolute inset-0 w-full h-full object-cover"
                           />
                         </span>
-                        <p className="text-[14px] font-medium text-[#141b34]">
+                        <p className="text-[14px] font-medium text-dark">
                           {item.authorName}
                         </p>
                       </div>
 
-                      <p className="text-[12px] text-[#141b34]">
+                      <p className="text-[12px] text-dark">
                         {item.body}
                         {item.linkText && (
                           <>

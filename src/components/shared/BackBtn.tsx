@@ -20,11 +20,11 @@ const BackBtn = ({
     >
       <Link
         href={href}
-        className="text-gray-700 bg-[#ffffff4d] p-0 backdrop-blur-3xl rounded-full size-10 border border-white flex items-center justify-center hover:brightness-110"
+        className="text-dark bg-[#ffffff4d] p-0 backdrop-blur-3xl rounded-full size-10 border border-white flex items-center justify-center hover:brightness-110"
       >
-        <Icon name="left_arrow" />
+        <Icon name="left_arrow" height={20} width={20} />
       </Link>
-      <h1 className="text-2xl md:text-3xl font-semibold text-dark">{title}</h1>
+      <h1 className="text-2xl md:text-3xl font-semibold">{title}</h1>
     </div>
   );
 };

@@ -80,9 +80,7 @@ export default function FinancialOverview() {
       <div className="w-full max-w-[1100px] bg-white/30 rounded-[24px] p-6 flex flex-col gap-6">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <h2 className="text-[#141b34] text-xl font-semibold">
-            My Financials
-          </h2>
+          <h2 className="text-dark text-xl font-semibold">My Financials</h2>
           <button className="relative w-10 h-10">
             <span className="absolute inset-0 rounded-full bg-white/60 border border-white/70"></span>
             <img
@@ -112,7 +110,7 @@ export default function FinancialOverview() {
               </div>
               <div className="flex flex-col text-sm text-[#141b34b3]">
                 <span className="font-medium">{title}</span>
-                <span className="text-[#141b34] text-2xl font-bold font-['DM Sans',sans-serif]">
+                <span className="text-dark text-2xl font-bold font-['DM Sans',sans-serif]">
                   {amount}
                 </span>
               </div>
@@ -135,10 +133,10 @@ export default function FinancialOverview() {
         {/* Chart Section */}
         <div className="bg-white/40 rounded-[24px] p-6">
           <div className="flex justify-between items-center mb-6">
-            <h3 className="text-[#141b34] text-lg font-semibold">
+            <h3 className="text-dark text-lg font-semibold">
               Earning Calculation
             </h3>
-            <div className="flex items-center gap-5 text-xs text-[#141b34]">
+            <div className="flex items-center gap-5 text-xs text-dark">
               <div className="flex items-center gap-2">
                 <img
                   src={legendEarnings}
@@ -157,10 +155,10 @@ export default function FinancialOverview() {
               </div>
             </div>
             <div className="flex items-center gap-2 text-xs font-medium">
-              <button className="px-3 py-1 rounded-full bg-white/60 text-[#141b34]">
+              <button className="px-3 py-1 rounded-full bg-white/60 text-dark">
                 Week
               </button>
-              <button className="px-3 py-1 rounded-full bg-white/60 text-[#141b34]">
+              <button className="px-3 py-1 rounded-full bg-white/60 text-dark">
                 Month
               </button>
               <button className="px-4 py-2 rounded-full bg-gradient-to-r from-[#4d8ffb] to-[#2a6be8] text-white">
@@ -212,7 +210,7 @@ export default function FinancialOverview() {
                       <div
                         className={`absolute -top-14 z-10 px-3 py-1 rounded-lg shadow-xl bg-white text-xs font-medium whitespace-nowrap ${
                           month.highlight.positive
-                            ? "text-[#141b34]"
+                            ? "text-dark"
                             : "text-[#ff0033]"
                         }`}
                         style={{ left: "50%", transform: "translateX(-50%)" }}

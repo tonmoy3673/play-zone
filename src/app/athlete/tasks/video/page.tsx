@@ -15,7 +15,12 @@ const Page = () => {
       <Container className="p-6">
         <div className="flex gap-8 items-center">
           <div className="bg-white rounded-full p-3">
-            <Icon name="right_arrow" width={20} height={20} />
+            <Icon
+              name="right_arrow"
+              className="text-dark"
+              width={20}
+              height={20}
+            />
           </div>
           <div>
             <h1 className="text-2xl font-semibold text-dark">
@@ -30,59 +35,10 @@ const Page = () => {
         <div className="grid lg:grid-cols-3 grid-cols-1 gap-4 items-start mt-10">
           <div className="col-span-2">
             <div className="border border-[#FFFFFF4D] rounded-2xl">
-              <VideoPlayer />
+              <div className="bg-[#ffffff4d] p-5 flex-1 border border-white rounded-3xl backdrop-blur-3xl overflow-hidden">
+                <VideoPlayer />
 
-              <div className="mt-5 flex gap-3 items-center">
-                <AnimatedButton
-                  style={{
-                    borderRadius: "100px",
-                    background:
-                      "var(--Gradient, linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%))",
-                  }}
-                  className=" text-white font-semibold px-5 text-sm py-3 leading-4 rounded-full flex items-center gap-2 transition-all whitespace-nowrap"
-                >
-                  <Icon name="eye" width={16} height={16} />
-                  Mark as Watched
-                </AnimatedButton>
-
-                <AnimatedButton
-                  style={{
-                    borderRadius: "50px",
-                    border: "1px solid rgba(21, 86, 216, 0.10)",
-                    background: "rgba(69, 127, 243, 0.15)",
-                  }}
-                  className="font-semibold text-[#276AEE] px-5 text-sm py-3 leading-4 rounded-full flex items-center gap-2 transition-all whitespace-nowrap"
-                >
-                  <Icon name="note" width={16} height={16} />
-                  Add Notes & Submit
-                </AnimatedButton>
-
-                <AnimatedButton
-                  style={{
-                    borderRadius: "50px",
-                    border: "1px solid rgba(21, 86, 216, 0.10)",
-                    background: "rgba(69, 127, 243, 0.15)",
-                  }}
-                  className="font-semibold text-[#276AEE] px-5 text-sm py-3 leading-4 rounded-full flex items-center gap-2 transition-all whitespace-nowrap"
-                >
-                  <Icon name="note" width={16} height={16} />
-                  Ask Coach
-                </AnimatedButton>
-              </div>
-
-              <div className="mt-8">
-                <p className="text-dark">My Notes</p>
-                {/* textarea */}
-                <textarea
-                  rows={4}
-                  placeholder="Write your notes here..."
-                  className={cn(
-                    "w-full py-4 rounded-xl bg-[#ffffff80] h-40 px-6 mt-4 text-sm text-gray-900 placeholder:text-placeholder focus:outline-none  border border-white",
-                    "focus:border-[#5C8FF7]"
-                  )}
-                />
-
-                <div className="flex justify-end mt-3">
+                <div className="mt-5 flex gap-3 items-center">
                   <AnimatedButton
                     style={{
                       borderRadius: "100px",
@@ -91,8 +47,59 @@ const Page = () => {
                     }}
                     className=" text-white font-semibold px-5 text-sm py-3 leading-4 rounded-full flex items-center gap-2 transition-all whitespace-nowrap"
                   >
-                    Save Notes
+                    <Icon name="eye" width={16} height={16} />
+                    Mark as Watched
                   </AnimatedButton>
+
+                  <AnimatedButton
+                    style={{
+                      borderRadius: "50px",
+                      border: "1px solid rgba(21, 86, 216, 0.10)",
+                      background: "rgba(69, 127, 243, 0.15)",
+                    }}
+                    className="font-semibold text-[#276AEE] px-5 text-sm py-3 leading-4 rounded-full flex items-center gap-2 transition-all whitespace-nowrap"
+                  >
+                    <Icon name="note" width={16} height={16} />
+                    Add Notes & Submit
+                  </AnimatedButton>
+
+                  <AnimatedButton
+                    style={{
+                      borderRadius: "50px",
+                      border: "1px solid rgba(21, 86, 216, 0.10)",
+                      background: "rgba(69, 127, 243, 0.15)",
+                    }}
+                    className="font-semibold text-[#276AEE] px-5 text-sm py-3 leading-4 rounded-full flex items-center gap-2 transition-all whitespace-nowrap"
+                  >
+                    <Icon name="note" width={16} height={16} />
+                    Ask Coach
+                  </AnimatedButton>
+                </div>
+
+                <div className="mt-5">
+                  <p className="text-dark">My Notes</p>
+                  {/* textarea */}
+                  <textarea
+                    rows={4}
+                    placeholder="Write your notes here..."
+                    className={cn(
+                      "w-full py-4 rounded-xl bg-[#ffffff80] h-40 px-6 mt-4 text-sm text-gray-900 placeholder:text-placeholder focus:outline-none  border border-white",
+                      "focus:border-[#5C8FF7]"
+                    )}
+                  />
+
+                  <div className="flex justify-end mt-3">
+                    <AnimatedButton
+                      style={{
+                        borderRadius: "100px",
+                        background:
+                          "var(--Gradient, linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%))",
+                      }}
+                      className=" text-white font-semibold px-5 text-sm py-3 leading-4 rounded-full flex items-center gap-2 transition-all whitespace-nowrap"
+                    >
+                      Save Notes
+                    </AnimatedButton>
+                  </div>
                 </div>
               </div>
             </div>

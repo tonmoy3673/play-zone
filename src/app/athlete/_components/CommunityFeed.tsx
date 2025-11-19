@@ -97,7 +97,7 @@ export default function CommunityFeed() {
 
             {/* Engagement */}
             <div className=" mt-4 items-center justify-between mb-5  flex ">
-              <div className="flex items-center gap-1 text-gray-600">
+              <div className="flex items-center gap-1 text-[#141b3499]">
                 <span className="text-red-500">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

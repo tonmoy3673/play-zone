@@ -20,13 +20,13 @@ export default function LogoutModal({
     >
       <div className="w-full  bg-white rounded-[30px] overflow-hidden max-w-[520px] h-[355px] relative">
         {/* Close button */}
-        <Image
+        {/* <Image
           src={"/image 341.svg"}
           alt="image"
           width={700}
           height={400}
           className="absolute bottom-0 z-0 left-0"
-        />
+        /> */}
         <div className="relative flex flex-col justify-between w-full p-7 h-full z-10">
           <div
             onClick={() => setIsOpen(false)}
@@ -97,7 +97,7 @@ export default function LogoutModal({
           </div>
 
           {/* Heading */}
-          <h1 className="text-3xl font-medium text-center text-slate-900 mb-6">
+          <h1 className="text-3xl font-medium text-center text-dark mb-6">
             Logout
           </h1>
 

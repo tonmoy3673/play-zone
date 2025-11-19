@@ -25,8 +25,8 @@ const Page = () => {
       <h1 className="text-3xl text-black sticky top-5 font-semibold mb-8">
         Profile Settings
       </h1>
-      <div className="flex items-start  min-h-screen  gap-8 ">
-        <div className="sticky top-24">
+      <div className="flex items-start gap-8">
+        <div className="sticky top-24 w-[215px]">
           <SettingsMenu
             setIsLogoutOpen={setIsLogoutOpen}
             setIsOpen={setIsOpen}
@@ -34,11 +34,13 @@ const Page = () => {
             setActiveState={setActiveTab}
           />
         </div>
-        {activeTab == "personal" && <PersonalInfo />}
+        <div className="flex-1">
+          {activeTab == "personal" && <PersonalInfo />}
         {activeTab == "security" && <Security />}
         {activeTab == "notification" && <Notification />}
         {activeTab == "privacy" && <PrivacyPolicy />}
         {activeTab == "achievements" && <Achievements />}
+        </div>
       </div>
       <PopupModal
         isOpen={isOpen}

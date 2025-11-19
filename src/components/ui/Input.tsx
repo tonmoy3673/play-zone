@@ -1,15 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+
 import type React from "react";
 import { cn } from "../../lib/utils";
 import { useState } from "react";
 import countriesData from "../../lib/countries";
+import Icon, { IconName } from "@/utils/icon";
 
 export interface FormInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   label?: string;
-  leftIcon?: any;
+  leftIcon?: IconName;
+  leftIconClassName?: string;
+  rightIcon?: IconName;
+  rightIconClassName?: string;
 }
 
 const Input = ({
@@ -17,25 +23,49 @@ const Input = ({
   error,
   label,
   type = "text",
-  leftIcon = "",
+  leftIcon,
+  leftIconClassName = "",
+  rightIcon,
+  rightIconClassName = "",
   ...props
 }: FormInputProps &
   React.InputHTMLAttributes<HTMLInputElement>): React.ReactElement => {
   return (
     <div className="w-full">
       {label && (
-        <label className="mb-2 block text-sm font-medium text-dark-100">
+        <label className="mb-3 block text-sm font-medium text-dark">
           {label}
         </label>
       )}
       <div className="relative">
         {leftIcon && (
-          <p className="size-15 absolute top-[25%]  left-4">{leftIcon}</p>
+          <Icon
+            name={leftIcon}
+            height={24}
+            width={24}
+            className={cn(
+              "absolute left-4 top-1/2 -translate-y-1/2 text-dark/70",
+              leftIconClassName
+            )}
+          />
         )}
+
+        {rightIcon && (
+          <Icon
+            name={rightIcon}
+            height={24}
+            width={24}
+            className={cn(
+              "absolute right-4 top-1/2 -translate-y-1/2 text-dark/70",
+              rightIconClassName
+            )}
+          />
+        )}
+
         <input
           type={type}
           className={cn(
-            "w-full rounded-xl bg-[#ffffff80] h-13 px-5  text-sm text-gray-900 placeholder:text-placeholder focus:outline-none  border border-white",
+            "w-full rounded-2xl bg-[#ffffff80] h-13 px-5  text-sm text-dark placeholder:text-placeholder focus:outline-none  border border-white",
             error ? "border-red-500" : "focus:border-[#5C8FF7]",
             leftIcon && "pl-13",
             className
@@ -75,7 +105,7 @@ export const PhoneInput = ({
   return (
     <div className="w-full">
       {label && (
-        <label className="mb-2 block text-sm font-medium text-dark-100">
+        <label className="mb-2 block text-sm font-medium text-dark">
           {label}
         </label>
       )}
@@ -85,7 +115,7 @@ export const PhoneInput = ({
             type="button"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             className={cn(
-              `flex items-center gap-2 px-3  rounded-xl border-r w-24 bg-[#ffffff80] border border-white h-13 focus:outline-none`,
+              `flex items-center gap-2 px-3  rounded-2xl border-r w-24 bg-[#ffffff80] border border-white h-13 focus:outline-none`,
               countrySelectClassName
             )}
           >
@@ -143,7 +173,7 @@ export const PhoneInput = ({
         <input
           type={type}
           className={cn(
-            "w-full rounded-xl bg-[#ffffff80] h-13 px-6  text-sm text-gray-900 placeholder:text-placeholder focus:outline-none  border border-white",
+            "w-full rounded-2xl bg-[#ffffff80] h-13 px-6  text-sm text-gray-900 placeholder:text-placeholder focus:outline-none  border border-white",
             error ? "border-red-500" : "focus:border-[#5C8FF7]",
             leftIcon && "pl-13",
             className

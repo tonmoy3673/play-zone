@@ -28,7 +28,12 @@ export const UpcomingLives: React.FC = () => {
       <div className="flex justify-between items-center mb-3">
         <h2 className="text-xl font-semibold text-dark">Upcoming Lives</h2>
         <button className="bg-white rounded-full p-2 hover:bg-gray-50 transition-colors border border-gray-200">
-          <Icon name="right_arrow" width={20} height={20} />
+          <Icon
+            name="right_arrow"
+            className="text-dark"
+            width={20}
+            height={20}
+          />
         </button>
       </div>
 
@@ -54,7 +59,12 @@ export const UpcomingLives: React.FC = () => {
 
             <div className="flex items-center justify-between ">
               <div className="flex items-center gap-1 text-sm text-gray-500">
-                <Icon name="calendar" width={14} height={14} />
+                <Icon
+                  name="calendar"
+                  width={14}
+                  height={14}
+                  className="text-dark"
+                />
                 <span className="text-red-400 text-[10px]">{session.time}</span>
               </div>
               <button

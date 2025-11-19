@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import Container from "@/components/ui/Container";
 import { useState } from "react";
 
 interface FAQItem {
@@ -245,10 +246,13 @@ function PrivacyPolicy() {
   };
 
   return (
+    <Container>
     <div
       style={{ borderRadius: "30px", background: "rgba(255, 255, 255, 0.30)" }}
       className="w-full space-y-5 min-h-[70vh] backdrop-blur-3xl p-8 border border-white"
     >
+        <p className="text-xl font-medium text-[#000]">Privacy Policy</p>
+
       <div className="space-y-4 ">
         {faqData.map((faq, index) => (
           <div key={index}>
@@ -299,6 +303,7 @@ function PrivacyPolicy() {
         ))}
       </div>
     </div>
+    </Container>
   );
 }
 

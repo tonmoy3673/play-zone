@@ -148,11 +148,11 @@ export default function CommunityPage() {
 
             {/* Engagement */}
             <div className="px-4 py-3 border-b border-gray-200 flex gap-6 text-sm">
-              <div className="flex items-center gap-1 text-gray-600">
+              <div className="flex items-center gap-1 text-[#141b3499]">
                 <span className="text-red-500">❤️</span>
                 <span>{post.likes} Likes</span>
               </div>
-              <div className="flex items-center gap-1 text-gray-600">
+              <div className="flex items-center gap-1 text-[#141b3499]">
                 <span>💬</span>
                 <span>{post.replies} Replies</span>
               </div>

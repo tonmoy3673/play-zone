@@ -18,7 +18,7 @@ export function VideoCard({
 }: VideoCardProps) {
   return (
     <div
-      className="flex flex-col h-full items-start min-w-[250px] gap-5 bg-[#ffffff66] hover:bg-white w-auto p-4 rounded-xl"
+      className="flex flex-col h-full items-start min-w-[250px] gap-5 bg-[#ffffff66] hover:bg-white w-auto p-3 rounded-xl"
       // arbitrary box-shadow used for exact match from Figma
       style={{ boxShadow: "0px 4px 15.7px 0px rgba(178, 204, 255, 0.51)" }}
     >
@@ -60,12 +60,17 @@ export function VideoCard({
         <div className="flex items-center justify-between text-xs w-full">
           <div className="flex items-center gap-2">
             <div className={`w-2 h-2 rounded-full ${progressColor}`} />
-            <span className="text-gray-600  font-medium">
+            <span className="text-[#141b3499]  font-medium">
               {progress}% Complete
             </span>
           </div>
           <div className="flex  items-center gap-1 text-gray-500">
-            <Icon name="calendar" width={14} height={14} />
+            <Icon
+              name="calendar"
+              width={14}
+              height={14}
+              className="text-dark"
+            />
             <span>{dueDate}</span>
           </div>
         </div>

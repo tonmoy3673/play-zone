@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Icon from "@/utils/icon";
 
 type Role = "coach" | "athlete";
 
@@ -24,13 +25,13 @@ export default function RoleSelection() {
         {/* Back Button */}
         <button
           type="button"
-          className="mb-8 flex items-center justify-center w-10 h-10 rounded-lg bg-white/50 backdrop-blur-sm border border-white hover:bg-white/70 transition-all"
+          className="mb-8 flex items-center justify-center w-10 h-10 rounded-full bg-white/50 backdrop-blur-sm border border-white hover:bg-white/70 transition-all"
         >
-          <ArrowLeft className="h-5 w-5 text-gray-700" />
+          <Icon name="back" width={18} height={12} />
         </button>
 
         {/* Logo */}
-        <div className="mb-8 flex justify-center">
+        <div className="mb-4 flex justify-center">
           <Image
             src={"/logo-png.png"}
             alt="logo"
@@ -42,7 +43,7 @@ export default function RoleSelection() {
 
         {/* Header */}
         <div className="mb-12 text-center">
-          <h1 className="mb-3 text-3xl font-semibold text-center text-dark-100">
+          <h1 className="mb-3 text-3xl font-semibold text-center text-dark">
             Choose your role
           </h1>
           <p className="text-sm text-paragraph">
@@ -51,7 +52,7 @@ export default function RoleSelection() {
         </div>
 
         {/* Role Cards */}
-        <div className="grid grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-2 gap-4 mb-10">
           {/* Coach Card */}
           <div
             className={`${
@@ -62,7 +63,7 @@ export default function RoleSelection() {
             <button
               type="button"
               onClick={() => setSelectedRole("coach")}
-              className={`flex flex-col items-center justify-center border border-transparent p-8 rounded-2xl   ${
+              className={`flex flex-col items-start justify-center border border-transparent p-8 rounded-2xl   ${
                 selectedRole === "coach"
                   ? "bg-[#D2E3FF] "
                   : "bg-[#ffffff4D] border-white border hover:bg-white/50"
@@ -115,7 +116,7 @@ export default function RoleSelection() {
               <h3 className="mb-2 text-xl font-semibold text-gray-900">
                 Coach
               </h3>
-              <p className="text-sm text-gray-600 text-center">
+              <p className="text-sm text-[#141b3499] text-start">
                 {"I'm"} a coach looking to manage teams and athletes
               </p>
             </button>
@@ -130,7 +131,7 @@ export default function RoleSelection() {
             <button
               type="button"
               onClick={() => setSelectedRole("athlete")}
-              className={`flex flex-col items-center justify-center border border-transparent p-8 rounded-2xl   ${
+              className={`flex flex-col items-start justify-center border border-transparent p-8 rounded-2xl   ${
                 selectedRole === "athlete"
                   ? "bg-[#D2E3FF]  "
                   : "bg-[#ffffff4D] border-white border hover:bg-white/50"
@@ -152,7 +153,7 @@ export default function RoleSelection() {
               <h3 className="mb-2 text-xl font-semibold text-gray-900">
                 Athlete
               </h3>
-              <p className="text-sm text-gray-600 text-center">
+              <p className="text-sm text-[#141b3499] text-start">
                 Im an athlete looking to join programs and groups
               </p>
             </button>
@@ -171,13 +172,13 @@ export default function RoleSelection() {
           }}
           onClick={handleNext}
           disabled={!selectedRole}
-          className={`w-full py-4 rounded-full mt-7 font-semibold  transition-all ${
+          className={`w-full py-4 rounded-full mt-7 font-normal text-base  transition-all ${
             selectedRole
               ? "bg-gradient-to-br text-white from-[#5C8FF7] to-[#276AEE] hover:shadow-lg active:scale-[0.98]"
-              : "bg-[#141b341A] text-dark-100 cursor-not-allowed"
+              : "bg-[#141b341A] text-dark cursor-not-allowed"
           }`}
         >
-          Continue
+          Next
         </button>
       </div>
     </div>

@@ -2,6 +2,7 @@
 "use client";
 import { AnimatedButton } from "@/components/ui/Button";
 import React from "react";
+import ModalHeader from "./ModalHeader";
 
 interface WelcomeModalProps {
   isOpen: boolean;
@@ -18,21 +19,9 @@ export default function WelcomeIntro({
 
   return (
     <div className="relative bg-white/30 bg-[url('/overview/modalBG.png')] w-[90vw] max-w-[800px] max-h-[90vh] backdrop-blur-lg rounded-[24px] border border-white/30 shadow-2xl overflow-y-auto">
-      <div className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <p className="text-[16px] font-medium leading-[1.5] text-[#141b34]">
-            Welcome to PlayerZone
-          </p>
-          <button
-            onClick={onClose}
-            type="button"
-            aria-label="Close"
-            className="inline-flex size-8 items-center justify-center rounded-full bg-white/80 hover:bg-white cursor-pointer transition-colors border border-gray-200"
-          >
-            <span className="text-[16px] font-bold text-[#141b34]">×</span>
-          </button>
-        </div>
+      <ModalHeader title="Welcome to PlayerZone" onClose={onClose} />
 
+      <div className="p-6">
         <div className="flex flex-col items-center text-center">
           <div className="h-12 w-[55px] mb-4">
             <img
@@ -42,14 +31,14 @@ export default function WelcomeIntro({
             />
           </div>
 
-          <h1 className="text-[24px] font-medium leading-[1.3] text-[#141b34] mb-3">
+          <h1 className="text-[24px] font-medium leading-[1.3] text-dark mb-3">
             Welcome to <span className="font-semibold">PlayerZone</span>, Coach.
           </h1>
 
-          <p className="text-[14px] font-normal leading-[1.5] text-[#141b34]/80 mb-6 max-w-[400px]">
-            You're now part of an elite community of coaches and athletes. This
-            is where you transform your knowledge into a professional business
-            and build your legacy.
+          <p className="text-[14px] font-normal leading-[1.5] text-dark/80 mb-6 max-w-[400px]">
+            You&apos;re now part of an elite community of coaches and athletes.
+            This is where you transform your knowledge into a professional
+            business and build your legacy.
           </p>
 
           <div className="bg-white/60 rounded-[16px] p-4 border border-blue-100/50 w-full max-w-[320px] mb-4">
@@ -94,10 +83,10 @@ export default function WelcomeIntro({
               </div>
             </div>
 
-            <h3 className="text-[16px] font-semibold leading-[1.4] text-[#141b34] mb-2">
+            <h3 className="text-[16px] font-semibold leading-[1.4] text-dark mb-2">
               Coaches who finish get 1.8× more engagement
             </h3>
-            <p className="text-[12px] font-normal leading-[1.4] text-[#141b34]/70">
+            <p className="text-[12px] font-normal leading-[1.4] text-dark/70">
               Join 2,847 successful coaches already using CoachPro
             </p>
           </div>

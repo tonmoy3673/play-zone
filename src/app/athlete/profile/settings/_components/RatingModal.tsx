@@ -111,7 +111,7 @@ export default function RatingModal({
         </div>
 
         {/* Heading */}
-        <h1 className="text-3xl font-medium text-center text-slate-900 mb-6">
+        <h1 className="text-3xl font-medium text-center text-dark mb-6">
           Rate Our Playzone
         </h1>
 

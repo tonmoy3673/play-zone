@@ -12,7 +12,7 @@ export type ProgramProp = {
   price: number;
   rating: number;
   students: string;
-  badge: "New" | "Beginner" | "Featured" | "Live";
+  badge?: "New" | "Beginner" | "Featured" | "Live";
 };
 
 const ProgramCard = ({
@@ -25,29 +25,31 @@ const ProgramCard = ({
   return (
     <div className="bg-white rounded-xl overflow-hidden relative">
       <div className="absolute inset-x-0 px-4 top-4 z-[2] flex items-start justify-between">
-        <span
-          className={`inline-block px-2.5 py-[5px] text-white text-[10px] font-semibold rounded-md ${
-            program.badge === "Featured"
-              ? "bg-[linear-gradient(148deg,#FDB631_16.41%,#EC4213_59.87%)]"
+        {program.badge && (
+          <span
+            className={`inline-block px-2.5 py-[5px] text-white text-[10px] font-semibold rounded-md ${
+              program.badge === "Featured"
+                ? "bg-[linear-gradient(148deg,#FDB631_16.41%,#EC4213_59.87%)]"
+                : program.badge === "New"
+                ? "bg-[linear-gradient(207deg,#FFB42A_39.14%,#EB9E0F_71.52%)]"
+                : program.badge === "Beginner"
+                ? "bg-[linear-gradient(177deg,#19A855_10.06%,#0B9545_62.94%)]"
+                : program.badge === "Live"
+                ? "bg-[#FF0033]"
+                : ""
+            }`}
+          >
+            {program.badge === "Featured"
+              ? "Featured"
               : program.badge === "New"
-              ? "bg-[linear-gradient(207deg,#FFB42A_39.14%,#EB9E0F_71.52%)]"
+              ? "New"
               : program.badge === "Beginner"
-              ? "bg-[linear-gradient(177deg,#19A855_10.06%,#0B9545_62.94%)]"
+              ? "Beginner"
               : program.badge === "Live"
-              ? "bg-[#FF0033]"
-              : ""
-          }`}
-        >
-          {program.badge === "Featured"
-            ? "Featured"
-            : program.badge === "New"
-            ? "New"
-            : program.badge === "Beginner"
-            ? "Beginner"
-            : program.badge === "Live"
-            ? "Live"
-            : ""}
-        </span>
+              ? "Live"
+              : ""}
+          </span>
+        )}
 
         {isOptions && (
           <div className="flex items-center justify-center size-10 rounded-full bg-white/20 relative z-[1] backdrop-blur-xs after:absolute after:inset-0 after:border-l after:border-r after:border-white/50 after:rotate-45 after:rounded-full after:z-[-1]">
@@ -57,7 +59,7 @@ const ProgramCard = ({
       </div>
 
       <div
-        className="h-[164px] flex items-end bg-no-repeat bg-cover relative z-[1] after:absolute after:inset-0 after:bg-gradient-to-t after:from-white/90 after:to-20% after:to-transparent after:z-[-1]"
+        className="h-[164px] flex items-end bg-no-repeat bg-cover relative z-[1] after:absolute after:inset-0 after:bg-gradient-to-t after:from-white after:to-20% after:to-transparent after:z-[-1]"
         style={{ backgroundImage: `url(${program.banner})` }}
       ></div>
 
@@ -66,7 +68,7 @@ const ProgramCard = ({
           {program.title}
         </h3>
 
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-1.5">
             <div className="relative rounded-full overflow-hidden size-6">
               <Image
@@ -84,9 +86,11 @@ const ProgramCard = ({
           </span>
         </div>
 
+        <hr className="border-[#EEF6FF] my-3" />
+
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1.5">
-            <Icon name="users" width={16} height={16} />
+            <Icon name="users" className="text-dark" width={16} height={16} />
             <span className="text-xs font-medium text-dark">
               {program.students}
             </span>
@@ -98,7 +102,12 @@ const ProgramCard = ({
               <Icon name="star" height={16} width={16} />
               <Icon name="star" height={16} width={16} />
               <Icon name="star" height={16} width={16} />
-              <Icon name="star_half" height={16} width={16} />
+              <Icon
+                name="star_half"
+                className="text-[#FF8C1A]"
+                height={16}
+                width={16}
+              />
             </div>
             <span className="text-sm font-medium text-dark">
               {program.rating}
@@ -107,9 +116,9 @@ const ProgramCard = ({
         </div>
       </div>
 
-      <Link href={"/coach/profile"} className="block p-4">
-        <AnimatedButton className="bg-[#1556D8]/15 h-10 border w-full border-[#1556D8]/10 group/btn px-5 py-2.5 rounded-full flex items-center justify-center gap-2 transition-all whitespace-nowrap hover:bg-[linear-gradient(177deg,#5C8FF7_10.06%,#276AEE_62.94%)]">
-          <span className="text-medium text-xs bg-[linear-gradient(177deg,#5C8FF7_10.06%,#276AEE_62.94%)] bg-clip-text text-transparent group-hover/btn:text-white group-hover/btn:bg-none">
+      <Link href={"/program-details/1"} className="block p-4">
+        <AnimatedButton className="bg-[#1556D8]/15 h-10 border w-full border-[#1556D8]/10 group/btn px-5 py-2.5 rounded-full flex items-center justify-center gap-2 transition-all whitespace-nowrap hover:bg-primary-gradient">
+          <span className="font-medium text-xs primary-gradient-text group-hover/btn:!text-white group-hover/btn:!bg-none">
             View Details
           </span>
         </AnimatedButton>

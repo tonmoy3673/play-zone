@@ -1,25 +1,18 @@
-const imgImage400 =
-  "https://www.figma.com/api/mcp/asset/a0280475-b27b-4cc0-9632-7c6cdc9d4587";
-const imgRectangle2104 =
-  "https://www.figma.com/api/mcp/asset/680c8a4c-387b-46be-a7b2-96b35660a0be";
-const imgRectangle2105 =
-  "https://www.figma.com/api/mcp/asset/958ab284-5d38-4e15-a349-4e13c9534e3b";
-const imgRectangle10830 =
-  "https://www.figma.com/api/mcp/asset/23e6082a-2114-463c-b5fe-71f14d1061dd";
-
 const specialists = [
   {
     name: "Albert Flores",
-    avatar: imgImage400,
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces",
     highlightAvatar: true,
     status: { type: "offline", text: "Last online - 10:59 PM" },
     recentProject: "Advanced Route Running",
     sessions: 20,
-    accent: "solid",
+    accent: "ghost",
   },
   {
     name: "Kristin Watson",
-    avatar: imgRectangle2104,
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces",
     highlightAvatar: false,
     status: { type: "online", text: "Active Now" },
     recentProject: "Advanced Route Running",
@@ -28,7 +21,8 @@ const specialists = [
   },
   {
     name: "Courtney Henry",
-    avatar: imgRectangle2105,
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=faces",
     highlightAvatar: false,
     status: { type: "online", text: "Active Now" },
     recentProject: "Advanced Route Running",
@@ -37,7 +31,8 @@ const specialists = [
   },
   {
     name: "Arlene McCoy",
-    avatar: imgRectangle2104,
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces",
     highlightAvatar: false,
     status: { type: "offline", text: "Last online - 10:59 PM" },
     recentProject: "Advanced Route Running",
@@ -46,7 +41,8 @@ const specialists = [
   },
   {
     name: "Bessie Cooper",
-    avatar: imgRectangle2105,
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces",
     highlightAvatar: false,
     status: { type: "offline", text: "Last online - 10:59 PM" },
     recentProject: "Advanced Route Running",
@@ -55,7 +51,8 @@ const specialists = [
   },
   {
     name: "Annette Black",
-    avatar: imgRectangle10830,
+    avatar:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=faces",
     highlightAvatar: false,
     status: { type: "offline", text: "Last online - 10:59 PM" },
     recentProject: "Advanced Route Running",
@@ -64,7 +61,8 @@ const specialists = [
   },
   {
     name: "Theresa Webb",
-    avatar: imgImage400,
+    avatar:
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&h=100&fit=crop&crop=faces",
     highlightAvatar: true,
     status: { type: "offline", text: "Last online - 10:59 PM" },
     recentProject: "Advanced Route Running",
@@ -73,7 +71,8 @@ const specialists = [
   },
   {
     name: "Marvin McKinney",
-    avatar: imgRectangle10830,
+    avatar:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=faces",
     highlightAvatar: false,
     status: { type: "online", text: "Active Now" },
     recentProject: "Advanced Route Running",
@@ -82,7 +81,8 @@ const specialists = [
   },
   {
     name: "Ralph Edwards",
-    avatar: imgImage400,
+    avatar:
+      "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop&crop=faces",
     highlightAvatar: true,
     status: { type: "offline", text: "Last online - 10:59 PM" },
     recentProject: "Advanced Route Running",
@@ -91,7 +91,7 @@ const specialists = [
   },
 ];
 
-function StatusTag({ type, text }) {
+function StatusTag({ type, text }: { type: string; text: string }) {
   const styles =
     type === "online"
       ? {
@@ -111,26 +111,10 @@ function StatusTag({ type, text }) {
   );
 }
 
-function ViewDetailsButton({ variant }) {
-  if (variant === "solid") {
-    return (
-      <button className="w-full rounded-full bg-gradient-to-b from-[#457ff3] from-10% to-[#276AEE] to-63% text-white text-xs font-medium py-3 shadow-[0_10px_30px_rgba(46,107,232,0.35)] transition hover:opacity-95">
-        View Details
-      </button>
-    );
-  }
-
-  return (
-    <button className="w-full rounded-full bg-[#e8f0fe] border border-[#1d55d81a] text-[#2a6be8] text-xs font-medium py-3 transition hover:bg-[#dce6ff]">
-      View Details
-    </button>
-  );
-}
-
-export default function page() {
+export default function Page() {
   return (
     <div className="min-h-screen p-6 flex justify-center">
-      <div className="w-full max-w-6xl bg-white/30 rounded-[24px] p-6">
+      <div className="w-full max-w-6xl bg-white/30 rounded-[24px] p-6 border border-white/80">
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {specialists.map(
             ({
@@ -140,7 +124,6 @@ export default function page() {
               status,
               recentProject,
               sessions,
-              accent,
             }) => (
               <div
                 key={name}
@@ -165,9 +148,7 @@ export default function page() {
                     />
                   </div>
                   <div className="flex flex-col gap-1">
-                    <h3 className="text-[#141B34] text-base font-medium">
-                      {name}
-                    </h3>
+                    <h3 className="text-dark text-base font-medium">{name}</h3>
                     <p className="text-xs text-[#141b34b3]">
                       Spint Specialist • Joined Jan 2025
                     </p>
@@ -175,23 +156,25 @@ export default function page() {
                   </div>
                 </div>
 
-                <div className="h-px w-full bg-gradient-to-r from-transparent to-transparent" />
+                <div className="h-px w-full bg-linear-to-r from-transparent to-transparent" />
 
-                <div className="flex items-start justify-between text-sm font-medium text-[#141B34]">
+                <div className="flex items-start justify-between text-sm font-medium text-dark">
                   <div>
                     <p className="text-xs text-[#141b34b3] mb-1">
                       Recently Worked On
                     </p>
-                    <p className="text-sm font-medium text-[#141B34]">
+                    <p className="text-sm font-medium text-dark">
                       {recentProject}
                     </p>
                   </div>
-                  <span className="text-sm font-medium text-[#141B34]">
+                  <span className="text-sm font-medium text-dark">
                     {sessions}
                   </span>
                 </div>
 
-                <ViewDetailsButton variant={accent} />
+                <button className="w-full rounded-full bg-[#dce6ff] border border-[#1d55d81a] text-[#2a6be8] text-xs font-medium py-3 transition hover:border-transparent hover:text-white hover:bg-linear-to-b hover:from-[#457ff3] hover:from-10% hover:to-[#276AEE] hover:to-63%">
+                  View Details
+                </button>
               </div>
             )
           )}

@@ -1,4 +1,13 @@
+"use client";
+
 import React from "react";
+// Swiper imports
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/free-mode";
+import Card from "@/components/ui/Card";
+import Icon from "@/utils/icon";
 
 type FeedItem = {
   id: string;
@@ -27,24 +36,50 @@ const defaultItems: FeedItem[] = [
     id: "1",
     minutesAgo: "20 min ago",
     imageSrc:
-      "https://www.figma.com/api/mcp/asset/f49cb904-54f5-43c3-b83a-38ecd35af089",
+      "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=1170&auto=format&fit=crop",
     likes: 20,
     replies: 30,
     authorName: "Alex Mark",
     authorAvatarSrc:
-      "https://www.figma.com/api/mcp/asset/2f9f7f47-03ee-4b0b-9323-ca72f7a29e9f",
+      "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=1170&auto=format&fit=crop",
     body: "Top defensive line signees in the 2025 class!",
   },
   {
     id: "2",
     minutesAgo: "20 min ago",
     imageSrc:
-      "https://www.figma.com/api/mcp/asset/aec0633c-da9b-4b52-9433-0581b013a5aa",
+      "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=1170&auto=format&fit=crop",
     likes: 20,
     replies: 30,
     authorName: "Coach Bronson",
     authorAvatarSrc:
-      "https://www.figma.com/api/mcp/asset/4f30dfbc-7e64-4981-aa37-c223fe38a794",
+      "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=1170&auto=format&fit=crop",
+    body: "Mahalo ",
+    linkText: "@oregonfootball",
+    linkHref: "https://x.com/oregonfootball",
+  },
+  {
+    id: "3",
+    minutesAgo: "20 min ago",
+    imageSrc:
+      "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=1170&auto=format&fit=crop",
+    likes: 20,
+    replies: 30,
+    authorName: "Alex Mark",
+    authorAvatarSrc:
+      "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=1170&auto=format&fit=crop",
+    body: "Top defensive line signees in the 2025 class!",
+  },
+  {
+    id: "4",
+    minutesAgo: "20 min ago",
+    imageSrc:
+      "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=1170&auto=format&fit=crop",
+    likes: 20,
+    replies: 30,
+    authorName: "Coach Bronson",
+    authorAvatarSrc:
+      "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=1170&auto=format&fit=crop",
     body: "Mahalo ",
     linkText: "@oregonfootball",
     linkHref: "https://x.com/oregonfootball",
@@ -55,85 +90,98 @@ export default function CommunityFeed({
   items = defaultItems,
 }: {
   items?: FeedItem[];
-}): JSX.Element {
+}) {
   return (
-    <div className="w-full overflow-hidden rounded-[24px] bg-white/30">
-      <div className="p-5">
-        <div className="flex items-center justify-between">
-          <h2 className="text-[20px] font-semibold leading-[1.5] text-[#141b34]">
-            Community Feed
-          </h2>
-          <button
-            type="button"
-            aria-label="Next"
-            className="inline-flex size-10 items-center justify-center rounded-full border border-white bg-white/60"
-          >
-            <img src={imgArrow} alt="" className="size-5 rotate-90 scale-y-[-1]" />
-          </button>
-        </div>
+    <Card>
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-semibold text-dark">Community Feed</h2>
+        <button
+          type="button"
+          aria-label="Next"
+          className="inline-flex items-center justify-center rounded-full border border-white bg-white/60 size-10"
+        >
+          <Icon
+            name="arrow_right"
+            height={20}
+            width={20}
+            className="text-dark"
+          />
+        </button>
+      </div>
 
-        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="mt-4 grid">
+        <Swiper
+          modules={[FreeMode]}
+          spaceBetween={16}
+          slidesPerView="auto"
+          freeMode={true}
+          grabCursor={true}
+          className="!py-2 w-full"
+        >
           {items.map((item) => (
-            <div
-              key={item.id}
-              className="relative h-[295px] w-full overflow-hidden rounded-[16px] bg-white/60"
-            >
-              <div className="absolute inset-0 p-3">
-                <div className="flex h-full flex-col">
+            <SwiperSlide key={item.id} className="!w-[260px]">
+              <Card className="h-[295px] md:rounded-[16px] bg-white/60 p-3">
+                <div className="absolute inset-0 p-3 flex flex-col h-full">
                   <div className="relative h-[127px] w-full overflow-hidden rounded-[12px] bg-white">
                     <img
                       src={item.imageSrc}
                       alt=""
-                      className="absolute inset-0 size-full max-w-none object-cover"
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
 
-                    <div className="pointer-events-none absolute left-1/2 top-1/2 size-[30px] -translate-x-1/2 -translate-y-1/2 rounded-[60px]">
-                      <img
-                        src={imgPlayCircle}
-                        alt=""
-                        className="absolute left-[3px] top-[3px] size-[24px]"
+                    <div className="pointer-events-none absolute left-1/2 top-1/2 size-[30px] flex items-center justify-center bg-[#FFFFFF05] border border-white/10 backdrop-blur-xs -translate-x-1/2 -translate-y-1/2 rounded-full">
+                      <Icon
+                        name="play_circle"
+                        height={20}
+                        width={20}
+                        className="text-white"
                       />
                     </div>
 
-                    <div className="absolute left-[10px] top-[10px] inline-flex h-[20px] items-center justify-center rounded-[37.5px] bg-white/80 px-[3.75px] py-[2.25px]">
-                      <span className="text-[10px] leading-none tracking-[-0.3px] text-[#141b34]">
-                        {item.minutesAgo}
-                      </span>
+                    <div className="absolute left-2.5 top-2.5 text-[10px] px-2 py-1 inline-flex h-5 items-center justify-center rounded-[37.5px] bg-white/80 backdrop-blur-xs border border-white">
+                      {item.minutesAgo}
                     </div>
                   </div>
 
+                  {/* Likes & Replies */}
                   <div className="mt-3 flex items-center justify-between">
                     <div className="flex items-center gap-[6px]">
-                      <img src={imgHeart} alt="" className="size-4" />
-                      <span className="text-[10px] font-medium leading-[1.4] text-[#141b34]">
+                      <Icon name="heart_emoji" height={20} width={20} />
+                      <span className="text-[10px] font-medium text-dark">
                         {item.likes} Likes
                       </span>
                     </div>
                     <div className="flex items-center gap-[6px]">
-                      <img src={imgMessage} alt="" className="size-4" />
-                      <span className="text-[10px] font-medium leading-[1.4] text-[#141b34]">
+                      <Icon
+                        name="message_2"
+                        height={20}
+                        width={20}
+                        className="text-dark"
+                      />
+                      <span className="text-[10px] font-medium text-dark">
                         {item.replies} Replies
                       </span>
                     </div>
                   </div>
 
+                  {/* Author & Body */}
                   <div className="mt-3 flex flex-col gap-2">
                     <div className="flex items-center gap-2">
-                      <span className="relative inline-block size-[26px] overflow-hidden rounded-full">
+                      <span className="relative inline-block w-[26px] h-[26px] overflow-hidden rounded-full">
                         <img
                           src={item.authorAvatarSrc}
                           alt=""
-                          className="absolute inset-0 size-full max-w-none object-cover"
+                          className="absolute inset-0 w-full h-full object-cover"
                         />
                       </span>
-                      <p className="text-[14px] font-medium leading-[1.3] text-[#141b34]">
+                      <p className="text-[14px] font-medium text-dark">
                         {item.authorName}
                       </p>
                     </div>
 
-                    <p className="text-[12px] leading-[1.4] text-[#141b34]">
+                    <p className="text-[12px] text-dark">
                       {item.body}
-                      {item.linkText ? (
+                      {item.linkText && (
                         <>
                           <a
                             href={item.linkHref}
@@ -143,19 +191,17 @@ export default function CommunityFeed({
                           >
                             {item.linkText}
                           </a>
-                          {"for hosting our Island Boys from the 808!!"}
+                          {" for hosting our Island Boys from the 808!!"}
                         </>
-                      ) : null}
+                      )}
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
+              </Card>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
-    </div>
+    </Card>
   );
 }
-
-

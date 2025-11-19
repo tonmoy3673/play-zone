@@ -7,12 +7,10 @@ export function StatsCards() {
   return (
     <div className="flex justify-between  mb-7 gap-4">
       {/* Weekly Progress Card */}
-      <div className=" bg-[#ffffff4d] max-w-sm flex-1 border border-white rounded-2xl  backdrop-blur-3xl  overflow-hidden">
+      <div className="bg-[#ffffff4d] bg-[url('/program/Frame-2147225279.svg')] bg-contain bg-center bg-no-repeat max-w-sm flex-1 border border-l-0 border-b-0 border-white rounded-2xl  overflow-hidden">
         <div className="backdrop-blur-3xl h-full pl-5 pt-5 w-full">
           <div className="flex items-center justify-between pr-5 mb-1">
-            <h3 className="text-xs font-semibold text-dark-100">
-              Weekly Progress
-            </h3>
+            <h3 className="text-xs font-semibold text-dark">Weekly Progress</h3>
             <button className="size-10 flex items-center justify-center bg-white rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -39,9 +37,7 @@ export function StatsCards() {
           <div className="flex items-end">
             <div className="flex flex-col pb-5  flex-1 items-baseline gap-2">
               <p className="flex items-end gap-2">
-                <span className="text-4xl font-semibold text-dark-100">
-                  15%
-                </span>
+                <span className="text-4xl font-semibold text-dark">15%</span>
                 <span
                   style={{ color: "rgba(20, 27, 52, 0.70)" }}
                   className="text-2xl font-medium text-green-600"
@@ -69,9 +65,7 @@ export function StatsCards() {
       <div className=" bg-[#ffffff4d] max-w-sm flex-1 border border-white rounded-2xl  backdrop-blur-3xl  overflow-hidden">
         <div className="backdrop-blur-3xl h-full pl-5 pt-5 w-full">
           <div className="flex items-center justify-between pr-5 mb-1">
-            <h3 className="text-sm font-semibold text-dark-100">
-              Current Ranking
-            </h3>
+            <h3 className="text-sm font-semibold text-dark">Current Ranking</h3>
             <button className="size-10 flex items-center justify-center bg-white rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +89,7 @@ export function StatsCards() {
           <div className="flex items-end">
             <div className="flex flex-col pb-5  flex-1 items-baseline gap-2">
               <p className="flex items-end gap-2">
-                <span className="text-4xl font-semibold text-dark-100">#5</span>
+                <span className="text-4xl font-semibold text-dark">#5</span>
                 <span
                   style={{ color: "rgba(20, 27, 52, 0.70)" }}
                   className="text-2xl font-medium text-green-600"
@@ -123,9 +117,7 @@ export function StatsCards() {
       <div className=" bg-[#ffffff4d] max-w-sm flex-1 border border-white rounded-2xl  backdrop-blur-3xl  overflow-hidden">
         <div className="backdrop-blur-3xl h-full pl-5 pt-5 w-full">
           <div className="flex items-center justify-between pr-5 mb-1">
-            <h3 className="text-sm font-semibold text-dark-100">
-              Current Ranking
-            </h3>
+            <h3 className="text-sm font-semibold text-dark">Current Ranking</h3>
             <button className="size-10 flex items-center justify-center bg-white rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -152,9 +144,7 @@ export function StatsCards() {
           <div className="flex items-end">
             <div className="flex flex-col pb-5  flex-1 items-baseline gap-2">
               <p className="flex items-end gap-5">
-                <span className="text-4xl font-semibold text-dark-100">
-                  87%
-                </span>
+                <span className="text-4xl font-semibold text-dark">87%</span>
                 <span
                   style={{ color: "rgba(20, 27, 52, 0.70)" }}
                   className="text-2xl font-medium text-green-600"

@@ -1,24 +1,16 @@
 "use client";
 
-import {
-  ClipboardCheck,
-  ClipboardList,
-  HourglassIcon,
-  LibraryBig,
-  NotepadText,
-  Users,
-  UserStar,
-} from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // Import usePathname
+import { usePathname } from "next/navigation";
+import Icon from "./icon";
 
 export default function SideBar() {
-  const pathname = usePathname(); // Get current path
+  const pathname = usePathname();
 
   const menuItems = [
     {
       id: 1,
-      icon: ClipboardList,
+      iconName: "task_01" as const,
       label: "All Tasks",
       isActive: pathname === "/overview/content",
       badge: null,
@@ -26,7 +18,7 @@ export default function SideBar() {
     },
     {
       id: 2,
-      icon: NotepadText,
+      iconName: "task_edit_01" as const,
       label: "Active Tasks",
       isActive: pathname.startsWith("/overview/content/active-tasks"),
       badge: "15",
@@ -34,7 +26,7 @@ export default function SideBar() {
     },
     {
       id: 3,
-      icon: UserStar,
+      iconName: "user_love_01" as const,
       label: "Task Overview",
       isActive: pathname.startsWith("/overview/content/task-overview"),
       badge: null,
@@ -42,7 +34,7 @@ export default function SideBar() {
     },
     {
       id: 4,
-      icon: HourglassIcon,
+      iconName: "loading" as const,
       label: "Awaiting Review",
       isActive: pathname.startsWith("/overview/content/awaiting-review"),
       badge: "15",
@@ -50,15 +42,15 @@ export default function SideBar() {
     },
     {
       id: 5,
-      icon: ClipboardCheck,
+      iconName: "task_done_01" as const,
       label: "Completed Tasks",
-      isActive: pathname.startsWith("/overview/content/review-submission"),
+      isActive: pathname.startsWith("/overview/content/completed-tasks"),
       badge: null,
-      href: "/overview/content/review-submission",
+      href: "/overview/content/completed-tasks",
     },
     {
       id: 6,
-      icon: Users,
+      iconName: "user_group" as const,
       label: "Staff Review Log",
       isActive: pathname.startsWith("/overview/content/staff-review-log"),
       badge: null,
@@ -66,7 +58,7 @@ export default function SideBar() {
     },
     {
       id: 7,
-      icon: LibraryBig,
+      iconName: "library" as const,
       label: "Content Library",
       isActive: pathname.startsWith("/overview/content/content-library"),
       badge: null,
@@ -75,32 +67,57 @@ export default function SideBar() {
   ];
 
   return (
-    <aside className="w-64 flex-shrink-0 backdrop-blur-lg p-4 hidden lg:flex flex-col self-start sticky top-0 rounded-2xl">
-      <nav className="flex flex-col gap-y-1">
+    <aside className="bg-[rgba(255,255,255,0.6)] box-border hidden lg:flex flex-col gap-4 items-start overflow-clip px-4 py-6 rounded-[24px] shrink-0 self-start sticky top-0 w-[230px]">
+      <nav className="flex flex-col gap-4 items-start shrink-0 w-full">
         {menuItems.map((item) => (
-          <div key={item.id}>
-            <Link
-              href={item.href}
-              className={`flex items-center ${
-                item.badge ? "justify-between" : "gap-3"
-              } ${
-                item.isActive
-                  ? "bg-blue-100 text-blue-700 font-semibold"
-                  : "text-gray-600 hover:bg-gray-100/50 font-medium"
-              } rounded-lg p-3 -mx-2`}
+          <Link
+            key={item.id}
+            href={item.href}
+            className="flex gap-2 items-center shrink-0 w-full"
+          >
+            <div
+              className={`box-border flex gap-[10px] items-center p-[10px] rounded-[12px] shrink-0 ${
+                item.isActive ? "bg-primary-gradient" : ""
+              }`}
             >
-              <div className="flex items-center gap-3">
-                <item.icon className="h-5 w-5" />
-                <span>{item.label}</span>
+              <Icon
+                name={item.iconName}
+                height={20}
+                width={20}
+                className={
+                  item.isActive
+                    ? "text-white [&_path]:stroke-white! "
+                    : "text-dark"
+                }
+              />
+            </div>
+            {item.badge ? (
+              <div className="flex flex-1 items-center justify-between shrink-0">
+                <div className="flex gap-8 items-center shrink-0">
+                  <p className="font-medium leading-[1.3] shrink-0 text-dark text-sm text-center">
+                    {item.label}
+                  </p>
+                </div>
+                <div className="bg-transparent overflow-clip rounded-[44px] shrink-0 size-6 relative">
+                  <p className="absolute font-medium leading-[1.4] left-[calc(50%+0.5px)] text-dark text-[10px] text-center top-[calc(50%-8px)] -translate-x-1/2">
+                    <span
+                      className={`${
+                        item.isActive
+                          ? "p-2 bg-primary-gradient text-white rounded-full"
+                          : ""
+                      }`}
+                    >
+                      {item.badge}
+                    </span>
+                  </p>
+                </div>
               </div>
-
-              {item.badge && (
-                <span className="text-sm font-semibold text-gray-500">
-                  {item.badge}
-                </span>
-              )}
-            </Link>
-          </div>
+            ) : (
+              <p className="font-medium leading-[1.3] shrink-0 text-dark text-sm">
+                {item.label}
+              </p>
+            )}
+          </Link>
         ))}
       </nav>
     </aside>

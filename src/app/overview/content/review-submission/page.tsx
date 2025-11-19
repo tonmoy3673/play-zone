@@ -53,13 +53,13 @@ const badgeOptions = [
   },
 ];
 
-export default function page() {
+export default function Page() {
   const [rating, setRating] = useState(4);
   const [feedback, setFeedback] = useState("");
   const [selectedType, setSelectedType] = useState("technical");
   const [selectedBadges, setSelectedBadges] = useState(["top-effort"]);
 
-  function toggleBadge(key) {
+  function toggleBadge(key: string) {
     setSelectedBadges((prev) =>
       prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
     );
@@ -71,7 +71,7 @@ export default function page() {
         {/* Header */}
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h2 className="text-[#141b34] text-[30px] leading-[1.5] font-semibold">
+            <h2 className="text-dark text-[30px] leading-[1.5] font-semibold">
               Passing Drill Review Submission
             </h2>
             <p className="text-[12px] text-[#141b34b3] mt-1">
@@ -105,7 +105,7 @@ export default function page() {
 
             {/* Details */}
             <div className="mt-6">
-              <h3 className="text-[#141b34] text-[16px] font-medium">
+              <h3 className="text-dark text-[16px] font-medium">
                 Submission Details
               </h3>
 
@@ -117,7 +117,7 @@ export default function page() {
                   className="w-9 h-9 rounded-full object-cover"
                 />
                 <div className="flex flex-col">
-                  <span className="text-[14px] font-medium text-[#141b34]">
+                  <span className="text-[14px] font-medium text-dark">
                     Jason Martinez
                   </span>
                   <span className="text-[12px] text-[#141b34b3]">
@@ -130,7 +130,7 @@ export default function page() {
 
               {/* Log rows */}
               <div className="flex flex-col gap-3">
-                <p className="text-[14px] font-medium text-[#141b34]">
+                <p className="text-[14px] font-medium text-dark">
                   Conditioning Log
                 </p>
                 <div className="flex flex-col gap-2">
@@ -140,9 +140,7 @@ export default function page() {
                       className="flex items-center justify-between text-[12px]"
                     >
                       <span className="text-[#141b34b3]">{row.label}</span>
-                      <span className="text-[#141b34] text-[10px]">
-                        {row.value}
-                      </span>
+                      <span className="text-dark text-[10px]">{row.value}</span>
                     </div>
                   ))}
                 </div>
@@ -152,7 +150,7 @@ export default function page() {
 
               {/* Notes */}
               <div className="flex flex-col gap-2">
-                <p className="text-[14px] font-medium text-[#141b34]">
+                <p className="text-[14px] font-medium text-dark">
                   Athlete Notes:
                 </p>
                 <p className="text-[12px] text-[#141b34b3]">
@@ -166,15 +164,13 @@ export default function page() {
 
           {/* Right: Provide Feedback */}
           <div className="bg-white/60 rounded-[16px] p-5 flex flex-col gap-6">
-            <h3 className="text-[#141b34] text-[16px] font-medium">
+            <h3 className="text-dark text-[16px] font-medium">
               Provide Feedback
             </h3>
 
             {/* Rating */}
             <div>
-              <p className="text-[14px] font-medium text-[#141b34] mb-3">
-                Rating
-              </p>
+              <p className="text-[14px] font-medium text-dark mb-3">Rating</p>
               <div className="flex items-center gap-1">
                 {Array.from({ length: 5 }, (_, i) => i + 1).map((star) => (
                   <button
@@ -199,11 +195,11 @@ export default function page() {
 
             {/* Feedback textarea */}
             <div>
-              <p className="text-[14px] font-medium text-[#141b34] mb-3">
+              <p className="text-[14px] font-medium text-dark mb-3">
                 Provide Feedback
               </p>
               <textarea
-                className="w-full min-h-[96px] rounded-[16px] bg-white p-3 text-[12px] text-[#141b34] placeholder:text-[#141b34b3] outline-none"
+                className="w-full min-h-[96px] rounded-[16px] bg-white p-3 text-[12px] text-dark placeholder:text-[#141b34b3] outline-none"
                 placeholder="Provide detailed feedback on the athlete's performance..."
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
@@ -212,7 +208,7 @@ export default function page() {
 
             {/* Feedback type chips */}
             <div>
-              <p className="text-[14px] font-medium text-[#141b34] mb-3">
+              <p className="text-[14px] font-medium text-dark mb-3">
                 Feedback Type
               </p>
               <div className="grid grid-cols-3 gap-2">
@@ -223,7 +219,7 @@ export default function page() {
                       key={type.key}
                       type="button"
                       onClick={() => setSelectedType(type.key)}
-                      className={`px-4 py-3 rounded-[16px] bg-white text-[10px] font-medium text-[#141b34] border ${
+                      className={`px-4 py-3 rounded-[16px] bg-white text-[10px] font-medium text-dark border ${
                         active
                           ? "border-[#2a6be8] ring-2 ring-[#2a6be8]/20"
                           : "border-transparent"
@@ -238,7 +234,7 @@ export default function page() {
 
             {/* Award badges */}
             <div>
-              <p className="text-[14px] font-medium text-[#141b34] mb-3">
+              <p className="text-[14px] font-medium text-dark mb-3">
                 <span>Award Badges </span>
                 <span className="text-[#141b3499]">(Optional)</span>
               </p>

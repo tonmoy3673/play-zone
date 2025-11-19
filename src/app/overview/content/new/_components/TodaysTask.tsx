@@ -71,12 +71,12 @@ export default function TodaysTask({
 }: {
   days?: DayPill[];
   tasks?: TaskItem[];
-}): JSX.Element {
+}) {
   return (
     <div className="relative w-full overflow-clip rounded-[24px] bg-white/30">
       <div className="p-5">
         <div className="flex items-center justify-between">
-          <h2 className="text-[20px] font-semibold leading-[1.5] text-[#141b34]">
+          <h2 className="text-[20px] font-semibold leading-[1.5] text-dark">
             Today’s Task
           </h2>
 
@@ -99,8 +99,8 @@ export default function TodaysTask({
                   : "bg-white/60 px-3 py-[12px] h-[78px]",
               ].join(" ")}
             >
-              <p className="text-[18px] text-[#141b34]">{d.day}</p>
-              <p className="text-[10px] text-[#141b34]">{d.date}</p>
+              <p className="text-[18px] text-dark">{d.day}</p>
+              <p className="text-[10px] text-dark">{d.date}</p>
             </div>
           ))}
         </div>
@@ -116,7 +116,7 @@ export default function TodaysTask({
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-[7.5px]">
-                  <p className="capitalize text-[14px] font-medium tracking-[-0.42px] text-[#141b34]">
+                  <p className="capitalize text-[14px] font-medium tracking-[-0.42px] text-dark">
                     {task.title}
                   </p>
 
@@ -130,26 +130,26 @@ export default function TodaysTask({
                   ) : null}
 
                   {task.badgeText ? (
-                    <div className="inline-flex h-[17px] items-center justify-center rounded-[14px] bg-[#141b34]/10 px-2 py-1">
-                      <span className="text-[8px] font-medium tracking-[-0.24px] text-[#141b34]">
+                    <div className="inline-flex h-[17px] items-center justify-center rounded-[14px] bg-dark/10 px-2 py-1">
+                      <span className="text-[8px] font-medium tracking-[-0.24px] text-dark">
                         {task.badgeText}
                       </span>
                     </div>
                   ) : null}
                 </div>
 
-                <p className="w-[69px] text-right text-[10px] font-medium leading-[1.4] text-[#141b34]/70">
+                <p className="w-[69px] text-right text-[10px] font-medium leading-[1.4] text-dark/70">
                   {task.time}
                 </p>
               </div>
 
               {task.description ? (
-                <p className="mt-1 w-full text-[12px] font-normal leading-[1.4] text-[#141b34]/70">
+                <p className="mt-1 w-full text-[12px] font-normal leading-[1.4] text-dark/70">
                   {task.description}
                 </p>
               ) : null}
               {task.meta ? (
-                <p className="mt-1 w-full text-[12px] font-normal leading-[1.4] text-[#141b34]/70">
+                <p className="mt-1 w-full text-[12px] font-normal leading-[1.4] text-dark/70">
                   {task.meta}
                 </p>
               ) : null}
@@ -160,5 +160,3 @@ export default function TodaysTask({
     </div>
   );
 }
-
-

@@ -1,4 +1,3 @@
-
 const imgEllipse4 =
   "https://www.figma.com/api/mcp/asset/b7cc0a8a-3924-4fdf-929a-a9d64b512cd8";
 const imgFaders =
@@ -51,13 +50,13 @@ export default function RecentActivity({
   items = defaultItems,
 }: {
   items?: ActivityItem[];
-}): JSX.Element {
+}) {
   return (
     <div className="w-full overflow-hidden rounded-[24px] bg-white/30">
       <div className="p-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <h2 className="text-[20px] font-semibold leading-[1.5] text-[#141b34]">
+            <h2 className="text-[20px] font-semibold leading-[1.5] text-dark">
               Recent Activity
             </h2>
             <div className="flex items-center gap-[6.75px]">
@@ -101,7 +100,7 @@ export default function RecentActivity({
 
               <div className="flex flex-1 flex-col gap-2">
                 <div className="flex items-start justify-between gap-3">
-                  <p className="w-[223px] text-[14px] font-semibold leading-[1.3] text-[#141b34]">
+                  <p className="w-[223px] text-[14px] font-semibold leading-[1.3] text-dark">
                     {item.title}
                   </p>
                   <p className="shrink-0 text-[10px] leading-[1.5] text-[#1556d8]">
@@ -109,7 +108,7 @@ export default function RecentActivity({
                   </p>
                 </div>
                 {item.body ? (
-                  <p className="w-[274px] text-[12px] font-normal leading-[1.4] text-[#141b34]/70">
+                  <p className="w-[274px] text-[12px] font-normal leading-[1.4] text-dark/70">
                     {item.body}
                   </p>
                 ) : null}

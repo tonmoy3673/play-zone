@@ -31,7 +31,7 @@ export default function StreakCard() {
       {/* Header Section */}
       <div className="w-full size-12 z-0 rounded-full blur-3xl absolute bottom-0 -right-12 bg-purple-300"></div>
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-xs font-semibold text-dark-100">Active Streak</h2>
+        <h2 className="text-xs font-semibold text-dark">Active Streak</h2>
         <div className="flex items-center gap-3">
           <div className="rounded-full bg-gradient-to-b from-[#FDB631] via-[#EC4213] to-[#EC4213] px-4 py-1.5">
             <span className="text-xs font-semibold text-white">Hot Streak</span>

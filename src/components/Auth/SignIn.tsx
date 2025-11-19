@@ -6,6 +6,7 @@ import { Smartphone, Mail } from "lucide-react";
 import Input, { PhoneInput } from "../ui/Input";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Icon from "@/utils/icon";
 
 type SignUpMethod = "phone" | "email";
 
@@ -49,10 +50,10 @@ export default function SignIn() {
 
         {/* Header */}
         <div className="mb-12 text-center">
-          <h1 className="mb-3 text-3xl font-semibold text-center text-dark-100">
+          <h1 className="mb-3 text-3xl font-semibold text-center text-dark">
             Continue To Your Account
           </h1>
-          <p className="text-base text-paragraph">
+          <p className="text-base text-[#141b3499]">
             Start your coaching journey today
           </p>
         </div>
@@ -66,10 +67,10 @@ export default function SignIn() {
               className={`flex flex-1 items-center justify-center gap-3 rounded-xl px-6 py-3  font-medium transition-all ${
                 signUpMethod === "phone"
                   ? "bg-[#ffffffCC] text-gray-900 "
-                  : "text-gray-600 hover:text-gray-900"
+                  : "text-[#141b3499] hover:text-gray-900"
               }`}
             >
-              <Smartphone className="h-6 w-6" />
+              <Icon name="phone" height={24} width={24} />
               Phone
             </button>
             <button
@@ -78,10 +79,10 @@ export default function SignIn() {
               className={`flex flex-1 items-center justify-center gap-3 rounded-xl px-6 py-3  font-medium transition-all ${
                 signUpMethod === "email"
                   ? "bg-[#ffffffCC] text-gray-900 "
-                  : "text-gray-600 hover:text-gray-900"
+                  : "text-[#141b3499] hover:text-gray-900"
               }`}
             >
-              <Mail className="h-6 w-6" />
+              <Icon name="email" height={24} width={24} />
               Email
             </button>
           </div>
@@ -89,7 +90,7 @@ export default function SignIn() {
           {/* Input Field */}
           {signUpMethod === "phone" ? (
             <div>
-              <label className="mb-2 block  font-medium text-dark-100">
+              <label className="mb-2 block text-sm font-medium text-dark">
                 Phone Number
               </label>
               <div className="flex items-start gap-3">
@@ -136,7 +137,7 @@ export default function SignIn() {
                 "var(--Gradient, linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%))",
             }}
             type="submit"
-            className="w-full  py-4 font-semibold text-white shadow-lg transition-all hover:shadow-xl active:scale-[0.98]"
+            className="w-full  py-4 font-normal text-[16px] text-white shadow-lg transition-all hover:shadow-xl active:scale-[0.98]"
           >
             Sign In
           </button>

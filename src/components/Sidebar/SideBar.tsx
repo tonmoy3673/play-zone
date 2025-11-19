@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import Badge from "../ui/Badge";
 
 const navigationItems = [
   {
@@ -70,25 +71,63 @@ const navigationItems = [
     href: "/athlete/programs",
     active: false,
   },
+  // {
+  //   icon: (
+  //     <svg
+  //       className="w-5 h-5"
+  //       fill="none"
+  //       stroke="currentColor"
+  //       viewBox="0 0 24 24"
+  //     >
+  //       <path
+  //         d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+  //         strokeWidth="2"
+  //         strokeLinecap="round"
+  //         strokeLinejoin="round"
+  //       />
+  //     </svg>
+  //   ),
+  //   label: "Calendar",
+  //   active: false,
+  //   href: "/athlete/calendar",
+  // },
   {
     icon: (
       <svg
-        className="w-5 h-5"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
         fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
       >
         <path
-          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          opacity="0.4"
+          d="M10.3332 6.91562L12.7664 6.10453C13.505 5.85835 13.8742 5.73526 14.0692 5.93018C14.2641 6.12511 14.141 6.49437 13.8948 7.23291L13.0837 9.66618C12.6642 10.9247 12.4545 11.5539 12.0032 12.0052C11.552 12.4564 10.9227 12.6662 9.66422 13.0857L7.23096 13.8968C6.49242 14.143 6.12315 14.266 5.92823 14.0711C5.73331 13.8762 5.8564 13.5069 6.10258 12.7684L6.91367 10.3351C7.33316 9.07663 7.54291 8.44738 7.99417 7.99612C8.44543 7.54487 9.07468 7.33512 10.3332 6.91562Z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          opacity="0.4"
+          d="M10 10L9.99471 10.0053"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M2.08203 10.0007C2.08203 6.2687 2.08203 4.40272 3.2414 3.24335C4.40077 2.08398 6.26675 2.08398 9.9987 2.08398C13.7306 2.08398 15.5966 2.08398 16.756 3.24335C17.9154 4.40272 17.9154 6.2687 17.9154 10.0007C17.9154 13.7326 17.9154 15.5986 16.756 16.7579C15.5966 17.9173 13.7306 17.9173 9.9987 17.9173C6.26675 17.9173 4.40077 17.9173 3.2414 16.7579C2.08203 15.5986 2.08203 13.7326 2.08203 10.0007Z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         />
       </svg>
     ),
-    label: "Calendar",
+    href: "/coach",
+    label: "Coach",
     active: false,
-    href: "/athlete/calendar",
   },
   {
     icon: (
@@ -146,6 +185,7 @@ const navigationItems = [
     ),
     label: "Messages",
     active: false,
+    count: 2,
   },
   {
     icon: (
@@ -195,7 +235,7 @@ export default function Sidebar() {
         "transition-all duration-300 pt-5 ease-in-out"
       )}
     >
-      <div className="size-7 lg:size-10   rounded-lg flex items-center justify-center">
+      <div className="size-7 lg:size-10 rounded-lg flex items-center justify-center">
         <Image
           src={"/logo-png.png"}
           alt="logo"
@@ -212,10 +252,10 @@ export default function Sidebar() {
             <div
               key={index}
               onClick={() => setActiveIndex(index)}
-              className={`w-11 h-11 flex items-center justify-center rounded-xl transition-all ${
+              className={`relative w-11 h-11 flex items-center justify-center rounded-xl transition-all ${
                 activeIndex === index
                   ? "bg-[#4169E1] text-white "
-                  : "text-gray-600 hover:bg-white/80"
+                  : "text-[#141b3499] hover:bg-white/80"
               }`}
               title={item.label}
             >
@@ -224,6 +264,14 @@ export default function Sidebar() {
               >
                 {item.icon}
               </span>
+              {item.count && (
+                <Badge
+                  variant="danger"
+                  className="absolute -right-2 -top-2 h-5 w-5 justify-center rounded-full"
+                >
+                  {item.count}
+                </Badge>
+              )}
             </div>
           </Link>
         ))}

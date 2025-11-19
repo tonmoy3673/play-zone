@@ -129,7 +129,7 @@ export default function ProgramStartModal({ onClose }: ProgramStartModalProps) {
         </div>
 
         {/* Header */}
-        <div className="absolute flex flex-col font-['Inter:Medium',sans-serif] font-medium justify-center leading-[0] left-[16px] not-italic text-[#141b34] text-[16px] top-[28px] translate-y-[-50%] whitespace-nowrap">
+        <div className="absolute flex flex-col font-['Inter:Medium',sans-serif] font-medium justify-center leading-[0] left-[16px] not-italic text-dark text-[16px] top-[28px] translate-y-[-50%] whitespace-nowrap">
           <p className="leading-[1.5]">Starting your first program</p>
         </div>
 
@@ -145,7 +145,7 @@ export default function ProgramStartModal({ onClose }: ProgramStartModalProps) {
         <div className="absolute content-stretch flex flex-col gap-[16px] items-start left-[16px] top-[60px] w-[348px]">
           {/* Progress Section */}
           <div className="content-stretch flex flex-col gap-[6px] h-[35px] items-start relative shrink-0 w-full">
-            <div className="content-stretch flex font-['Inter:Medium',sans-serif] font-medium items-center justify-between leading-[1.4] not-italic relative shrink-0 text-[#141b34] text-[12px] w-full">
+            <div className="content-stretch flex font-['Inter:Medium',sans-serif] font-medium items-center justify-between leading-[1.4] not-italic relative shrink-0 text-dark text-[12px] w-full">
               <p className="relative shrink-0">Complete</p>
               <p className="relative shrink-0">
                 {Math.round(progressPercentage)}%
@@ -182,7 +182,7 @@ export default function ProgramStartModal({ onClose }: ProgramStartModalProps) {
                         className="content-stretch flex gap-[10px] items-center relative shrink-0"
                         onClick={() => handleTaskToggle(task.id)}
                       />
-                      <div className="flex flex-col font-['Inter:Medium',sans-serif] font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#141b34] text-[12px] whitespace-nowrap">
+                      <div className="flex flex-col font-['Inter:Medium',sans-serif] font-medium justify-center leading-[0] not-italic relative shrink-0 text-dark text-[12px] whitespace-nowrap">
                         <p className="leading-[1.4]">{task.text}</p>
                       </div>
                     </div>
@@ -204,7 +204,7 @@ export default function ProgramStartModal({ onClose }: ProgramStartModalProps) {
 
           {/* Progress Info */}
           <div className="mt-2 w-full">
-            <p className="text-[12px] text-[#141b34]/70 leading-[1.4] text-center">
+            <p className="text-[12px] text-dark/70 leading-[1.4] text-center">
               {completedTasks === totalTasks
                 ? "🎉 Congratulations! You've completed all steps!"
                 : `Complete ${completedTasks}/${totalTasks} steps to get your program ${progressPercentage}% ready`}

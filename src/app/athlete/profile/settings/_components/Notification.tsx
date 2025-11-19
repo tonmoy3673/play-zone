@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import Container from "@/components/ui/Container";
 import Switch from "@/components/ui/Switch";
 import React, { useState } from "react";
 
@@ -13,6 +14,7 @@ const Notification = () => {
     programNotifications: false,
   });
   return (
+    <Container>
     <div
       style={{ borderRadius: "30px", background: "rgba(255, 255, 255, 0.30)" }}
       className="w-full space-y-5 backdrop-blur-3xl p-8 border border-white"
@@ -117,6 +119,7 @@ const Notification = () => {
         </div>
       </div>
     </div>
+    </Container>
   );
 };
 

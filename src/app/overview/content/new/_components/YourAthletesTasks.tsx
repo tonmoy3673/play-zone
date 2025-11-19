@@ -49,12 +49,12 @@ export default function YourAthletesTasks({
   tasks = defaultTasks,
 }: {
   tasks?: AthleteTask[];
-}): JSX.Element {
+}) {
   return (
-    <div className="w-full overflow-hidden rounded-[24px] bg-white/30 border border-white">
+    <div className="w-full overflow-hidden rounded-[24px] bg-white/30">
       <div className="p-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-[20px] font-semibold leading-[1.5] text-[#141b34]">
+          <h2 className="text-[20px] font-semibold leading-[1.5] text-dark">
             Your Athlete’s Tasks
           </h2>
           <button
@@ -65,7 +65,7 @@ export default function YourAthletesTasks({
             <img
               src={imgArrow}
               alt=""
-              className="size-5 rotate-90 scale-y-[-1] w-[10px] h-[15px]"
+              className="size-5 rotate-90 scale-y-[-1]"
             />
           </button>
         </div>
@@ -94,21 +94,21 @@ export default function YourAthletesTasks({
                         )}
                       </div>
                       <div className="flex flex-col gap-0.5">
-                        <p className="text-[16px] font-semibold leading-[1.5] text-[#141b34]">
+                        <p className="text-[16px] font-semibold leading-[1.5] text-dark">
                           {task.title}
                         </p>
-                        <p className="text-[12px] font-normal leading-[1.4] text-[#141b34]">
+                        <p className="text-[12px] font-normal leading-[1.4] text-dark">
                           {task.subtitle}
                         </p>
                       </div>
                     </div>
 
                     <div className="flex w-full flex-col gap-2.5">
-                      <p className="w-full text-[12px] font-normal leading-[1.4] text-[#141b34]">
+                      <p className="w-full text-[12px] font-normal leading-[1.4] text-dark">
                         {task.description}
                       </p>
                       <div className="flex items-center justify-between">
-                        <p className="text-[12px] font-normal leading-[1.4] text-[#141b34]/70">
+                        <p className="text-[12px] font-normal leading-[1.4] text-dark/70">
                           Created by:
                         </p>
                         <div className="flex items-center gap-1">
@@ -119,7 +119,7 @@ export default function YourAthletesTasks({
                               className="absolute inset-0 size-full max-w-none object-cover"
                             />
                           </span>
-                          <p className="text-[10px] font-medium leading-[1.4] text-[#141b34]">
+                          <p className="text-[10px] font-medium leading-[1.4] text-dark">
                             {task.creatorName}
                           </p>
                         </div>
@@ -129,21 +129,12 @@ export default function YourAthletesTasks({
 
                   <div className="w-full">
                     <div className="flex items-center justify-between">
-                      <p className="text-[10px] font-medium leading-[1.4] text-[#141b34]">
+                      <p className="text-[10px] font-medium leading-[1.4] text-dark">
                         Majority Completion
                       </p>
                       <div className="flex items-center gap-1">
-                        <span
-                          style={{
-                            borderTopColor: "#68B0EA",
-                            background:
-                              "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)",
-                            width: "12px",
-                            height: "12px",
-                          }}
-                          className="inline-block size-3 rounded-[4px] border-t border-[#68b0ea]"
-                        />
-                        <p className="text-[10px] font-medium leading-[1.4] text-[#141b34]">
+                        <span className="inline-block size-3 rounded-[4px] border-t border-[#68b0ea]" />
+                        <p className="text-[10px] font-medium leading-[1.4] text-dark">
                           {Math.round(task.progressPercent)}% Complete
                         </p>
                       </div>

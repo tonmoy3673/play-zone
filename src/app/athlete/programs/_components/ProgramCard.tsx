@@ -1,3 +1,4 @@
+import Icon from "@/components/ui/Icon";
 import Image from "next/image";
 
 interface Program {
@@ -71,41 +72,9 @@ export default function ProgramCard({ program }: ProgramCardProps) {
           </div>
 
           {/* Athletes Count */}
-          <div className="flex items-center gap-2 mb-4 text-sm text-gray-600">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="16"
-              viewBox="0 0 20 16"
-              fill="none"
-            >
-              <path
-                opacity="0.4"
-                d="M17.3116 13C17.9361 13 18.4327 12.6071 18.8787 12.0576C19.7915 10.9329 18.2927 10.034 17.7211 9.59383C17.14 9.14635 16.4911 8.89285 15.8333 8.83333M14.9999 7.16667C16.1505 7.16667 17.0833 6.23393 17.0833 5.08333C17.0833 3.93274 16.1505 3 14.9999 3"
-                stroke="#141B34"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-              <path
-                opacity="0.4"
-                d="M2.68822 13C2.0638 13 1.56714 12.6071 1.12121 12.0576C0.208326 10.9329 1.70714 10.034 2.27879 9.59383C2.8599 9.14635 3.50874 8.89285 4.16659 8.83333M4.58325 7.16667C3.43266 7.16667 2.49992 6.23393 2.49992 5.08333C2.49992 3.93274 3.43266 3 4.58325 3"
-                stroke="#141B34"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-              <path
-                d="M6.73642 10.592C5.88494 11.1185 3.65241 12.1936 5.01217 13.5389C5.6764 14.196 6.41619 14.666 7.34627 14.666H12.6536C13.5837 14.666 14.3234 14.196 14.9877 13.5389C16.3474 12.1936 14.1149 11.1185 13.2634 10.592C11.2667 9.35735 8.73313 9.35735 6.73642 10.592Z"
-                stroke="#141B34"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M12.9166 4.25065C12.9166 5.86148 11.6107 7.16732 9.99992 7.16732C8.38909 7.16732 7.08325 5.86148 7.08325 4.25065C7.08325 2.63982 8.38909 1.33398 9.99992 1.33398C11.6107 1.33398 12.9166 2.63982 12.9166 4.25065Z"
-                stroke="#141B34"
-                strokeWidth="1.5"
-              />
-            </svg>
+          <div className="flex items-center gap-2 mb-4 text-sm text-[#141b3499]">
+           
+            <Icon name="team-people" />
             <span>{program.athletes}K Athletes</span>
           </div>
         </div>
@@ -140,7 +109,7 @@ export default function ProgramCard({ program }: ProgramCardProps) {
 
         {/* Date/Time */}
         {program.date && (
-          <div className="flex items-center gap-2 text-sm text-gray-600">
+          <div className="flex items-center gap-2 text-sm text-[#141b3499]">
             <svg
               className="w-4 h-4"
               fill="none"

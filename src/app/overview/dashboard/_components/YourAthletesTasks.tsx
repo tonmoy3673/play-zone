@@ -1,5 +1,10 @@
+import Card from "@/components/ui/Card";
 import Icon from "@/utils/icon";
 import React from "react";
+
+import "swiper/css";
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 type AthleteTask = {
   id: string;
@@ -40,36 +45,57 @@ const defaultTasks: AthleteTask[] = [
     imageSrc: "/overview/imgTaskIcon2.png",
     progressPercent: 70,
   },
+  {
+    id: "a3",
+    title: "Red Zone Offense",
+    subtitle: "Elite Basketball Fundamentals",
+    description:
+      "This task focused on foundational techniques for disengaging blocks and pursuing the ball carrier. It included a video demonstration, a drill checklist, and a required video submission of athletes performing the drill.",
+    creatorName: "Jason M.",
+    creatorAvatarSrc: "/overview/imgDefaultCreator.png",
+    imageSrc: "/overview/imgTaskIcon2.png",
+    progressPercent: 70,
+  },
 ];
 
 export default function YourAthletesTasks({
   tasks = defaultTasks,
 }: {
   tasks?: AthleteTask[];
-}): JSX.Element {
+}) {
   return (
-    <div className="w-full overflow-hidden rounded-[24px] bg-white/30">
-      <div className="p-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-[20px] font-semibold leading-[1.5] text-[#141b34]">
-            Your Athlete’s Tasks
-          </h2>
-          <button
-            type="button"
-            aria-label="Next"
-            className="relative inline-flex size-10 items-center justify-center rounded-full border border-white bg-white/65"
-          >
-            <Icon name="right_arrow" width={20} height={20} />
-          </button>
-        </div>
+    <Card className="p-4">
+      <div className="flex items-center justify-between">
+        <h2 className="text-[20px] font-semibold leading-[1.5] text-dark">
+          Your Athlete’s Tasks
+        </h2>
+        <button
+          type="button"
+          aria-label="Next"
+          className="relative inline-flex size-10 items-center justify-center rounded-full border border-white bg-white/65"
+        >
+          <Icon name="right_arrow" width={20} height={20} />
+        </button>
+      </div>
 
-        <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
+      <div className="mt-4 grid">
+        <Swiper
+          modules={[Autoplay]}
+          spaceBetween={16}
+          slidesPerView={1}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+          }}
+          className="w-full"
+        >
           {tasks.map((task) => (
-            <div
-              key={task.id}
-              className="relative h-[264px] w-full overflow-hidden rounded-[24px] bg-white/60"
-            >
-              <div className="absolute inset-0 p-4">
+            <SwiperSlide key={task.id}>
+              <Card className="relative h-[264px] px-4 py-6 bg-white/60">
                 <div className="flex h-full flex-col gap-6">
                   <div className="flex w-full flex-col gap-5">
                     <div className="flex items-center gap-3">
@@ -87,21 +113,21 @@ export default function YourAthletesTasks({
                         )}
                       </div>
                       <div className="flex flex-col gap-0.5">
-                        <p className="text-[16px] font-semibold leading-[1.5] text-[#141b34]">
+                        <p className="text-[16px] font-semibold leading-[1.5] text-dark">
                           {task.title}
                         </p>
-                        <p className="text-[12px] font-normal leading-[1.4] text-[#141b34]">
+                        <p className="text-[12px] font-normal leading-[1.4] text-dark">
                           {task.subtitle}
                         </p>
                       </div>
                     </div>
 
                     <div className="flex w-full flex-col gap-2.5">
-                      <p className="w-full text-[12px] font-normal leading-[1.4] text-[#141b34]">
+                      <p className="w-full text-[12px] font-normal leading-[1.4] text-dark">
                         {task.description}
                       </p>
                       <div className="flex items-center justify-between">
-                        <p className="text-[12px] font-normal leading-[1.4] text-[#141b34]/70">
+                        <p className="text-[12px] font-normal leading-[1.4] text-dark/70">
                           Created by:
                         </p>
                         <div className="flex items-center gap-1">
@@ -115,7 +141,7 @@ export default function YourAthletesTasks({
                               className="absolute inset-0 size-full max-w-none object-cover"
                             />
                           </span>
-                          <p className="text-[10px] font-medium leading-[1.4] text-[#141b34]">
+                          <p className="text-[10px] font-medium leading-[1.4] text-dark">
                             {task.creatorName}
                           </p>
                         </div>
@@ -125,7 +151,7 @@ export default function YourAthletesTasks({
 
                   <div className="w-full">
                     <div className="flex items-center justify-between">
-                      <p className="text-[10px] font-medium leading-[1.4] text-[#141b34]">
+                      <p className="text-[10px] font-medium leading-[1.4] text-dark">
                         Majority Completion
                       </p>
                       <div className="flex items-center gap-1">
@@ -139,7 +165,7 @@ export default function YourAthletesTasks({
                             height: "12px",
                           }}
                         />
-                        <p className="text-[10px] font-medium leading-[1.4] text-[#141b34]">
+                        <p className="text-[10px] font-medium leading-[1.4] text-dark">
                           {Math.round(task.progressPercent)}% Complete
                         </p>
                       </div>
@@ -157,11 +183,11 @@ export default function YourAthletesTasks({
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </Card>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
-    </div>
+    </Card>
   );
 }

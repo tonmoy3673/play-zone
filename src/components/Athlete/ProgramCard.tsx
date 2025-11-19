@@ -53,7 +53,7 @@ const ProgramCard = () => {
                 name="right_arrow"
                 width={24}
                 height={24}
-                className="transform rotate-180"
+                className="transform rotate-180 text-dark"
               />
             </button>
 
@@ -67,7 +67,12 @@ const ProgramCard = () => {
                 !canNext ? "opacity-40 pointer-events-none" : ""
               }`}
             >
-              <Icon name="right_arrow" width={24} height={24} />
+              <Icon
+                name="right_arrow"
+                className="text-dark"
+                width={24}
+                height={24}
+              />
             </button>
           </div>
         </div>

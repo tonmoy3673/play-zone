@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 :root {
   --background: #ffffff;
@@ -8,9 +9,13 @@
 
 @theme inline {
   --color-dark: var(--dark);
-
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --background-image-primary-gradient: linear-gradient(
+    177deg,
+    #5c8ff7 10.06%,
+    #276aee 62.94%
+  );
   --font-inter: var(--font-inter);
   --font-mono: var(--font-geist-mono);
   --text-color-dark-100: #141b34;
@@ -33,4 +38,20 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), Helvetica, sans-serif;
+}
+
+.primary-gradient-text {
+  @apply bg-clip-text text-transparent bg-primary-gradient;
+}
+
+.success-gradient-text {
+  @apply bg-clip-text text-transparent bg-[linear-gradient(177deg,#19A855_10.06%,#0B9545_62.94%)];
+}
+
+.warning-gradient-text {
+  @apply bg-clip-text text-transparent bg-[linear-gradient(207deg,#FFB42A_39.14%,#EB9E0F_71.52%)];
+}
+
+.danger-gradient-text {
+  @apply bg-clip-text text-transparent bg-[linear-gradient(148deg,#FF6565_16.41%,#EC4213_59.87%)];
 }

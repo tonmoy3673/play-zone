@@ -18,14 +18,14 @@ const imgGroup12871 =
 const imgCrown =
   "https://www.figma.com/api/mcp/asset/39b8fd48-f212-4d2d-8b9c-0c2aa8178715";
 
-export default function page(): JSX.Element {
+export default function Page() {
   return (
     <div>
       {/* news card */}
       <div className="relative w-full overflow-hidden rounded-[24px] bg-white/30">
         <div className="p-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-[20px] font-semibold leading-[1.5] text-[#141b34]">
+            <h2 className="text-[20px] font-semibold leading-[1.5] text-dark">
               News
             </h2>
             <button
@@ -59,10 +59,10 @@ export default function page(): JSX.Element {
                   </div>
 
                   <div className="space-y-2">
-                    <p className="w-full max-w-[345px] text-[18px] font-semibold leading-[1.5] text-[#141b34]">
+                    <p className="w-full max-w-[345px] text-[18px] font-semibold leading-[1.5] text-dark">
                       Share your expertise with the community!
                     </p>
-                    <p className="w-full max-w-[342px] text-[12px] font-normal leading-[1.4] text-[#141b34]/70">
+                    <p className="w-full max-w-[342px] text-[12px] font-normal leading-[1.4] text-dark/70">
                       Exciting news! You can now build your brand by posting in
                       the Community Feed. Share insights, drills, and connect
                       with athletes globally. Turn your expertise into influence

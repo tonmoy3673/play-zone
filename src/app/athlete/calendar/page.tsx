@@ -1,12 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import React, { useState } from "react";
-import { Search, ChevronLeft, ChevronRight, MoreVertical } from "lucide-react";
 import Card from "@/components/ui/Card";
+import {
+  ChevronLeft,
+  ChevronRight,
+  MoreVertical,
+  Plus,
+  Search,
+} from "lucide-react";
+import React, { useState } from "react";
+import CalendarModal from "./_components/CalendarModal";
 
 const CalendarDashboard = () => {
   const [currentMonth, setCurrentMonth] = useState("August 2025");
   const [view, setView] = useState("Month");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const months = [
     "January",
@@ -300,14 +308,31 @@ const CalendarDashboard = () => {
           <div className="p-6 h-full">
             <div className="">
               {/* Header */}
-              <div className="mb-6">
-                <h1 className="text-2xl font-bold text-gray-900 mb-1">
-                  Calendar
-                </h1>
-                <p className="text-sm text-gray-500">
-                  Manage your upcoming, past, and cancelled coaching sessions.
-                </p>
-              </div>{" "}
+              <div className="flex items-center justify-between">
+                <div className="mb-6">
+                  <h1 className="text-2xl font-bold text-gray-900 mb-1">
+                    Calendar
+                  </h1>
+                  <p className="text-sm text-gray-500">
+                    Manage your upcoming, past, and cancelled coaching sessions.
+                  </p>
+                </div>
+                <AnimatedButton
+                  onClick={() => setIsModalOpen(true)}
+                  style={{
+                    borderRadius: "40px",
+                    background:
+                      "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)",
+                  }}
+                  className="flex items-center justify-center gap-2 text-white font-normal px-5 py-4 rounded-full hover:bg-blue-700"
+                >
+                  <span>
+                    <Plus />
+                  </span>
+                  Create Event
+                </AnimatedButton>
+              </div>
+
               {/* Search and Controls */}
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
@@ -337,7 +362,7 @@ const CalendarDashboard = () => {
                       className={`px-6 py-2 text-black rounded-xl text-sm font-medium ${
                         view === "Week"
                           ? "bg-blue-500 text-white"
-                          : "text-gray-600"
+                          : "text-[#141b3499]"
                       }`}
                       onClick={() => setView("Week")}
                     >
@@ -351,7 +376,7 @@ const CalendarDashboard = () => {
                       className="p-1 hover:bg-gray-100 rounded-lg"
                       onClick={() => navigateMonth("prev")}
                     >
-                      <ChevronLeft className="w-5 h-5 text-gray-600" />
+                      <ChevronLeft className="w-5 h-5 text-[#141b3499]" />
                     </button>
                     <span className="text-sm font-medium text-gray-700 px-2 select-none">
                       {currentMonth}
@@ -360,7 +385,7 @@ const CalendarDashboard = () => {
                       className="p-1 hover:bg-gray-100 rounded-lg"
                       onClick={() => navigateMonth("next")}
                     >
-                      <ChevronRight className="w-5 h-5 text-gray-600" />
+                      <ChevronRight className="w-5 h-5 text-[#141b3499]" />
                     </button>
                   </div>
                 </div>
@@ -372,7 +397,7 @@ const CalendarDashboard = () => {
                   {daysOfWeek.map((day) => (
                     <div
                       key={day}
-                      className="p-4 text-sm font-medium text-gray-600 text-center"
+                      className="p-4 text-sm font-medium text-[#141b3499] text-center"
                     >
                       {day}
                     </div>
@@ -401,7 +426,7 @@ const CalendarDashboard = () => {
                           {dayData.day}
                         </span>
                         {dayData.events.length > 0 && (
-                          <button className="text-gray-400 hover:text-gray-600">
+                          <button className="text-gray-400 hover:text-[#141b3499]">
                             <MoreVertical className="w-4 h-4" />
                           </button>
                         )}
@@ -479,7 +504,7 @@ const CalendarDashboard = () => {
                       LIVE
                     </span>
                   </div>
-                  <div className="text-xs text-gray-600">{session.time}</div>
+                  <div className="text-xs text-[#141b3499]">{session.time}</div>
                 </div>
               ))}
             </div>
@@ -533,7 +558,7 @@ const CalendarDashboard = () => {
                         style={{ width: `${deadline.progress}%` }}
                       ></div>
                     </div>
-                    <span className="text-xs font-medium text-gray-600">
+                    <span className="text-xs font-medium text-[#141b3499]">
                       {deadline.progress}% Complete
                     </span>
                   </div>
@@ -557,7 +582,7 @@ const CalendarDashboard = () => {
                       <div className="text-xs text-gray-500 truncate">
                         {task.subtitle}
                       </div>
-                      <div className="text-xs text-gray-600 mt-0.5">
+                      <div className="text-xs text-[#141b3499] mt-0.5">
                         {task.time}
                       </div>
                       <button className="px-3 bg-gradient-to-r from-[#5C8FF7] to-[#276AEE] text-white text-xs font-medium rounded-xl mt-2 py-1.5">
@@ -571,12 +596,19 @@ const CalendarDashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* Calendar Modal */}
+      <CalendarModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };
 
 export default CalendarDashboard;
 
+import { AnimatedButton } from "@/components/ui/Button";
 import Icon, { IconName } from "@/utils/icon";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

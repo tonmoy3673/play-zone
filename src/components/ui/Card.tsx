@@ -1,29 +1,19 @@
-import React from 'react';
+import { cn } from "@/lib/utils";
+import { HTMLAttributes, ReactNode } from "react";
 
-type CardProps = React.PropsWithChildren<{
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  children?: ReactNode;
   className?: string;
-  style?: React.CSSProperties;
-  bg?: string;
-  border?: boolean;
-  rounded?: string;
-  blurClass?: string;
-}>;
+}
 
-const defaultBg = 'bg-[#ffffff4d]';
-
-const Card: React.FC<CardProps> = ({
-  children,
-  className = '',
-  style,
-  bg = defaultBg,
-  border = true,
-  rounded = 'rounded-2xl',
-  blurClass = 'backdrop-blur-3xl',
-}) => {
-  const borderClass = border ? 'border border-white' : '';
-
+const Card: React.FC<CardProps> = ({ className, children }) => {
   return (
-    <div className={`${bg} ${borderClass} ${rounded} ${blurClass} overflow-hidden ${className}`} style={style}>
+    <div
+      className={cn(
+        "relative bg-white/30 rounded-2xl md:rounded-3xl p-5 border border-white/80 overflow-hidden backdrop-blur-3xl z-[1]",
+        className
+      )}
+    >
       {children}
     </div>
   );

@@ -25,11 +25,11 @@ export default function StreakCard() {
     };
   });
   return (
-    <div className="w-full max-w-sm relative overflow-hidden rounded-3xl bg-gradient-to-tr from-[#ABD6FD] via-[#ABD6FD1a] to-[#E1EDFB] p-5 border-[0.5px] border-white border-l-[#ABD6FD] border-b-[#ABD6FD]">
+    <div className="w-full max-w-sm relative overflow-hidden rounded-3xl bg-[#eef6f8] p-5 border-[0.5px] border-white">
       {/* Header Section */}
       <div className="w-full size-7 z-0 rounded-full blur-3xl absolute bottom-0 -right-12 bg-purple-300"></div>
       <div className="mb-0 flex items-center justify-between">
-        <h2 className="text-xs font-semibold text-dark-100">Active Streak</h2>
+        <h2 className="text-xs font-semibold text-dark">Active Streak</h2>
         <div className="flex items-center gap-3">
           <div className="rounded-full bg-gradient-to-b from-[#FDB631] via-[#EC4213] to-[#EC4213] px-4 py-1.5 shadow-md">
             <span className="text-xs font-semibold text-white">Hot Streak</span>
@@ -42,7 +42,7 @@ export default function StreakCard() {
 
       {/* Days Counter */}
       <div className="mb-0">
-        <h1 className="text-2xl font-bold text-slate-900">12 Days</h1>
+        <h1 className="text-2xl font-bold text-dark">12 Days</h1>
       </div>
 
       {/* Milestone Text */}
@@ -58,18 +58,26 @@ export default function StreakCard() {
               {day.label}
             </span>
             {day.isCompleted ? (
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
+              <div
+                className="flex h-6 w-6 items-center justify-center rounded-full"
+                style={{
+                  background:
+                    "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)",
+                }}
+              >
                 <svg
-                  className="h-6 w-6 p-1 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="10"
+                  height="9"
+                  viewBox="0 0 10 9"
                   fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
                 >
                   <path
+                    d="M0.750122 5.5C0.750122 5.5 2.35012 6.41253 3.15012 7.75C3.15012 7.75 5.55012 2.5 8.75012 0.75"
+                    stroke="white"
+                    strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M5 13l4 4L19 7"
                   />
                 </svg>
               </div>

@@ -38,7 +38,13 @@ const badges = [
   },
 ];
 
-const BadgeCard = ({ icon, label, selected }) => (
+type BadgeProps = {
+  icon: string;
+  label: string;
+  selected?: boolean;
+};
+
+const BadgeCard: React.FC<BadgeProps> = ({ icon, label, selected }) => (
   <div
     className={`box-border flex flex-col gap-5 items-center p-5 rounded-xl w-36 h-32 ${
       selected
