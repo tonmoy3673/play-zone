@@ -4,11 +4,6 @@ import React, { useState } from "react";
 const imgImage341 =
   "https://www.figma.com/api/mcp/asset/8317cf7f-0e9f-4656-b7eb-3ed493a9aba0";
 
-const uncheckedIcon =
-  "https://www.figma.com/api/mcp/asset/789023ff-b982-46d4-9895-7e29db78e8c1";
-const checkedIcon =
-  "https://www.figma.com/api/mcp/asset/8ea08a11-81b3-4e1e-ae5e-be3269e9a231";
-
 type FrameProps = {
   className?: string;
   property1?: "Check" | "uncheck";
@@ -23,7 +18,11 @@ function Frame({ className, property1 = "Check", onClick }: FrameProps) {
           <img
             alt=""
             className="block max-w-none size-full"
-            src={property1 === "Check" ? '/overview/checked.svg' : '/overview/unchecked.svg'}
+            src={
+              property1 === "Check"
+                ? "/overview/checked.svg"
+                : "/overview/unchecked.svg"
+            }
           />
         </div>
       </div>
@@ -87,7 +86,6 @@ export default function ProgramStartModal({ onClose }: ProgramStartModalProps) {
   };
 
   const handleButtonClick = (taskId: number) => {
-    // Mark the task as completed when "Take me" is clicked
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.id === taskId ? { ...task, property1: "Check" } : task
@@ -95,7 +93,6 @@ export default function ProgramStartModal({ onClose }: ProgramStartModalProps) {
     );
   };
 
-  // Function to determine which task should show the "Take me" button
   const getTaskWithButton = () => {
     // Find the first unchecked task
     const firstUncheckedTask = tasks.find(
@@ -122,21 +119,6 @@ export default function ProgramStartModal({ onClose }: ProgramStartModalProps) {
       className="bg-white backdrop-blur-lg border-2 border-white relative rounded-[21px] w-[380px] h-[420px] overflow-hidden"
     >
       <div className="overflow-clip relative rounded-[inherit] size-full">
-      
-        <div className="absolute flex h-[calc(1px*((var(--transform-inner-width)*0.5829582810401917)+(var(--transform-inner-height)*0.8125020861625671)))] items-center justify-center left-[calc(50%+45.5px)] top-[calc(50%+-65.81px)] translate-x-[-50%] translate-y-[-50%] w-[calc(1px*((var(--transform-inner-height)*0.5829582810401917)+(var(--transform-inner-width)*0.8125020861625671)))]">
-          <div className="flex-none rotate-[215.659deg] scale-y-[-100%]">
-            <div className="blur-sm filter h-[561.587px] relative w-[689.691px]">
-              <div className="absolute inset-0 opacity-20 overflow-hidden pointer-events-none">
-                <img
-                  alt=""
-                  className="absolute h-[106.24%] left-[-21.02%] max-w-none top-[-2.39%] w-[120.73%]"
-                  src={imgImage341}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Header */}
         <div className="absolute flex flex-col font-['Inter:Medium',sans-serif] font-medium justify-center leading-[0] left-[16px] not-italic text-dark text-[16px] top-[28px] translate-y-[-50%] whitespace-nowrap">
           <p className="leading-[1.5]">Starting your first program</p>
@@ -145,7 +127,7 @@ export default function ProgramStartModal({ onClose }: ProgramStartModalProps) {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 w-6 h-6 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-gray-600 font-bold text-sm z-10 backdrop-blur-sm"
+          className="absolute right-4 top-4 w-6 h-6 rounded-full bg-white/70 hover:bg-white/80 flex items-center justify-center text-gray-600 font-bold text-sm z-10 backdrop-blur-sm"
         >
           ×
         </button>
