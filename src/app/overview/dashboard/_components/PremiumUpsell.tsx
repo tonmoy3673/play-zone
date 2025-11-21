@@ -109,9 +109,19 @@ export default function PremiumUpsell({
                   "linear-gradient(135deg, #2563eb 0%, #60a5fa 50%, #93c5fd 100%)",
               }}
             >
-              <p className="absolute left-6 top-6 text-[18px] font-medium text-white">
+              <div className="flex items-center justify-center">
+                <p className="absolute left-6 top-6 text-[18px] font-medium text-white">
                 Premium Plan
               </p>
+              <div className="absolute  top-6 ">
+                <button
+                  type="button"
+                  className="mt-auto text-[#141B34] inline-flex h-[30px] w-[110px] items-center justify-center rounded-full bg-white px-[7px] py-[8px] text-[10px] font-medium  hover:bg-gray-100 cursor-pointer transition-colors"
+                >
+                   Recommended
+                </button>
+              </div>
+              </div>
 
               <div className="absolute left-6 top-[70px]">
                 <div className="flex items-center gap-2 text-white">
