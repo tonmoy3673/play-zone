@@ -122,8 +122,8 @@ export default function PremiumUpsell({
                 </button>
               </div>
               {/* ================= image icon =========== */}
-              <div>
-                <img/>
+              <div className="absolute top-6 right-6 border border-white rounded-full">
+                <img className="w-[46] h-[46]" alt="sunIcon" src='/overview/subIcon.svg'/>
               </div>
               </div>
 
@@ -149,7 +149,11 @@ export default function PremiumUpsell({
                   key={f.id}
                   className="flex items-center justify-between py-2"
                 >
-                  <p className="text-[12px] font-medium text-dark">{f.label}</p>
+                  
+                 <div className="">
+                  <img src='/overview/dotIcon.svg' alt="dotIcon"/>
+                   <p className="text-[12px] font-medium text-dark"> {f.label}</p>
+                 </div>
                   <img
                     alt=""
                     src={"/overview/imgCheckCircle.svg"}
