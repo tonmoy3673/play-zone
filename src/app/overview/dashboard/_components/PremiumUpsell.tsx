@@ -121,6 +121,10 @@ export default function PremiumUpsell({
                    Recommended
                 </button>
               </div>
+              {/* ================= image icon =========== */}
+              <div>
+                <img/>
+              </div>
               </div>
 
               <div className="absolute left-6 top-[70px]">
