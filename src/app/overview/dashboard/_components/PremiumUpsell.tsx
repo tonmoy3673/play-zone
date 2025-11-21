@@ -150,7 +150,7 @@ export default function PremiumUpsell({
                   className="flex items-center justify-between py-2"
                 >
                   
-                 <div className="">
+                 <div className="flex items-center gap-x-2">
                   <img src='/overview/dotIcon.svg' alt="dotIcon"/>
                    <p className="text-[12px] font-medium text-dark"> {f.label}</p>
                  </div>
