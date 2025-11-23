@@ -46,13 +46,13 @@ export default function PremiumUpsell({
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-white/30 backdrop-blur-sm"
+        className="absolute inset-0 bg-white/40 backdrop-blur-sm"
         onClick={onClose}
       />
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 bg-[#EBF1FF]"
         style={
           {
             "--tw": 1,
@@ -91,8 +91,8 @@ export default function PremiumUpsell({
           </div>
 
           {/* Title */}
-          <div className="mx-4 mt-6 flex flex-col items-center text-center">
-            <h2 className="w-full max-w-[400px] text-center text-[20px] font-medium text-dark">
+          <div className="mx-4  mt-6 flex flex-col items-center text-center">
+            <h2 className="w-full max-w-[600px] text-center text-[20px] font-medium text-dark">
               <span>Unlock </span>
               <span className="bg-gradient-to-r from-[#4d81ff] to-[#557edf] bg-clip-text text-transparent">
                 Premium
@@ -114,9 +114,9 @@ export default function PremiumUpsell({
             <div
               className="relative h-[160px] w-full overflow-clip rounded-[24px]"
               style={{
-                background:
-                  "linear-gradient(135deg, #2563eb 0%, #60a5fa 50%, #93c5fd 100%)",
-              }}
+  background: "linear-gradient(120deg, #3861C6 0%, #3876FE 50%, #9B9DFB 100%)",
+}}
+              
             >
               <div className="flex items-center justify-center">
                 <p className="absolute left-6 top-6 text-[18px] font-medium text-white">
