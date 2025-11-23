@@ -13,6 +13,10 @@ export default function ProgramLiveCongrats(props: ProgramLiveCongratsProps) {
 
   return (
     <section
+    style={{ backgroundImage: "url('/overview/congratsBG.svg')",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",}}
       className={[
         "relative overflow-hidden rounded-[16px] w-[90vw] max-w-[850px] bg-white/80",
         // Give it a comfortable height while staying responsive
