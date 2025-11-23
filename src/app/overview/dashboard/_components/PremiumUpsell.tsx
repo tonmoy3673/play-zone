@@ -46,12 +46,21 @@ export default function PremiumUpsell({
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-white/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-white/30 backdrop-blur-sm"
         onClick={onClose}
       />
 
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={
+          {
+            "--tw": 1,
+          } as React.CSSProperties
+        }
+      ></div>
       {/* Modal */}
-      <div className="relative w-[90vw] max-w-[700px] h-[85vh] bg-white/80 backdrop-blur-lg rounded-[24px] border border-white/30 shadow-2xl overflow-hidden flex flex-col">
+      <div className="relative w-[90vw] max-w-[800px] max-h-[85vh] bg-white/70 backdrop-blur-lg rounded-[24px] border border-white/30 shadow-2xl overflow-hidden flex flex-col">
         <ModalHeader title="Creating tasks" onClose={onClose} />
 
         {/* Content */}
@@ -111,20 +120,24 @@ export default function PremiumUpsell({
             >
               <div className="flex items-center justify-center">
                 <p className="absolute left-6 top-6 text-[18px] font-medium text-white">
-                Premium Plan
-              </p>
-              <div className="absolute  top-6 ">
-                <button
-                  type="button"
-                  className="mt-auto text-[#141B34] inline-flex h-[30px] w-[110px] items-center justify-center rounded-full bg-white px-[7px] py-[8px] text-[10px] font-medium  hover:bg-gray-100 cursor-pointer transition-colors"
-                >
-                   Recommended
-                </button>
-              </div>
-              {/* ================= image icon =========== */}
-              <div className="absolute top-6 right-6 border border-white rounded-full">
-                <img className="w-[46] h-[46]" alt="sunIcon" src='/overview/subIcon.svg'/>
-              </div>
+                  Premium Plan
+                </p>
+                <div className="absolute  top-6 ">
+                  <button
+                    type="button"
+                    className="mt-auto text-[#141B34] inline-flex h-[30px] w-[110px] items-center justify-center rounded-full bg-white px-[7px] py-[8px] text-[10px] font-medium  hover:bg-gray-100 cursor-pointer transition-colors"
+                  >
+                    Recommended
+                  </button>
+                </div>
+                {/* ================= image icon =========== */}
+                <div className="absolute top-6 right-6 border border-white rounded-full">
+                  <img
+                    className="w-[46] h-[46]"
+                    alt="sunIcon"
+                    src="/overview/subIcon.svg"
+                  />
+                </div>
               </div>
 
               <div className="absolute left-6 top-[70px]">
@@ -149,11 +162,13 @@ export default function PremiumUpsell({
                   key={f.id}
                   className="flex items-center justify-between py-2"
                 >
-                  
-                 <div className="flex items-center gap-x-2">
-                  <img src='/overview/dotIcon.svg' alt="dotIcon"/>
-                   <p className="text-[12px] font-medium text-dark"> {f.label}</p>
-                 </div>
+                  <div className="flex items-center gap-x-2">
+                    <img src="/overview/dotIcon.svg" alt="dotIcon" />
+                    <p className="text-[12px] font-medium text-dark">
+                      {" "}
+                      {f.label}
+                    </p>
+                  </div>
                   <img
                     alt=""
                     src={"/overview/imgCheckCircle.svg"}
