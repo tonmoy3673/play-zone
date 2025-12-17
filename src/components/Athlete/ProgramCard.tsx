@@ -17,7 +17,7 @@ const ProgramCard = () => {
       Array.from({ length: 8 }).map((_, i) => ({
         id: i,
         title: `Speed Training Basics ${i + 1}`,
-        thumbnail: "./program/program1.svg",
+        thumbnail: "/program/program1.svg",
         progress: 45,
         dueDate: "Due in 3 days",
         progressColor: "bg-blue-500",

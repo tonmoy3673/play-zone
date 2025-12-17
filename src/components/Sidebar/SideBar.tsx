@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Badge from "../ui/Badge";
+import Icon from "../ui/Icon";
 
 const navigationItems = [
   {
@@ -42,7 +43,7 @@ const navigationItems = [
       </svg>
     ),
     label: "Dashboard",
-    href: "/athlete",
+    href: "/coach/dashboard",
     active: true,
   },
   {
@@ -68,7 +69,7 @@ const navigationItems = [
       </svg>
     ),
     label: "Programs",
-    href: "/athlete/programs",
+    href: "/coach/programs",
     active: false,
   },
   // {
@@ -95,38 +96,28 @@ const navigationItems = [
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
+        width="22"
+        height="22"
+        viewBox="0 0 22 22"
         fill="none"
       >
         <path
-          opacity="0.4"
-          d="M10.3332 6.91562L12.7664 6.10453C13.505 5.85835 13.8742 5.73526 14.0692 5.93018C14.2641 6.12511 14.141 6.49437 13.8948 7.23291L13.0837 9.66618C12.6642 10.9247 12.4545 11.5539 12.0032 12.0052C11.552 12.4564 10.9227 12.6662 9.66422 13.0857L7.23096 13.8968C6.49242 14.143 6.12315 14.266 5.92823 14.0711C5.73331 13.8762 5.8564 13.5069 6.10258 12.7684L6.91367 10.3351C7.33316 9.07663 7.54291 8.44738 7.99417 7.99612C8.44543 7.54487 9.07468 7.33512 10.3332 6.91562Z"
+          d="M13.75 0.75L14.2887 3.14157C14.7457 5.17015 16.3298 6.75431 18.3584 7.21127L20.75 7.75L18.3584 8.28873C16.3298 8.74569 14.7457 10.3298 14.2887 12.3584L13.75 14.75L13.2113 12.3584C12.7543 10.3298 11.1702 8.74569 9.14158 8.28873L6.75 7.75L9.14158 7.21127C11.1701 6.75431 12.7543 5.17015 13.2113 3.14158L13.75 0.75Z"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
         />
         <path
-          opacity="0.4"
-          d="M10 10L9.99471 10.0053"
+          d="M5.75 10.75L6.13481 12.4583C6.46121 13.9072 7.59275 15.0388 9.04173 15.3652L10.75 15.75L9.04173 16.1348C7.59275 16.4612 6.46121 17.5927 6.13481 19.0417L5.75 20.75L5.36519 19.0417C5.03879 17.5927 3.90725 16.4612 2.45827 16.1348L0.75 15.75L2.45827 15.3652C3.90725 15.0388 5.03879 13.9073 5.36519 12.4583L5.75 10.75Z"
+          fill="currentColor"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        <path
-          d="M2.08203 10.0007C2.08203 6.2687 2.08203 4.40272 3.2414 3.24335C4.40077 2.08398 6.26675 2.08398 9.9987 2.08398C13.7306 2.08398 15.5966 2.08398 16.756 3.24335C17.9154 4.40272 17.9154 6.2687 17.9154 10.0007C17.9154 13.7326 17.9154 15.5986 16.756 16.7579C15.5966 17.9173 13.7306 17.9173 9.9987 17.9173C6.26675 17.9173 4.40077 17.9173 3.2414 16.7579C2.08203 15.5986 2.08203 13.7326 2.08203 10.0007Z"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
         />
       </svg>
     ),
-    href: "/coach",
-    label: "Coach",
+    href: "/coach/explore-athletes",
+    label: "Explore",
     active: false,
   },
   {
@@ -147,6 +138,7 @@ const navigationItems = [
     ),
     label: "Announcements",
     active: false,
+    href: "/coach/programs/announcement",
   },
   {
     icon: (
@@ -184,6 +176,7 @@ const navigationItems = [
       </svg>
     ),
     label: "Messages",
+    href: "/coach/chat",
     active: false,
     count: 2,
   },
@@ -204,9 +197,17 @@ const navigationItems = [
       </svg>
     ),
     label: "Overview/Dashboard",
-    href: "/overview",
+    href: "#",
     active: false,
   },
+  {
+    icon: (
+      <Icon name="global-finance-icon" height={20} width={20} />
+    ),
+    label: "Global Finance",
+    href: "/coach/global-financial",
+    active: false,
+  }
 ];
 
 export default function Sidebar() {

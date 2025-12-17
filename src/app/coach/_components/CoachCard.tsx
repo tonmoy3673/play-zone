@@ -60,7 +60,7 @@ const CoachCard = () => {
         </div>
       </div>
 
-      <Link href={"/coach/profile/1"}>
+      <Link href={"/athlete/explore/coach/profile/1"}>
         <AnimatedButton className="bg-[#1556D826] h-10 border w-full border-[#1556D81A] group/btn px-5 py-2.5 rounded-full flex items-center justify-center gap-2 transition-all whitespace-nowrap hover:bg-primary-gradient">
           <span className="font-medium text-xs primary-gradient-text group-hover/btn:!text-white group-hover/btn:!bg-none">
             View Profile

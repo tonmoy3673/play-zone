@@ -18,7 +18,7 @@ const profileData = {
   backgroundImage:
     "https://i.ibb.co.com/WvNktNfW/9f447944b31f2dfc586a06da40a72805b14e4e27.png",
   avatar:
-    "https://i.ibb.co.com/m7S9mMZ/e01d6d1d2b1dd7ddae8d3283e39be5e150fcb4c4.png",
+    "/user.png",
 };
 
 export default function Home() {

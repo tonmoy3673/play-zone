@@ -116,7 +116,7 @@ const ProgramCard = ({
         </div>
       </div>
 
-      <Link href={"/program-details/1"} className="block p-4">
+      <Link href={"/athlete/program/details/1"} className="block p-4">
         <AnimatedButton className="bg-[#1556D8]/15 h-10 border w-full border-[#1556D8]/10 group/btn px-5 py-2.5 rounded-full flex items-center justify-center gap-2 transition-all whitespace-nowrap hover:bg-primary-gradient">
           <span className="font-medium text-xs primary-gradient-text group-hover/btn:!text-white group-hover/btn:!bg-none">
             View Details

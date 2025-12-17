@@ -6,7 +6,7 @@ interface FilterTab {
 }
 
 interface FilterTabsProps {
-  filters: FilterTab[];
+  filters: any[];
   activeFilter: string;
   onFilterChange: (filter: string) => void;
 }

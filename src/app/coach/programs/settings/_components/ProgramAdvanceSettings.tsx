@@ -42,11 +42,11 @@ const ProgramAdvanceSettings = () => {
               <Input
                 type="text"
                 label="Capacity"
-                placeholder="Elite Capacity"
+                placeholder="25 Athletes"
                 value={capacity}
                 onChange={(e) => setCapacity(e.target.value)}
-                leftIcon={<Icon name="team-people" />}
-                leftIconClassName="!top-[35%]"
+                leftIcon="team_people"
+                leftIconClassName=""
               />
             </div>
             <div className="">

@@ -1,6 +1,7 @@
 import { AnimatedButton } from "@/components/ui/Button";
 import Icon from "@/components/ui/Icon";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface Program {
   id: string;
@@ -17,6 +18,7 @@ interface CoachProgramCardProps {
 }
 
 export default function CoachProgramCard({ program }: CoachProgramCardProps) {
+  const router = useRouter();
   return (
     <div
       style={{
@@ -52,7 +54,7 @@ export default function CoachProgramCard({ program }: CoachProgramCardProps) {
         <div className="flex items-center justify-between mb-5">
           {/* Athletes */}
           <div className="flex items-center gap-2 mb-4 text-sm font-semibold text-dark">
-            <Icon name="team-people" />
+            <Icon name="team_people" />
             <span>{program.athletes} Athletes</span>
           </div>
           {/* Rating */}
@@ -70,6 +72,7 @@ export default function CoachProgramCard({ program }: CoachProgramCardProps) {
 
         {/* Button */}
         <AnimatedButton
+          onClick={() => router.push(`/coach/programs/details/${program.id}`)}
           style={{
             borderRadius: "100px",
             background:

@@ -71,12 +71,31 @@ export const programsData = [
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState("All");
 
+  // Filter programs based on active filter
+  const filteredPrograms = programsData.filter((program) => {
+    if (activeFilter === "All") return true;
+    if (activeFilter === "Completed") return program.status === "COMPLETE";
+    if (activeFilter === "Live") return program.status === "LIVE";
+    if (activeFilter === "Upcoming") return program.status === "UPCOMING";
+    if (activeFilter === "Ongoing") return program.status === "ONGOING";
+    return false;
+  });
+
+  // Calculate counts for each filter
+  const filterCounts = {
+    All: programsData.length,
+    Completed: programsData.filter(p => p.status === "COMPLETE").length,
+    Live: programsData.filter(p => p.status === "LIVE").length,
+    Upcoming: programsData.filter(p => p.status === "UPCOMING").length,
+    Ongoing: programsData.filter(p => p.status === "ONGOING").length,
+  };
+
   const filters = [
-    { label: "All", count: 5 },
-    { label: "Completed", count: 6 },
-    { label: "Live", count: 8 },
-    { label: "Upcoming", count: 6 },
-    { label: "Ongoing", count: 6 },
+    { label: "All", count: filterCounts.All },
+    { label: "Completed", count: filterCounts.Completed },
+    { label: "Live", count: filterCounts.Live },
+    { label: "Upcoming", count: filterCounts.Upcoming },
+    { label: "Ongoing", count: filterCounts.Ongoing },
   ];
 
   return (
@@ -97,7 +116,7 @@ export default function Home() {
             activeFilter={activeFilter}
             onFilterChange={setActiveFilter}
           />
-          <Link href={"/program"}>
+          <Link href={"/athlete/explore/program"}>
             <AnimatedButton
               style={{
                 borderRadius: "100px",
@@ -131,8 +150,8 @@ export default function Home() {
         </div>
 
         {/* Programs Grid */}
-        <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3   gap-7">
-          {programsData.map((program) => (
+        <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {filteredPrograms.map((program) => (
             <ProgramCard key={program.id} program={program} />
           ))}
 

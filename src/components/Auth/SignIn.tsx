@@ -7,16 +7,21 @@ import Input, { PhoneInput } from "../ui/Input";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Icon from "@/utils/icon";
+import Link from "next/link";
+import { toast } from "@/lib/ToastService";
 
 type SignUpMethod = "phone" | "email";
 
 interface SignUpFormData {
   phoneNumber?: string;
   email?: string;
+  password?: string;
+  confirmPassword?: string;
 }
 
 export default function SignIn() {
   const [signUpMethod, setSignUpMethod] = useState<SignUpMethod>("phone");
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -26,9 +31,24 @@ export default function SignIn() {
 
   const onSubmit = (data: SignUpFormData) => {
     if (signUpMethod == "email") {
-      router.push("/?action=otp&email=" + data.email);
+      if (data?.email == "athlete@gmail.com") {
+        router.push("/athlete/dashboard");
+      } else if (data?.email == "coach@gmail.com") {
+        router.push("/coach/dashboard");
+      } else if (data?.email == "admin@gmail.com") {
+        router.push("/admin/");
+      } else {
+        toast.error("Invalid email or password");
+        return;
+      }
+      // else{
+      //   router.push("/auth/login?action=otp&email=" + data.email);
+      // }
     } else {
-      router.push("/?action=otp&phone=" + data.phoneNumber);
+      toast.info(
+        "Login via phone is currently disabled for demo purposes. Please use email login."
+      );
+      // router.push("/auth/login?action=otp&phone=" + data.phoneNumber);
     }
   };
 
@@ -108,12 +128,13 @@ export default function SignIn() {
                   placeholder="Enter your Phone Number"
                   error={errors.phoneNumber?.message}
                   className="flex-1"
+                  type="tel"
                 />
               </div>
             </div>
           ) : (
             <Input
-              leftIcon={<Mail className="text-paragraph-dark" />}
+              leftIcon="email"
               {...register("email", {
                 required:
                   signUpMethod === "email" ? "Email is required" : false,
@@ -128,6 +149,22 @@ export default function SignIn() {
               error={errors.email?.message}
             />
           )}
+
+          <Input
+            rightIcon="eye"
+            rightIconClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters",
+              },
+            })}
+            type="password"
+            label="Password"
+            placeholder="Enter your password"
+            error={errors.password?.message}
+          />
 
           {/* Sign Up Button */}
           <button
@@ -145,12 +182,21 @@ export default function SignIn() {
           {/* Login Link */}
           <p className="text-center mb-4  text-paragraph-dark">
             {"Don't"} have an account?{" "}
-            <a
-              href="/login"
+            <Link
+              href="/auth/signup"
               className="font-semibold text-blue-500 hover:underline"
             >
               Sign Up
-            </a>
+            </Link>
+            {/* forgot password */}
+            <div className="mt-2">
+              <Link
+                href="/auth/forgot_password"
+                className="font-semibold text-blue-500 hover:underline"
+              >
+                Forgot Password?
+              </Link>
+            </div>
           </p>
 
           {/* Divider */}

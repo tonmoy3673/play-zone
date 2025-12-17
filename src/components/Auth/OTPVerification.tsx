@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import {
@@ -9,8 +8,7 @@ import {
   type ClipboardEvent,
 } from "react";
 import { useForm } from "react-hook-form";
-import { ArrowLeft, Mail } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Icon from "@/utils/icon";
 
 interface OTPFormData {
@@ -19,9 +17,17 @@ interface OTPFormData {
 
 export default function OTPVerification() {
   const [otp, setOtp] = useState<string[]>(["", "", "", ""]);
-  const [timeLeft, setTimeLeft] = useState(32); // 32 seconds as shown in design
+  const [timeLeft, setTimeLeft] = useState(32);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const email = searchParams.get("email");
+  const phone = searchParams.get("phone");
+
+  const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
+  const isForgotPasswordFlow = currentPath.includes("forgot_password");
+
   const {
     handleSubmit,
     setValue,
@@ -45,19 +51,15 @@ export default function OTPVerification() {
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, "0")}:${secs
-      .toString()
-      .padStart(2, "0")}`;
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
   // Handle input change
   const handleChange = (index: number, value: string) => {
-    // Only allow single digit
     if (value.length > 1) {
       value = value.slice(-1);
     }
 
-    // Only allow numbers
     if (value && !/^\d$/.test(value)) {
       return;
     }
@@ -67,7 +69,6 @@ export default function OTPVerification() {
     setOtp(newOtp);
     setValue("otp", newOtp, { shouldValidate: true });
 
-    // Auto-focus next input
     if (value && index < 3) {
       inputRefs.current[index + 1]?.focus();
     }
@@ -77,10 +78,8 @@ export default function OTPVerification() {
   const handleKeyDown = (index: number, e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Backspace") {
       if (!otp[index] && index > 0) {
-        // If current input is empty, focus previous input
         inputRefs.current[index - 1]?.focus();
       } else {
-        // Clear current input
         const newOtp = [...otp];
         newOtp[index] = "";
         setOtp(newOtp);
@@ -93,8 +92,6 @@ export default function OTPVerification() {
   const handlePaste = (e: ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault();
     const pastedData = e.clipboardData.getData("text/plain").trim();
-
-    // Extract only digits from pasted content
     const digits = pastedData.replace(/\D/g, "").slice(0, 4);
 
     if (digits.length > 0) {
@@ -105,7 +102,6 @@ export default function OTPVerification() {
       setOtp(newOtp);
       setValue("otp", newOtp, { shouldValidate: true });
 
-      // Focus the next empty input or the last input
       const nextEmptyIndex = newOtp.findIndex((val) => !val);
       if (nextEmptyIndex !== -1) {
         inputRefs.current[nextEmptyIndex]?.focus();
@@ -118,16 +114,28 @@ export default function OTPVerification() {
   const onSubmit = (data: OTPFormData) => {
     const otpCode = data.otp.join("");
     console.log("OTP submitted:", otpCode);
-    // Handle OTP verification
-    router.push("/?action=verified");
+
+    if (isForgotPasswordFlow) {
+      const queryParams = new URLSearchParams();
+      queryParams.set("action", "create-password");
+      if (email) queryParams.set("email", email);
+      if (phone) queryParams.set("phone", phone);
+
+      router.push(`/auth/forgot_password?${queryParams.toString()}`);
+    } else {
+      if (currentPath.includes("signup")) {
+        router.push("/auth/signup?action=verified");
+      } else {
+        router.push("/auth/login?action=verified");
+      }
+    }
   };
 
-  // Check if all OTP fields are filled
   const isOtpComplete = otp.every((digit) => digit !== "");
 
   return (
     <div className="flex bg-[#ffffff4D] border border-white max-w-2xl w-full text-sm px-12 rounded-xl py-20 mx-auto">
-      <div className="w-full ">
+      <div className="w-full">
         {/* Back Button */}
         <div className="mb-8">
           <button
@@ -141,7 +149,7 @@ export default function OTPVerification() {
 
         {/* Mail Icon */}
         <div className="mb-8 flex justify-center">
-          <img src={"/mail.svg"} alt="Email Sent" />
+          <img src="/mail.svg" alt="Email Sent" />
         </div>
 
         {/* Header */}
@@ -149,7 +157,7 @@ export default function OTPVerification() {
           <h1 className="mb-2 text-3xl font-semibold text-dark">
             Enter Verification Code
           </h1>
-          <p className="text-base  text-[#141b3499] leading-relaxed">
+          <p className="text-base text-[#141b3499] leading-relaxed">
             We sent a verification code to +1 223 12366, please <br /> check
             your mobile device and enter the code.
           </p>
@@ -175,7 +183,7 @@ export default function OTPVerification() {
                   digit
                     ? "border-blue-500 text-gray-900"
                     : "border-white text-gray-400"
-                } focus:border-blue-500 `}
+                } focus:border-blue-500`}
                 autoFocus={index === 0}
               />
             ))}
@@ -193,11 +201,10 @@ export default function OTPVerification() {
           {/* Continue Button */}
           <button
             type="submit"
-            // style={{ backgroundColor: "rgba(20, 27, 52, 0.10)" }}
             disabled={!isOtpComplete}
-            className={`w-full py-4 rounded-full mt-7 text-base font-normal  transition-all ${
+            className={`w-full py-4 rounded-full mt-7 text-base font-normal transition-all ${
               isOtpComplete
-                ? "bg-gradient-to-br text-white  from-[#5C8FF7] to-[#276AEE] hover:shadow-lg active:scale-[0.98]"
+                ? "bg-gradient-to-br text-white from-[#5C8FF7] to-[#276AEE] hover:shadow-lg active:scale-[0.98]"
                 : "bg-[#141b341A] text-dark cursor-not-allowed"
             }`}
           >

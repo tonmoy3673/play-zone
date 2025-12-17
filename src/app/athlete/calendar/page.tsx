@@ -1,713 +1,666 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import Card from "@/components/ui/Card";
-import {
-  ChevronLeft,
-  ChevronRight,
-  MoreVertical,
-  Plus,
-  Search,
-} from "lucide-react";
-import React, { useState } from "react";
+import { AnimatedButton } from "@/components/ui/Button";
+import { useMemo, useState } from "react";
 import CalendarModal from "./_components/CalendarModal";
+import Task from "./_components/Task";
+import Icon from "@/app/coach/task/content/_components/icon";
+
+const daysOfWeek = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const getCurrentDate = () => {
+  const now = new Date();
+  return {
+    year: now.getFullYear(),
+    month: now.getMonth(),
+    day: now.getDate(),
+  };
+};
+
+const generateCalendarDays = (
+  year: number,
+  month: number,
+  currentDay: number
+) => {
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const firstDayOfWeek = (firstDay.getDay() + 6) % 7; // Convert Sunday=0 to Monday=0
+  const daysInMonth = lastDay.getDate();
+  const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+  const days: Array<{
+    day: number;
+    events: any[];
+    highlighted?: boolean;
+    isCurrentMonth?: boolean;
+  }> = [];
+
+  // Previous month's days
+  for (let i = firstDayOfWeek - 1; i >= 0; i--) {
+    days.push({
+      day: daysInPrevMonth - i,
+      events: [],
+      isCurrentMonth: false,
+    });
+  }
+
+  // Current month's days
+  for (let day = 1; day <= daysInMonth; day++) {
+    const isToday =
+      day === currentDay &&
+      month === new Date().getMonth() &&
+      year === new Date().getFullYear();
+    days.push({
+      day,
+      events: getEventsForDay(day),
+      highlighted: isToday,
+      isCurrentMonth: true,
+    });
+  }
+
+  // Next month's days to fill the grid
+  const remainingDays = 42 - days.length; // 6 rows * 7 days
+  for (let day = 1; day <= remainingDays; day++) {
+    days.push({
+      day,
+      events: [],
+      isCurrentMonth: false,
+    });
+  }
+
+  return days;
+};
+
+const getEventsForDay = (day: number) => {
+  // Sample events - in a real app, this would come from an API
+  const eventMap: Record<number, any[]> = {
+    4: [
+      {
+        title: "Upload Plan...",
+        time: "11:30 am",
+        color: "bg-green-100 text-green-700",
+      },
+      {
+        title: "Team Strate...",
+        time: "8:30 am",
+        color: "bg-red-100 text-red-700",
+      },
+      {
+        title: "Workout F...",
+        time: "10:30 am",
+        color: "bg-purple-100 text-purple-700",
+      },
+      {
+        title: "Upload P...",
+        time: "10:30 am",
+        color: "bg-green-100 text-green-700",
+      },
+    ],
+    13: [
+      {
+        title: "Upload P...",
+        time: "10:30 am",
+        color: "bg-green-100 text-green-700",
+      },
+      {
+        title: "Team Strate...",
+        time: "9:30 am",
+        color: "bg-red-100 text-red-700",
+      },
+      {
+        title: "Workout F...",
+        time: "10:30 am",
+        color: "bg-purple-100 text-purple-700",
+      },
+      {
+        title: "Team Strate...",
+        time: "9:30 am",
+        color: "bg-red-100 text-red-700",
+      },
+      {
+        title: "Workout F...",
+        time: "10:30 am",
+        color: "bg-purple-100 text-purple-700",
+      },
+      {
+        title: "Workout F...",
+        time: "10:30 am",
+        color: "bg-purple-100 text-purple-700",
+      },
+      {
+        title: "Team Strate...",
+        time: "9:30 am",
+        color: "bg-red-100 text-red-700",
+      },
+    ],
+    14: [
+      {
+        title: "Team Strate...",
+        time: "8:30 am",
+        color: "bg-purple-100 text-purple-700",
+      },
+      {
+        title: "Upload Plan..",
+        time: "10:30 am",
+        color: "bg-green-100 text-green-700",
+      },
+      {
+        title: "Team Strate...",
+        time: "9:30 am",
+        color: "bg-red-100 text-red-700",
+      },
+      {
+        title: "Upload P...",
+        time: "10:30 am",
+        color: "bg-green-100 text-green-700",
+      },
+      {
+        title: "Team Strate...",
+        time: "9:30 am",
+        color: "bg-red-100 text-red-700",
+      },
+    ],
+    25: [
+      {
+        title: "Upload Plan...",
+        time: "11:30 am",
+        color: "bg-green-100 text-green-700",
+      },
+      {
+        title: "Team Strate...",
+        time: "8:30 am",
+        color: "bg-red-100 text-red-700",
+      },
+      {
+        title: "Workout F...",
+        time: "10:30 am",
+        color: "bg-purple-100 text-purple-700",
+      },
+      {
+        title: "Upload P...",
+        time: "10:30 am",
+        color: "bg-green-100 text-green-700",
+      },
+      {
+        title: "Team Strate...",
+        time: "9:30 am",
+        color: "bg-red-100 text-red-700",
+      },
+    ],
+    29: [
+      {
+        title: "Team Strate...",
+        time: "8:30 am",
+        color: "bg-red-100 text-red-700",
+      },
+      {
+        title: "Workout F...",
+        time: "10:30 am",
+        color: "bg-purple-100 text-purple-700",
+      },
+      {
+        title: "Upload P...",
+        time: "10:30 am",
+        color: "bg-green-100 text-green-700",
+      },
+      {
+        title: "Team Strate...",
+        time: "9:30 am",
+        color: "bg-red-100 text-red-700",
+      },
+    ],
+    30: [
+      {
+        title: "Upload Plan...",
+        time: "11:30 am",
+        color: "bg-green-100 text-green-700",
+      },
+      {
+        title: "Team Strate...",
+        time: "8:30 am",
+        color: "bg-red-100 text-red-700",
+      },
+      {
+        title: "Workout F...",
+        time: "10:30 am",
+        color: "bg-purple-100 text-purple-700",
+      },
+      {
+        title: "Upload P...",
+        time: "10:30 am",
+        color: "bg-green-100 text-green-700",
+      },
+      {
+        title: "Team Strate...",
+        time: "9:30 am",
+        color: "bg-red-100 text-red-700",
+      },
+    ],
+  };
+
+  return eventMap[day] || [];
+};
+
+const formatUTCDate = (utcDateString: string): string => {
+  const date = new Date(utcDateString);
+  const daysOfWeekShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const monthsShort = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const dayOfWeek = daysOfWeekShort[date.getUTCDay()];
+  const month = monthsShort[date.getUTCMonth()];
+  const day = date.getUTCDate();
+
+  let hours = date.getUTCHours();
+  const minutes = date.getUTCMinutes();
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  const minutesStr = minutes < 10 ? `0${minutes}` : minutes;
+  const time = `${hours}:${minutesStr} ${ampm}`;
+
+  return `Due ${dayOfWeek}, ${month} ${day} at ${time}`;
+};
 
 const CalendarDashboard = () => {
-  const [currentMonth, setCurrentMonth] = useState("August 2025");
-  const [view, setView] = useState("Month");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
-  const getCurrentMonthIndex = () => {
-    const [monthName, year] = currentMonth.split(" ");
-    return months.findIndex((m) => m === monthName);
-  };
-
-  const getCurrentYear = () => {
-    return parseInt(currentMonth.split(" ")[1]);
-  };
-
-  const navigateMonth = (direction: "prev" | "next") => {
-    const currentMonthIndex = getCurrentMonthIndex();
-    const currentYear = getCurrentYear();
-
-    let newMonthIndex = currentMonthIndex;
-    let newYear = currentYear;
-
-    if (direction === "next") {
-      newMonthIndex = currentMonthIndex + 1;
-      if (newMonthIndex > 11) {
-        newMonthIndex = 0;
-        newYear = currentYear + 1;
-      }
-    } else {
-      newMonthIndex = currentMonthIndex - 1;
-      if (newMonthIndex < 0) {
-        newMonthIndex = 11;
-        newYear = currentYear - 1;
-      }
-    }
-
-    setCurrentMonth(`${months[newMonthIndex]} ${newYear}`);
-  };
-
-  const daysOfWeek = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
-
-  const calendarDays = [
-    { day: 26, events: [] },
-    { day: 27, events: [] },
-    { day: 28, events: [] },
-    { day: 29, events: [] },
-    { day: 30, events: [] },
-    { day: 1, events: [] },
-    { day: 2, events: [] },
-    { day: 3, events: [] },
-    {
-      day: 4,
-      events: [
-        {
-          title: "Upload Plan...",
-          time: "11:30 am",
-          color: "bg-green-100 text-green-700",
-        },
-        {
-          title: "Team Strate...",
-          time: "8:30 am",
-          color: "bg-red-100 text-red-700",
-        },
-        {
-          title: "Workout F...",
-          time: "10:30 am",
-          color: "bg-purple-100 text-purple-700",
-        },
-      ],
-    },
-    { day: 5, events: [] },
-    { day: 6, events: [] },
-    { day: 7, events: [] },
-    { day: 8, events: [] },
-    { day: 9, events: [] },
-    { day: 10, events: [] },
-    { day: 11, events: [] },
-    { day: 12, events: [] },
-    {
-      day: 13,
-      events: [
-        {
-          title: "Upload Plan...",
-          time: "10:30 am",
-          color: "bg-green-100 text-green-700",
-        },
-        {
-          title: "Team Strate...",
-          time: "9:30 am",
-          color: "bg-red-100 text-red-700",
-        },
-        {
-          title: "Workout F...",
-          time: "10:30 am",
-          color: "bg-purple-100 text-purple-700",
-        },
-      ],
-      highlighted: true,
-    },
-    {
-      day: 14,
-      events: [
-        {
-          title: "Team Strate...",
-          time: "8:30 am",
-          color: "bg-purple-100 text-purple-700",
-        },
-      ],
-    },
-    {
-      day: 15,
-      events: [
-        {
-          title: "Upload Plan...",
-          time: "11:30am",
-          color: "bg-green-100 text-green-700",
-        },
-        {
-          title: "Workout F...",
-          time: "10:30 am",
-          color: "bg-purple-100 text-purple-700",
-        },
-      ],
-    },
-    { day: 16, events: [] },
-    { day: 17, events: [] },
-    { day: 18, events: [] },
-    { day: 19, events: [] },
-    { day: 20, events: [] },
-    { day: 21, events: [] },
-    { day: 22, events: [] },
-    { day: 23, events: [] },
-    { day: 24, events: [] },
-    {
-      day: 25,
-      events: [
-        {
-          title: "Upload Plan...",
-          time: "11:30 am",
-          color: "bg-green-100 text-green-700",
-        },
-        {
-          title: "Team Strate...",
-          time: "8:30 am",
-          color: "bg-red-100 text-red-700",
-        },
-        {
-          title: "Workout F...",
-          time: "10:30 am",
-          color: "bg-purple-100 text-purple-700",
-        },
-      ],
-    },
-    { day: 26, events: [] },
-    { day: 27, events: [] },
-    { day: 28, events: [] },
-    {
-      day: 29,
-      events: [
-        {
-          title: "Team Strate...",
-          time: "8:30 am",
-          color: "bg-red-100 text-red-700",
-        },
-        {
-          title: "Workout F...",
-          time: "10:30 am",
-          color: "bg-purple-100 text-purple-700",
-        },
-      ],
-    },
-    {
-      day: 30,
-      events: [
-        {
-          title: "Upload Plan...",
-          time: "11:30 am",
-          color: "bg-green-100 text-green-700",
-        },
-        {
-          title: "Team Strate...",
-          time: "8:30 am",
-          color: "bg-red-100 text-red-700",
-        },
-        {
-          title: "Workout F...",
-          time: "10:30 am",
-          color: "bg-purple-100 text-purple-700",
-        },
-      ],
-    },
-  ];
-
-  const liveSessions = [
-    {
-      title: "Team Strategy Session",
-      time: "3:58 PM - 5:30 PM",
-      status: "LIVE",
-    },
-  ];
-
-  const trainingSessions = [
-    {
-      title: "Weight Training",
-      subtitle: "Team Gym @ 5:00 PM",
-      action: "Check in",
-    },
-    {
-      title: "Baseball Training",
-      subtitle: "Indoor Court @ 4:30 PM",
-      action: "Check in",
-    },
-  ];
-
-  const upcomingDeadlines = [
-    {
-      title: "Game Film Analysis",
-      subtitle: "Due Jan 16, 11:58 PM",
-      progress: 60,
-    },
-  ];
-
+  // Sample upcomingTasks with UTC time values
   const upcomingTasks = [
     {
       title: "Atlas Venture - Exclusive",
       subtitle: "Hasset Twanch Wertners",
-      time: "Due Fri, Aug 3 at 2:30 PM",
+      timeUTC: "2025-08-15T14:30:00Z", // UTC value
       action: "Start Now",
       icon: "🏁",
     },
     {
       title: "Exchange Benefits",
       subtitle: "Hasset Twanch Wertners",
-      time: "Due Fri, Aug 3 at 2:30 PM",
+      timeUTC: "2025-08-16T09:15:00Z", // UTC value
       action: "Start Now",
       icon: "⏰",
     },
     {
       title: "Toyota Lead In - Non-Exclusive",
       subtitle: "Hasset Twanch Wertners",
-      time: "Due Fri, Aug 3 at 2:30 PM",
+      timeUTC: "2025-08-17T16:45:00Z", // UTC value
       action: "Start here",
       icon: "⏰",
     },
     {
       title: "Exchange Benefits",
       subtitle: "Hasset Twanch Wertners",
-      time: "Due Fri, Aug 3 at 2:30 PM",
+      timeUTC: "2025-08-18T11:00:00Z", // UTC value
       action: "Start Now",
       icon: "⏰",
     },
     {
       title: "Toyota Lead In - Non-Exclusive",
       subtitle: "Hasset Twanch Wertners",
-      time: "Due Fri, Aug 3 at 2:30 PM",
+      timeUTC: "2025-08-19T13:20:00Z", // UTC value
       action: "Start here",
       icon: "⏰",
     },
   ];
 
-  return (
-    <div className="rounded-2xl bg-[#E7F2F5]">
-      <div className="grid lg:grid-cols-3 gap-3 grid-cols-1 items-start">
-        <div
-          className="col-span-2 bg-[#E7F2F5] h-screen rounded-2xl overflow-auto"
-          style={{
-            overflow: "auto",
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-          }}
-        >
-          {/* Main Calendar Section */}
-          <div className="p-6 h-full">
-            <div className="">
-              {/* Header */}
-              <div className="flex items-center justify-between">
-                <div className="mb-6">
-                  <h1 className="text-2xl font-bold text-gray-900 mb-1">
-                    Calendar
-                  </h1>
-                  <p className="text-sm text-gray-500">
-                    Manage your upcoming, past, and cancelled coaching sessions.
-                  </p>
-                </div>
-                <AnimatedButton
-                  onClick={() => setIsModalOpen(true)}
-                  style={{
-                    borderRadius: "40px",
-                    background:
-                      "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)",
-                  }}
-                  className="flex items-center justify-center gap-2 text-white font-normal px-5 py-4 rounded-full hover:bg-blue-700"
-                >
-                  <span>
-                    <Plus />
-                  </span>
-                  Create Event
-                </AnimatedButton>
-              </div>
+  // Map UTC values to formatted display strings
+  const tasksWithFormattedTime = upcomingTasks.map((task) => ({
+    ...task,
+    time: formatUTCDate(task.timeUTC), // Mapped value using the format
+  }));
 
-              {/* Search and Controls */}
-              <div className="flex items-center justify-between mb-6">
+  return tasksWithFormattedTime;
+};
+
+export default function Page() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const currentDate = useMemo(() => getCurrentDate(), []);
+  const [view, setView] = useState<"Month" | "Week">("Month");
+  const [currentMonth, setCurrentMonth] = useState(currentDate.month);
+  const [currentYear, setCurrentYear] = useState(currentDate.year);
+
+  const calendarDays = useMemo(() => {
+    return generateCalendarDays(currentYear, currentMonth, currentDate.day);
+  }, [currentYear, currentMonth, currentDate.day]);
+
+  const currentMonthDisplay = `${months[currentMonth]} ${currentYear}`;
+
+  const navigateMonth = (direction: "prev" | "next") => {
+    if (direction === "next") {
+      if (currentMonth === 11) {
+        setCurrentMonth(0);
+        setCurrentYear(currentYear + 1);
+      } else {
+        setCurrentMonth(currentMonth + 1);
+      }
+    } else {
+      if (currentMonth === 0) {
+        setCurrentMonth(11);
+        setCurrentYear(currentYear - 1);
+      } else {
+        setCurrentMonth(currentMonth - 1);
+      }
+    }
+  };
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const getWeekDays = () => {
+    // For week view, show the week containing the first day of the selected month
+    // or the current week if viewing current month
+    const referenceDate = new Date(currentYear, currentMonth, 1);
+    const today = new Date();
+    const isCurrentMonth =
+      currentMonth === today.getMonth() && currentYear === today.getFullYear();
+
+    const targetDate = isCurrentMonth ? today : referenceDate;
+    const currentDayOfWeek = (targetDate.getDay() + 6) % 7; // Convert to Monday=0
+    const weekStart = new Date(targetDate);
+    weekStart.setDate(targetDate.getDate() - currentDayOfWeek);
+
+    const weekDays = [];
+    for (let i = 0; i < 7; i++) {
+      const day = new Date(weekStart);
+      day.setDate(weekStart.getDate() + i);
+      const todayDate = new Date();
+      weekDays.push({
+        date: day,
+        day: day.getDate(),
+        dayName: daysOfWeek[i],
+        month: day.getMonth(),
+        year: day.getFullYear(),
+        isToday: day.toDateString() === todayDate.toDateString(),
+      });
+    }
+    return weekDays;
+  };
+
+  const weekDays = useMemo(() => getWeekDays(), [currentYear, currentMonth]);
+
+  return (
+    <div className="bg-[#E7F2F5] p-8 rounded-3xl">
+      <div>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-medium text-black mb-2">Calendar</h1>
+            <p className="text-black/65 text-sm">
+              Manage your upcoming, past, and cancelled coaching sessions.
+            </p>
+          </div>
+        </div>
+
+        {/* Search, view controls & month navigation */}
+        <div className="mt-6">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="col-span-2">
+            <div className="space-y-6 bg-white/30 p-4 rounded-3xl border border-white w-full">
+              <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2">
+                      <Icon name="search_01" height={20} width={20} />
+                    </span>
                     <input
                       type="text"
                       placeholder="Search"
                       className="pl-10 pr-4 py-2 border border-gray-200 rounded-xl focus:outline-none w-64 bg-[#f8fbfc]"
                     />
                   </div>
-                  <div className="flex bg-[#f3f9fa] rounded-xl border border-gray-200 px-1 py-0.5">
-                    <Button
-                      aria-label="View Month"
-                      bg="linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)"
-                      textColor="#fff"
-                      badgeTextColor="#1e40af"
-                      className="rounded-xl px-6 py-2"
-                      onClick={() => setView("Month")}
-                    >
-                      Month
-                    </Button>
-                    <Button
-                      aria-label="View Week"
-                      bg="transparent"
-                      textColor={view === "Week" ? "#ffffff" : "#4B5563"}
-                      className={`px-6 py-2 text-black rounded-xl text-sm font-medium ${
-                        view === "Week"
-                          ? "bg-blue-500 text-white"
-                          : "text-[#141b3499]"
-                      }`}
-                      onClick={() => setView("Week")}
-                    >
-                      Week
-                    </Button>
-                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center bg-transparent border border-white rounded-xl px-2 py-1">
-                    <button
-                      className="p-1 hover:bg-gray-100 rounded-lg"
-                      onClick={() => navigateMonth("prev")}
-                    >
-                      <ChevronLeft className="w-5 h-5 text-[#141b3499]" />
-                    </button>
-                    <span className="text-sm font-medium text-gray-700 px-2 select-none">
-                      {currentMonth}
-                    </span>
-                    <button
-                      className="p-1 hover:bg-gray-100 rounded-lg"
-                      onClick={() => navigateMonth("next")}
-                    >
-                      <ChevronRight className="w-5 h-5 text-[#141b3499]" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-              {/* Calendar Grid */}
-              <Card className="rounded-xl border border-gray-200">
-                {/* Days of Week Header */}
-                <div className="grid grid-cols-7 border-b border-gray-200">
-                  {daysOfWeek.map((day) => (
-                    <div
-                      key={day}
-                      className="p-4 text-sm font-medium text-[#141b3499] text-center"
-                    >
-                      {day}
-                    </div>
-                  ))}
-                </div>
-
-                {/* Calendar Days */}
-                <div className="grid grid-cols-7 gap-2">
-                  {calendarDays.map((dayData, index) => (
-                    <div
-                      key={index}
-                      className={`min-h-32 p-3 border shadow-sm border-white rounded-lg ${
-                        dayData.highlighted
-                          ? "bg-blue-50 ring-2 ring-blue-500"
-                          : ""
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <span
-                          className={`text-sm font-medium ${
-                            dayData.highlighted
-                              ? "text-blue-600"
-                              : "text-gray-700"
-                          }`}
-                        >
-                          {dayData.day}
-                        </span>
-                        {dayData.events.length > 0 && (
-                          <button className="text-gray-400 hover:text-[#141b3499]">
-                            <MoreVertical className="w-4 h-4" />
-                          </button>
-                        )}
-                      </div>
-                      <div className="space-y-1">
-                        {dayData.events.slice(0, 3).map((event, idx) => (
-                          <div
-                            key={idx}
-                            className={`text-xs px-2 py-1 rounded ${event.color}`}
-                          >
-                            <div className="font-medium truncate">
-                              {event.title}
-                            </div>
-                            <div className="text-xs opacity-75">
-                              {event.time}
-                            </div>
-                          </div>
-                        ))}
-                        {dayData.events.length > 3 && (
-                          <button className="text-xs text-blue-600 font-medium">
-                            {dayData.events.length - 3} more...
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-            </div>
-          </div>
-        </div>
-
-        <div
-          style={{
-            overflow: "auto",
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-          }}
-          className="col-span-1 p-5 bg-[#FFFFFF99] h-screen rounded-2xl overflow-auto"
-        >
-          {/* Right Sidebar */}
-          <div
-            className="rounded-2xl overflow-auto"
-            style={{
-              overflow: "auto",
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-            }}
-          >
-            {/* Today's Date */}
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <div className="text-lg font-medium text-black">
-                  August 13, 2025
-                </div>
-              </div>
-              <button className="text-xs text-blue-600 font-medium flex items-center gap-1">
-                <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
-                Today
-              </button>
-            </div>
-
-            {/* Live Sessions */}
-            <div className="mb-6 mt-6">
-              <h3 className="text-sm font-semibold text-gray-900 my-3">
-                Live Sessions
-              </h3>
-              {liveSessions.map((session, idx) => (
-                <div key={idx} className="rounded-lg mt-4">
-                  <div className="flex items-start justify-between mb-1">
-                    <div className="text-sm font-medium text-gray-900">
-                      {session.title}
-                    </div>
-                    <span className="px-2 py-0.5 bg-red-500 text-white text-xs font-semibold rounded">
-                      LIVE
-                    </span>
-                  </div>
-                  <div className="text-xs text-[#141b3499]">{session.time}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Training Sessions */}
-            <div className="mb-6">
-              <h3 className="text-sm font-semibold text-gray-900 mb-3">
-                Training Sessions
-              </h3>
-              {trainingSessions.map((session, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-start justify-between mb-3 py-2"
-                >
-                  <div>
-                    <div className="text-[16px] font-medium text-gray-900">
-                      {session.title}
-                    </div>
-                    <div className="text-xs text-gray-500 my-1">
-                      {session.subtitle}
-                    </div>
-                  </div>
-                  <button className="px-3 bg-gradient-to-r from-[#5C8FF7] to-[#276AEE] text-white text-xs font-medium rounded-md py-1.5">
-                    {session.action}
+                <div className="flex bg-[#f3f9fa] rounded-xl border border-gray-200 p-1">
+                  <button
+                    onClick={() => setView("Month")}
+                    className={`rounded-xl px-6 py-2 text-sm font-medium ${
+                      view === "Month"
+                        ? "text-white bg-gradient-to-b from-[#5C8FF7] to-[#276AEE]"
+                        : "text-[#141b3499]"
+                    }`}
+                  >
+                    Month
+                  </button>
+                  <button
+                    onClick={() => setView("Week")}
+                    className={`px-6 py-2 text-sm font-medium rounded-xl ${
+                      view === "Week"
+                        ? "text-white bg-gradient-to-b from-[#5C8FF7] to-[#276AEE]"
+                        : "text-[#141b3499]"
+                    }`}
+                  >
+                    Week
                   </button>
                 </div>
-              ))}
-            </div>
-
-            {/* Upcoming Deadlines */}
-            <div className="mb-6">
-              <h3 className="text-sm font-semibold text-gray-900 mb-3">
-                Upcoming Deadlines
-              </h3>
-              {upcomingDeadlines.map((deadline, idx) => (
-                <div key={idx} className="mb-3">
-                  <div className="flex items-start justify-between mb-2">
-                    <div>
-                      <div className="text-sm font-medium text-gray-900">
-                        {deadline.title}
-                      </div>
-                      <div className="text-xs text-gray-500">
-                        {deadline.subtitle}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="flex-1 rounded-full h-2">
-                      <div
-                        className="bg-gradient-to-r from-[#5C8FF7] to-[#276AEE] h-2 rounded-full"
-                        style={{ width: `${deadline.progress}%` }}
-                      ></div>
-                    </div>
-                    <span className="text-xs font-medium text-[#141b3499]">
-                      {deadline.progress}% Complete
-                    </span>
-                  </div>
+                <div className="flex items-center  border border-white rounded-xl px-4 py-2 bg-white/40">
+                  <button
+                    onClick={() => navigateMonth("prev")}
+                    className="p-1 hover:bg-gray-100 rounded-lg"
+                  >
+                    <Icon name="arrow_left_01" height={14} width={14} />
+                  </button>
+                  <span className="text-sm font-medium text-gray-700 px-2 select-none">
+                    {currentMonthDisplay}
+                  </span>
+                  <button
+                    onClick={() => navigateMonth("next")}
+                    className="p-1 hover:bg-gray-100 rounded-lg"
+                  >
+                    <Icon name="arrow_right_01" height={14} width={14} />
+                  </button>
                 </div>
-              ))}
-            </div>
-
-            {/* Upcoming Tasks */}
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900 mb-3">
-                Upcoming Tasks
-              </h3>
-              <div className="space-y-3">
-                {upcomingTasks.map((task, idx) => (
-                  <div key={idx} className="flex items-start gap-3 py-2">
-                    <div className="text-2xl">{task.icon}</div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-sm font-medium text-gray-900 truncate">
-                        {task.title}
-                      </div>
-                      <div className="text-xs text-gray-500 truncate">
-                        {task.subtitle}
-                      </div>
-                      <div className="text-xs text-[#141b3499] mt-0.5">
-                        {task.time}
-                      </div>
-                      <button className="px-3 bg-gradient-to-r from-[#5C8FF7] to-[#276AEE] text-white text-xs font-medium rounded-xl mt-2 py-1.5">
-                        {task.action}
-                      </button>
-                    </div>
-                  </div>
-                ))}
               </div>
+
+              {/* Calendar */}
+              <div className="rounded-xl">
+                {view === "Month" ? (
+                  <>
+                    {/* Days of week */}
+                    <div className="grid grid-cols-7 mb-4 border-white">
+                      {daysOfWeek.map((day) => (
+                        <div
+                          key={day}
+                          className="pt-3 text-sm font-medium text-[#141b3499] text-center"
+                        >
+                          {day}
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Calendar days */}
+                    <div className="grid grid-cols-7 gap-2 ">
+                      {calendarDays.map((dayData, index) => (
+                        <div
+                          key={index}
+                          className={` min-h-[132px] backdrop-blur-3xl p-1 border border-white shadow-xs rounded-xl ${
+                            dayData.highlighted
+                              ? "bg-blue-50 ring-2 ring-blue-500"
+                              : ""
+                          }
+                          ${
+                            dayData.events.length &&
+                            "bg-gradient-to-b from-[rgba(69,127,243,0.05)] to-[rgba(69,127,243,0.12)]"
+                          }
+                          ${!dayData.isCurrentMonth ? "opacity-40" : ""}
+                          `}
+                        >
+                          <div className="flex items-center justify-between mb-2 p-2">
+                            <span
+                              className={`text-sm font-medium ${
+                                dayData.highlighted
+                                  ? "text-blue-600"
+                                  : "text-gray-700"
+                              }`}
+                            >
+                              {dayData.day}
+                            </span>
+                            <button className="text-gray-400 hover:text-[#141b3499]">
+                              <Icon
+                                name="three_dots_vertical"
+                                height={12}
+                                width={10}
+                              />
+                            </button>
+                          </div>
+
+                          <div
+                            className={`space-y-[3px] ${
+                              dayData.events.length && "bg-white/70"
+                            } p-1 rounded-xl`}
+                          >
+                            {dayData.events.slice(0, 3).map((event, idx) => (
+                              <div
+                                key={idx}
+                                className={`p-1 p-y1.5 rounded ${event.color} flex justify-center items-center`}
+                              >
+                                <div className="text-[8px] font-medium truncate">
+                                  {event.title}
+                                </div>
+                                <div className="text-[8px] text-black/70">
+                                  {event.time}
+                                </div>
+                              </div>
+                            ))}
+                            {dayData.events.length > 3 && (
+                              <div>
+                                <span className="text-[9px] font-medium ml-2">
+                                  {dayData.events.length - 3} more...
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Week view */}
+                    <div className="grid grid-cols-7 mb-4 border-white">
+                      {weekDays.map((weekDay) => (
+                        <div
+                          key={weekDay.day}
+                          className="pt-3 text-sm font-medium text-[#141b3499] text-center"
+                        >
+                          <div>{weekDay.dayName}</div>
+                          <div
+                            className={`text-xs mt-1 ${
+                              weekDay.isToday
+                                ? "text-blue-600 font-semibold"
+                                : "text-gray-500"
+                            }`}
+                          >
+                            {months[weekDay.month].substring(0, 3)}{" "}
+                            {weekDay.day}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="grid grid-cols-7 gap-2">
+                      {weekDays.map((weekDay, index) => {
+                        const dayEvents = getEventsForDay(weekDay.day);
+                        return (
+                          <div
+                            key={index}
+                            className={`min-h-[400px] backdrop-blur-3xl p-1 border border-white shadow-xs rounded-xl ${
+                              weekDay.isToday
+                                ? "bg-blue-50 ring-2 ring-blue-500"
+                                : ""
+                            }
+                            ${
+                              dayEvents.length &&
+                              "bg-gradient-to-b from-[rgba(69,127,243,0.05)] to-[rgba(69,127,243,0.12)]"
+                            }`}
+                          >
+                            <div className="flex items-center justify-between mb-2 p-2">
+                              <span
+                                className={`text-sm font-medium ${
+                                  weekDay.isToday
+                                    ? "text-blue-600"
+                                    : "text-gray-700"
+                                }`}
+                              >
+                                {weekDay.day}
+                              </span>
+                              <button className="text-gray-400 hover:text-[#141b3499]">
+                                <Icon
+                                  name="three_dots_vertical"
+                                  height={12}
+                                  width={10}
+                                />
+                              </button>
+                            </div>
+                            <div
+                              className={`space-y-[3px] ${
+                                dayEvents.length && "bg-white/70"
+                              } p-1 rounded-xl`}
+                            >
+                              {dayEvents.map((event, idx) => (
+                                <div
+                                  key={idx}
+                                  className={`p-2 rounded ${event.color} flex flex-col`}
+                                >
+                                  <div className="text-xs font-medium">
+                                    {event.title}
+                                  </div>
+                                  <div className="text-[10px] text-black/70 mt-1">
+                                    {event.time}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+            </div>
+            {/* Right side - Today tasks card cloned from Figma node 2326-10450 */}
+            <div className="col-span-1">
+            <Task />
             </div>
           </div>
         </div>
       </div>
-
-      {/* Calendar Modal */}
-      <CalendarModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+      
     </div>
   );
-};
-
-export default CalendarDashboard;
-
-import { AnimatedButton } from "@/components/ui/Button";
-import Icon, { IconName } from "@/utils/icon";
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  bg?: string;
-  textColor?: string;
-  count?: number;
-  badgeClassName?: string;
-  badgeBg?: string;
-  badgeTextColor?: string;
-  badgeBorderRadius?: number | string;
-  badgeStyle?: React.CSSProperties;
-  icon?: React.ReactNode;
-  iconName?: IconName;
-  iconPosition?: "left" | "right";
-  iconWidth?: number | string;
-  iconHeight?: number | string;
-  iconClassName?: string;
-  iconStyle?: React.CSSProperties;
 }
-
-const Button: React.FC<ButtonProps> = ({
-  bg,
-  textColor = "#fff",
-  count,
-  badgeClassName = "",
-  badgeBg,
-  badgeTextColor,
-  badgeBorderRadius,
-  badgeStyle,
-  icon,
-  iconName,
-  iconPosition = "right",
-  iconWidth = 16,
-  iconHeight = 16,
-  iconClassName,
-  iconStyle,
-  children,
-  style,
-  className = "",
-  ...rest
-}) => {
-  const defaultBg = "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)";
-
-  const mergedStyle: React.CSSProperties = {
-    background: bg || defaultBg,
-    color: textColor,
-    ...style,
-  } as React.CSSProperties;
-
-  return (
-    <button
-      type="button"
-      className={`inline-flex items-center justify-center gap-2 rounded-full text-sm transition-colors ${className}`}
-      style={mergedStyle}
-      {...rest}
-    >
-      {/* Icon left */}
-      {iconPosition === "left" &&
-        (icon ||
-          (iconName && (
-            <Icon
-              name={iconName}
-              width={iconWidth}
-              height={iconHeight}
-              className={iconClassName}
-              style={iconStyle}
-            />
-          )))}
-
-      <span>{children}</span>
-
-      {/* Icon right */}
-      {iconPosition === "right" &&
-        (icon ||
-          (iconName && (
-            <Icon
-              name={iconName}
-              width={iconWidth}
-              height={iconHeight}
-              className={iconClassName}
-              style={iconStyle}
-            />
-          )))}
-      {typeof count === "number" && (
-        <span
-          className={`inline-flex items-center justify-center px-2 py-1 font-semibold text-xs ${badgeClassName}`}
-          style={{
-            background: badgeBg ?? "rgba(255,255,255,1)",
-            color: badgeTextColor ?? "#141B34",
-            borderRadius:
-              typeof badgeBorderRadius === "number"
-                ? `${badgeBorderRadius}px`
-                : badgeBorderRadius ?? "44px",
-            ...badgeStyle,
-          }}
-        >
-          {count}
-        </span>
-      )}
-    </button>
-  );
-};

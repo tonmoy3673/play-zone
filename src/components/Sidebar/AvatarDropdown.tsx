@@ -6,11 +6,16 @@ import { Bell, HelpCircle, LogOut, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function AvatarDropdown() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<any>(null);
   const [notifications, setNotifications] = useState<any[]>([]);
+  const pathname = usePathname();
+
+  // Determine profile path based on current route
+  const profilePath = pathname.startsWith('/coach') ? '/coach/profile' : '/athlete/profile';
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -81,7 +86,7 @@ export default function AvatarDropdown() {
                 setOpen(false);
               }, 200);
             }}
-            href="/athlete/profile"
+            href={profilePath}
             className="w-full"
           >
             <div className="cursor-pointer flex w-full items-center gap-2 px-4 hover:bg-gray-100 py-2">

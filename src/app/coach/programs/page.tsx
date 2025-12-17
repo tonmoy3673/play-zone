@@ -98,7 +98,7 @@ export default function Home() {
             onFilterChange={setActiveFilter}
           />
           <AnimatedButton
-            onClick={() => router.push("/overview/program")}
+            onClick={() => router.push("/coach/programs/create")}
             style={{
               borderRadius: "100px",
               background:

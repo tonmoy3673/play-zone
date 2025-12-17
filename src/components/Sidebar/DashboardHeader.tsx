@@ -13,7 +13,7 @@ export default function Header() {
           <nav className="hidden lg:flex items-center gap-2 text-sm">
             <span className="text-gray-500">Overview</span>
             <span className="text-gray-400">/</span>
-            <span className="text-dark text-base font-medium">Program Creation</span>
+            <span className="text-dark text-base font-medium">Dashboard</span>
           </nav>
         </div>
 

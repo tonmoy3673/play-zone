@@ -16,6 +16,7 @@ export interface FormInputProps
   leftIconClassName?: string;
   rightIcon?: IconName;
   rightIconClassName?: string;
+  rightIconClick?: () => void;
 }
 
 const Input = ({
@@ -27,6 +28,7 @@ const Input = ({
   leftIconClassName = "",
   rightIcon,
   rightIconClassName = "",
+  rightIconClick,
   ...props
 }: FormInputProps &
   React.InputHTMLAttributes<HTMLInputElement>): React.ReactElement => {
@@ -57,8 +59,10 @@ const Input = ({
             width={24}
             className={cn(
               "absolute right-4 top-1/2 -translate-y-1/2 text-dark/70",
+              rightIconClick && "cursor-pointer hover:text-dark transition-colors",
               rightIconClassName
             )}
+            onClick={rightIconClick}
           />
         )}
 
@@ -86,7 +90,7 @@ export interface FormInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   label?: string;
-  leftIcon?: any;
+  leftIcon?: IconName;
   countrySelectClassName?: string;
 }
 
@@ -95,7 +99,7 @@ export const PhoneInput = ({
   error,
   label,
   type = "text",
-  leftIcon = "",
+  leftIcon,
   countrySelectClassName = "",
   ...props
 }: FormInputProps &

@@ -15,7 +15,7 @@ export default function RoleSelection() {
     if (selectedRole) {
       console.log("Selected role:", selectedRole);
       // Handle navigation to next step
-      router.push("/?action=setup");
+      router.push("/auth/login?action=setup&role=" + selectedRole);
     }
   };
 
@@ -137,18 +137,8 @@ export default function RoleSelection() {
                   : "bg-[#ffffff4D] border-white border hover:bg-white/50"
               }`}
             >
-              <div className="mb-6 flex items-center justify-center w-12 h-12">
-                <svg
-                  className="w-8 h-8 text-blue-600"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                </svg>
+              <div className="mb-6 flex items-center justify-center w-12 h-12 rounded-full  border border-white">
+                <Icon name="athlete" width={30} height={26} />
               </div>
               <h3 className="mb-2 text-xl font-semibold text-gray-900">
                 Athlete

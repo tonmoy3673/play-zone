@@ -2,6 +2,8 @@
 "use client";
 import { AnimatedButton } from "@/components/ui/Button";
 import Icon from "@/utils/icon";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const DEMO_TASKS = {
@@ -181,6 +183,8 @@ export default function TasksPage() {
     return week;
   };
 
+  const {push} = useRouter();
+
   const days = getCurrentWeek();
   const tasksForSelectedDay =
     DEMO_TASKS[selectedDay as keyof typeof DEMO_TASKS] || [];
@@ -189,13 +193,14 @@ export default function TasksPage() {
     <div className="bg-[#ffffff5e]  flex-1 border p-5 border-white rounded-2xl  backdrop-blur-3xl  overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between mb-5">
-        <h1 className="text-xl font-semibold text-dark">Todays tasks</h1>
+        <h1 className="text-xl font-semibold text-dark">Today's tasks</h1>
         <AnimatedButton
           style={{
             borderRadius: "40px",
             background:
               "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)",
           }}
+          onClick={() => push("/athlete/calendar")}
           className=" flex items-center justify-center gap-1 text-white font-normal text-[10px] px-4 py-2.5 rounded-full hover:bg-blue-700 "
         >
           View Entire Schedule
@@ -275,13 +280,17 @@ export default function TasksPage() {
                 {task.status === "pending" && (
                   <>
                     <Icon name="calendar" height={16} width={16} />
-                    <span className="text-[12px] text-[#141b34cc]">Due Today</span>
+                    <span className="text-[12px] text-[#141b34cc]">
+                      Due Today
+                    </span>
                   </>
                 )}
                 {task.status === "live" && (
                   <>
                     <Icon name="clock" height={14} width={14} />
-                    <span className="text-[12px] text-[#141b34cc]">{task.time}</span>
+                    <span className="text-[12px] text-[#141b34cc]">
+                      {task.time}
+                    </span>
                   </>
                 )}
                 {task.status === "complete" && (
@@ -303,7 +312,9 @@ export default function TasksPage() {
                         fill="#18952D"
                       />
                     </svg>
-                    <span className="text-[12px] text-[#18952D] font-normal">Complete</span>
+                    <span className="text-[12px] text-[#18952D] font-normal">
+                      Complete
+                    </span>
                   </>
                 )}
               </div>
@@ -313,18 +324,23 @@ export default function TasksPage() {
                   background:
                     "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)",
                 }}
+                onClick={() => push("/athlete/tasks/video/submission")}
                 className={`flex items-center justify-center gap-1 text-white text-[10px] px-4 py-1.5 rounded-full hover:bg-blue-700 transition-colors  ${
                   task.status === "complete"
                     ? "bg-gray-400 hover:bg-gray-500"
                     : "bg-blue-600 hover:bg-blue-700"
                 }`}
               >
-                {task.action === "Upload" && <span>
-                  <Icon name="upload" height={14} width={14} />
-                </span>}
-                {task.action === "Remind Me" && <span>
-                  <Icon name="reminder" height={14} width={14} />
-                </span>}
+                {task.action === "Upload" && (
+                  <span>
+                      <Icon name="upload" height={14} width={14} />
+                  </span>
+                )}
+                {task.action === "Remind Me" && (
+                  <span>
+                    <Icon name="reminder" height={14} width={14} />
+                  </span>
+                )}
                 {task.action}
               </button>
             </div>

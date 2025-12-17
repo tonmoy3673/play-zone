@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
 import { useForm, Controller } from "react-hook-form";
@@ -7,7 +7,7 @@ import Select from "@/components/ui/Select";
 import type { SelectOption } from "@/components/ui/Select";
 import { ChangeEvent, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface ProfileFormData {
   firstName: string;
@@ -97,19 +97,48 @@ const sportOptions: SelectOption[] = [
   },
 ];
 
-const positionOptions: SelectOption[] = [
-  { value: "forward", label: "Forward" },
-  { value: "midfielder", label: "Midfielder" },
-  { value: "defender", label: "Defender" },
-  { value: "goalkeeper", label: "Goalkeeper" },
-];
+const positionOptionsBySport: Record<string, SelectOption[]> = {
+  baseball: [
+    { value: "1st_base", label: "1st Base" },
+    { value: "2nd_base", label: "2nd Base" },
+    { value: "3rd_base", label: "3rd Base" },
+    { value: "catcher", label: "Catcher" },
+    { value: "center_field", label: "Center Field" },
+    { value: "left_field", label: "Left Field" },
+    { value: "pitcher", label: "Pitcher" },
+    { value: "right_field", label: "Right Field" },
+    { value: "shortstop", label: "Shortstop" },
+  ],
+  basketball: [
+    { value: "center", label: "Center" },
+    { value: "forward", label: "Forward" },
+    { value: "guard", label: "Guard" },
+  ],
+  football: [
+    { value: "cornerback", label: "Cornerback" },
+    { value: "defensive_lineman", label: "Defensive Lineman" },
+    { value: "kicker", label: "Kicker" },
+    { value: "offensive_lineman", label: "Offensive Lineman" },
+    { value: "quarterback", label: "Quarterback" },
+    { value: "running_back", label: "Running Back" },
+    { value: "safety", label: "Safety" },
+    { value: "tight_end", label: "Tight End" },
+    { value: "wide_receiver", label: "Wide Receiver" },
+  ],
+  swimming: [
+    { value: "diver", label: "Diver" },
+    { value: "distance_swimmer", label: "Distance Swimmer" },
+    { value: "sprinter", label: "Sprinter" },
+  ],
+};
 
 export default function CompleteProfile() {
   const {
     register,
     handleSubmit,
     control,
-
+    watch,
+    setValue,
     formState: { errors, isValid },
   } = useForm<ProfileFormData>({
     mode: "onChange",
@@ -122,6 +151,19 @@ export default function CompleteProfile() {
   });
   const router = useRouter();
   const [mainImage, setMainImage] = useState<any>("");
+  
+  // Watch the primary sport to update position options
+  const selectedSport = watch("primarySport");
+  
+  // Get position options based on selected sport
+  const currentPositionOptions = selectedSport ? positionOptionsBySport[selectedSport] || [] : [];
+  
+  // Get form values to check if form is complete
+  const watchedValues = watch();
+  const isFormValid = watchedValues.firstName && 
+                     watchedValues.lastName && 
+                     watchedValues.primarySport && 
+                     watchedValues.primaryPosition;
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
@@ -140,10 +182,20 @@ export default function CompleteProfile() {
     }
   };
 
+  // search params to get role
+  const searchParams = useSearchParams();
+  const role = searchParams.get("role");
+  console.log("User role:", role);
+
   const onSubmit = (data: ProfileFormData) => {
     console.log("Profile data:", data);
-    // Handle form submission
-    router.push("/athlete");
+    if(role === "coach"){
+      router.push("/coach/dashboard");
+      return;
+    }else{
+      router.push("/athlete/dashboard");
+      return;
+    }
   };
 
   return (
@@ -256,7 +308,11 @@ export default function CompleteProfile() {
               placeholder="Select a sport"
               options={sportOptions}
               value={field.value}
-              onChange={field.onChange}
+              onChange={(value) => {
+                field.onChange(value);
+                // Reset position when sport changes
+                setValue("primaryPosition", "");
+              }}
               error={errors.primarySport?.message}
             />
           )}
@@ -270,11 +326,12 @@ export default function CompleteProfile() {
           render={({ field }) => (
             <Select
               label="Primary Position"
-              placeholder="Select a position"
-              options={positionOptions}
+              placeholder={selectedSport ? "Select a position" : "Please select a sport first"}
+              options={currentPositionOptions}
               value={field.value}
               onChange={field.onChange}
               error={errors.primaryPosition?.message}
+              disabled={!selectedSport}
             />
           )}
         />
@@ -284,9 +341,9 @@ export default function CompleteProfile() {
           style={{
             borderRadius: "100px",
           }}
-          disabled={!isValid}
-          className={`w-full py-4 rounded-full mt-7 font-normal text-base  transition-all ${
-            isValid
+          disabled={!isFormValid}
+          className={`w-full py-4 rounded-full mt-7 font-normal text-base transition-all ${
+            isFormValid
               ? "bg-gradient-to-br text-white from-[#5C8FF7] to-[#276AEE] hover:shadow-lg active:scale-[0.98]"
               : "bg-[#141b341A] text-dark cursor-not-allowed"
           }`}

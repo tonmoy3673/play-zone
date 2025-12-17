@@ -1,3 +1,4 @@
+import { ToastContainer } from "@/components/Toast/ToastContainer";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
@@ -28,6 +29,8 @@ export default function RootLayout({
         className={`${inter.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
+        <div id="toast-root" className="font-bricolage_grotesque"></div>
+        <ToastContainer position="top-center" />
         {children}
       </body>
     </html>

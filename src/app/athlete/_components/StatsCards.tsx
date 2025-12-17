@@ -62,7 +62,7 @@ export function StatsCards() {
           </div>
         </div>
       </div>
-      <div className=" bg-[#ffffff4d] max-w-sm flex-1 border border-white rounded-2xl  backdrop-blur-3xl  overflow-hidden">
+      <div className=" bg-[#ffffff4d] bg-[url('/program/Frame-2147225279.svg')] bg-contain bg-center bg-no-repeat max-w-sm flex-1 border border-l-0 border-b-0 border-white rounded-2xl  overflow-hidden">
         <div className="backdrop-blur-3xl h-full pl-5 pt-5 w-full">
           <div className="flex items-center justify-between pr-5 mb-1">
             <h3 className="text-sm font-semibold text-dark">Current Ranking</h3>
@@ -114,7 +114,7 @@ export function StatsCards() {
           </div>
         </div>
       </div>
-      <div className=" bg-[#ffffff4d] max-w-sm flex-1 border border-white rounded-2xl  backdrop-blur-3xl  overflow-hidden">
+      <div className=" bg-[#ffffff4d] bg-[url('/program/Frame-2147225279.svg')] bg-contain bg-center bg-no-repeat max-w-sm flex-1 border border-l-0 border-b-0 border-white rounded-2xl  overflow-hidden">
         <div className="backdrop-blur-3xl h-full pl-5 pt-5 w-full">
           <div className="flex items-center justify-between pr-5 mb-1">
             <h3 className="text-sm font-semibold text-dark">Current Ranking</h3>

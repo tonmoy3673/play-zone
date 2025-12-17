@@ -20,6 +20,7 @@ interface SelectProps {
   value?: string;
   onChange?: (value: string) => void;
   className?: string;
+  disabled?: boolean;
 }
 
 const Select = ({
@@ -31,11 +32,44 @@ const Select = ({
   value,
   onChange,
   className = "",
+  disabled = false,
 }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [dropdownPosition, setDropdownPosition] = useState<'bottom' | 'top'>('bottom');
   const containerRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const selectedOption = options.find((opt) => opt.value === value);
+
+  // Calculate dropdown position to avoid going outside viewport
+  const calculateDropdownPosition = () => {
+    if (containerRef.current && dropdownRef.current) {
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const dropdownHeight = dropdownRef.current.offsetHeight || 200; // estimate if not rendered
+      const viewportHeight = window.innerHeight;
+      const spaceBelow = viewportHeight - containerRect.bottom;
+      const spaceAbove = containerRect.top;
+
+      if (spaceBelow < dropdownHeight && spaceAbove > dropdownHeight) {
+        setDropdownPosition('top');
+      } else {
+        setDropdownPosition('bottom');
+      }
+    }
+  };
+
+  // Extract placeholder text color from className
+  const getPlaceholderTextColor = () => {
+    if (className.includes('placeholder:text-[')) {
+      const match = className.match(/placeholder:text-\[([^\]]+)\]/);
+      return match ? match[1] : '#141b34b3';
+    }
+    if (className.includes('text-[')) {
+      const match = className.match(/text-\[([^\]]+)\]/);
+      return match ? match[1] : '#141b34b3';
+    }
+    return '#141b34b3'; // default gray
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -57,9 +91,25 @@ const Select = ({
     };
   }, [isOpen]);
 
+  // Calculate position when dropdown opens
+  useEffect(() => {
+    if (isOpen) {
+      calculateDropdownPosition();
+    }
+  }, [isOpen]);
+
   const handleSelect = (optionValue: string) => {
     onChange?.(optionValue);
     setIsOpen(false);
+  };
+
+  const handleToggle = () => {
+    if (disabled) return;
+    setIsOpen(!isOpen);
+    if (!isOpen) {
+      // Calculate position on next tick when dropdown is rendered
+      setTimeout(calculateDropdownPosition, 0);
+    }
   };
 
   return (
@@ -77,28 +127,41 @@ const Select = ({
       <div className="relative">
         <button
           type="button"
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={handleToggle}
+          disabled={disabled}
           className={cn(
             `w-full rounded-2xl border border-white bg-[#ffffff80] backdrop-blur-sm px-4 py-4 text-left text-dark placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all flex items-center justify-between ${
               error ? "border-red-500" : ""
+            } ${
+              disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
             }`,
             className
           )}
         >
-          <span
-            className={cn(
-              "whitespace-nowrap text-sm font-medium text-dark",
-              selectedOption ? "text-dark" : "text-[#141b34b3]"
+          <div className="flex items-center gap-3">
+            {selectedOption && selectedOption.icon && (
+              <div className="text-[#141b3499] w-5 h-5 flex items-center justify-center">
+                {selectedOption.icon}
+              </div>
             )}
-          >
-            {selectedOption ? selectedOption.label : placeholder}
-          </span>
+            <span
+              className={cn(
+                "whitespace-nowrap text-sm font-medium",
+                selectedOption ? "text-dark" : ""
+              )}
+              style={{
+                color: selectedOption ? undefined : getPlaceholderTextColor()
+              }}
+            >
+              {selectedOption ? selectedOption.label : placeholder}
+            </span>
+          </div>
           <Icon
             name="chevron_down"
             height={20}
             width={20}
             className={cn(
-              "text-[#5C8FF7] transition-transform",
+              "text-[#141B34] transition-transform",
               isOpen ? "rotate-180" : ""
             )}
           />
@@ -106,7 +169,14 @@ const Select = ({
 
         {/* Dropdown */}
         {isOpen && (
-          <div className="absolute z-[9999999] w-full px-2 space-y-1 py-4 mt-2 rounded-xl border border-white bg-white/95 backdrop-blur-sm shadow-lg overflow-hidden">
+          <div 
+            ref={dropdownRef}
+            className={cn(
+              "absolute z-[9999999] w-full px-2 space-y-1 py-4 rounded-xl border border-white bg-white/95 backdrop-blur-sm shadow-lg overflow-hidden max-h-60 overflow-y-auto",
+              dropdownPosition === 'top' ? 'bottom-full mb-2' : 'top-full mt-2'
+            )}
+            style={{ overflow: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none',maxHeight: '240px',  }}
+          >
             {options.map((option) => {
               const isSelected = option.value === value;
               return (

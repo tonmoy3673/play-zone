@@ -1,5 +1,6 @@
 import Icon from "@/components/ui/Icon";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface Program {
   id: string;
@@ -24,9 +25,11 @@ export default function ProgramCard({ program }: ProgramCardProps) {
     UPCOMING: "bg-orange-500",
     COMPLETE: "bg-blue-600",
   };
+  const router = useRouter();
 
   return (
     <div
+      onClick={() => router.push("/athlete/programs/details/" + program.id)}
       style={{
         background:
           "linear-gradient(179deg, rgba(255, 255, 255, 0.00) 23.3%, rgba(255, 255, 255, 0.74) 41.73%, #FFF 57.98%, #FFF 66.3%, #FFF 99.37%)",
@@ -73,8 +76,7 @@ export default function ProgramCard({ program }: ProgramCardProps) {
 
           {/* Athletes Count */}
           <div className="flex items-center gap-2 mb-4 text-sm text-[#141b3499]">
-           
-            <Icon name="team-people" />
+            <Icon name="team_people" />
             <span>{program.athletes}K Athletes</span>
           </div>
         </div>

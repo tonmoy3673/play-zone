@@ -39,7 +39,7 @@ export default function AccountVerified() {
 
         <button
           type="submit"
-          onClick={() => router.push("/?action=role")}
+          onClick={() => router.push("/auth/login?action=role")}
           className={`w-full py-4 rounded-full text-base font-normal  transition-all ${"bg-gradient-to-br text-white  from-[#5C8FF7] to-[#276AEE] hover:shadow-lg active:scale-[0.98]"}`}
         >
           Setup Profile
