@@ -13,19 +13,12 @@ export default function ProgramLiveCongrats(props: ProgramLiveCongratsProps) {
 
   return (
     <section
-<<<<<<< HEAD:src/app/overview/dashboard/_components/ProgramLiveCongrats.tsx
-    style={{ backgroundImage: "url('/overview/congratsBG.svg')",
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",}}
-=======
       style={{
         backgroundImage: "url('/overview/congratsBG.svg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
->>>>>>> 11455e5 (new):src/app/coach/dashboard/_components/ProgramLiveCongrats.tsx
       className={[
         "relative overflow-hidden rounded-[16px] w-[90vw] max-w-[850px] bg-white/80",
         // Give it a comfortable height while staying responsive

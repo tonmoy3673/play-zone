@@ -52,11 +52,7 @@ export default function PremiumUpsell({
 
       <div
         aria-hidden="true"
-<<<<<<< HEAD:src/app/overview/dashboard/_components/PremiumUpsell.tsx
-        className="pointer-events-none absolute inset-0 bg-[#EBF1FF]"
-=======
         className="pointer-events-none absolute inset-0"
->>>>>>> 11455e5 (new):src/app/coach/dashboard/_components/PremiumUpsell.tsx
         style={
           {
             "--tw": 1,
@@ -118,15 +114,9 @@ export default function PremiumUpsell({
             <div
               className="relative h-[160px] w-full overflow-clip rounded-[24px]"
               style={{
-<<<<<<< HEAD:src/app/overview/dashboard/_components/PremiumUpsell.tsx
-  background: "linear-gradient(120deg, #3861C6 0%, #3876FE 50%, #9B9DFB 100%)",
-}}
-              
-=======
                 background:
                   "linear-gradient(120deg, #3861C6 0%, #3876FE 50%, #9B9DFB 100%)",
               }}
->>>>>>> 11455e5 (new):src/app/coach/dashboard/_components/PremiumUpsell.tsx
             >
               <div className="flex items-center justify-center">
                 <p className="absolute left-6 top-6 text-[18px] font-medium text-white">
