@@ -43,13 +43,13 @@ export default function ProgramLiveCongrats(props: ProgramLiveCongratsProps) {
       <ModalHeader title="Congratulations" onClose={onClose} />
 
       {/* Center content */}
-      <div className="mx-auto flex w-full max-w-[990px] flex-col items-center gap-12 px-6 pt-28 pb-12 md:pt-32">
+      <div className="mx-auto flex w-full max-w-[990px] flex-col items-center gap-4 px-6 pt-28 pb-12 md:pt-32">
         {/* Medallion + sparkles */}
-        <div className="border-3 p-5 rounded-full border-white/50 bg-white">
+        <div className="">
           <img
-            src={"/overview/logoIcon.png"}
+            src={"/overview/playZoneImg.png"}
             alt=""
-            className="h-[69px] w-[77px] object-contain"
+            className="h-[104px] w-[141px] object-contain"
           />
         </div>
 
@@ -78,7 +78,7 @@ export default function ProgramLiveCongrats(props: ProgramLiveCongratsProps) {
         </div>
 
         {/* CTA */}
-        <div>
+        <div className="mt-2.5">
           <AnimatedButton
             onClick={onGoToDashboard}
             style={{
@@ -86,7 +86,7 @@ export default function ProgramLiveCongrats(props: ProgramLiveCongratsProps) {
               background:
                 "linear-gradient(177deg, #5C8FF7 10.06%, #276AEE 62.94%)",
             }}
-            className="flex items-center justify-center gap-1 text-white font-normal text-[10px] px-4 py-2 rounded-full hover:scale-105 transition-all"
+            className="flex items-center justify-center gap-1 text-white font-normal text-[15px] text-sm px-3.5 py-2.5 rounded-full hover:scale-105 transition-all"
           >
             Go to Dashboard
           </AnimatedButton>

@@ -72,15 +72,25 @@ export default function FirstProgram({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div
+    
+    className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+      
+        className="absolute inset-0 bg-black/10 backdrop-blur-xs"
         onClick={onClose}
       />
 
       {/* Modal Container */}
-      <div className="relative bg-white/30 bg-[url('/overview/modalBG.png')] w-[90vw] max-w-[800px] max-h-[85vh] backdrop-blur-lg rounded-[24px] border border-white/30 shadow-2xl overflow-hidden">
+      <div
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(255,255,255,0) 45%, rgba(255,255,255,0.9) 70%, #FFFFFF 90%, #FFFFFF 80%, #FFFFFF 100%)",
+        
+      }}
+      
+      className="relative bg-white bg-[url('/overview/modalBG.png')] w-[90vw] max-w-[800px] max-h-[85vh] backdrop-blur-lg rounded-[24px] border border-white/30 shadow-2xl overflow-hidden">
         <div
           style={{
             background:
@@ -131,7 +141,7 @@ export default function FirstProgram({
                     borderRadius: "7.729px",
                     border: "6px solid rgba(255, 255, 255, 0.44)",
                     background: "#FFF",
-                    boxShadow: "0 4px 37px 10px rgba(26, 103, 161, 0.25)",
+                    
                   }}
                 >
                   <CardImage image={center.image} />
@@ -223,7 +233,15 @@ function CardOverlay({
       </div>
 
       {/* Content block */}
-      <div className="space-y-1">
+      <div 
+     style={{
+        background:
+          "linear-gradient(180deg, rgba(255,255,255,0) 45%, rgba(255,255,255,0.9) 70%, #FFFFFF 90%, #FFFFFF 80%, #FFFFFF 100%)",
+        pointerEvents: "none",
+      }}
+      
+      className="space-y-1">
+
         <div className="space-y-1">
           <p
             className={[
@@ -236,11 +254,11 @@ function CardOverlay({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="inline-block size-4 rounded-full bg-white/60" />
-              <p className="text-[12px] font-medium leading-[1.4] text-dark">
+              <p className="text-[12px] font-medium leading-[1.4] text-dark/60">
                 {program.coachName}
               </p>
             </div>
-            <p className="text-[12px] font-semibold text-dark">
+            <p className="text-[12px] font-semibold text-dark/40">
               {program.price}
             </p>
           </div>
@@ -251,13 +269,13 @@ function CardOverlay({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1.5">
             <span className="inline-block size-4 rounded-full bg-[#1556d8]/10" />
-            <p className="text-[12px] font-semibold leading-[1.4] text-dark">
+            <p className="text-[12px] font-semibold leading-[1.4] text-dark/40">
               {program.participants}
             </p>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="inline-block size-4 rounded-full bg-[#1556d8]/10" />
-            <p className="text-[12px] font-medium leading-[1.4] text-dark">
+            <p className="text-[12px] font-medium leading-[1.4] text-dark/40">
               {program.duration}
             </p>
           </div>
@@ -270,13 +288,13 @@ function CardOverlay({
                     key={`${program.id}-star-${i}`}
                     className={[
                       "mr-0.5 inline-block size-3 rounded-[2px]",
-                      filled ? "bg-[#ffb545]" : "bg-[#e5e7eb]",
+                      filled ? "bg-[#ffb545]/40" : "bg-[#e5e7eb]",
                     ].join(" ")}
                   />
                 );
               })}
             </div>
-            <p className="text-[12px] font-medium leading-[1.3] text-dark">
+            <p className="text-[12px] font-medium leading-[1.3] text-dark/40">
               {program.rating.toFixed(1)}
             </p>
           </div>
@@ -284,12 +302,12 @@ function CardOverlay({
 
         {/* Subtle progress rail like in Figma */}
         <div className="h-[14px] w-full rounded-full bg-[#e6ecff]">
-          <div className="h-full w-1/2 rounded-full bg-[#bcd0ff]" />
+          <div className="h-full w-1/2 rounded-full bg-[#bcd0ff]/40" />
         </div>
 
         <button
           type="button"
-          className="inline-flex h-[26px] w-full items-center justify-center rounded-[61px] border border-[#1556d8]/30 bg-[#5c8ff7]/30 px-3 text-[12px] font-medium text-white hover:bg-[#5c8ff7]/50 cursor-pointer transition-colors"
+          className="inline-flex h-[26px] w-full items-center justify-center rounded-[61px] border border-[#1556d8]/10 bg-[#5c8ff7]/20 px-3 text-[12px] font-medium text-white hover:bg-[#5c8ff7]/50 cursor-pointer transition-colors"
         >
           View Details
         </button>

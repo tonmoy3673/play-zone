@@ -32,25 +32,28 @@ export default function PremiumUpsell({
 }: ModalProps & { features?: Feature[] }) {
   if (!isOpen) return null;
 
-  const handleGetStarted = () => {
-    if (onNext) onNext();
-    else console.log("Get Started clicked");
-  };
-
   const handleSkip = () => {
     if (onPrev) onPrev();
     else onClose();
+  };
+
+    const handleGetStarted = () => {
+    if (onNext) {
+      onNext();
+    } else {
+      onClose(); 
+    }
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-white/40 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/10 backdrop-blur-xs"
         onClick={onClose}
       />
 
-      <div
+      {/* <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={
@@ -58,9 +61,9 @@ export default function PremiumUpsell({
             "--tw": 1,
           } as React.CSSProperties
         }
-      ></div>
+      ></div> */}
       {/* Modal */}
-      <div className="relative w-[90vw] max-w-[800px] max-h-[85vh] bg-white/70 backdrop-blur-lg rounded-[24px] border border-white/30 shadow-2xl overflow-hidden flex flex-col">
+      <div className="relative w-[90vw] max-w-[800px] max-h-[85vh] bg-white backdrop-blur-lg rounded-[24px] border border-white/30 shadow-2xl overflow-hidden flex flex-col">
         <ModalHeader title="Creating tasks" onClose={onClose} />
 
         {/* Content */}
@@ -194,7 +197,7 @@ export default function PremiumUpsell({
                 Skip for now
               </button>
               <AnimatedButton
-                onClick={handleGetStarted}
+                onClick={onNext}
                 style={{
                   borderRadius: "30px",
                   background:

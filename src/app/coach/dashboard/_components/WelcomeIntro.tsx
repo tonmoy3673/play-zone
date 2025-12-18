@@ -18,7 +18,7 @@ export default function WelcomeIntro({
   if (!isOpen) return null;
 
   return (
-    <div className="relative bg-white/30 bg-[url('/overview/modalBG.png')] w-[90vw] max-w-[800px] max-h-[90vh] backdrop-blur-lg rounded-[24px] border border-white/30 shadow-2xl overflow-y-auto">
+    <div className="relative bg-white bg-[url('/overview/modalBG.png')] w-[90vw] max-w-[800px] max-h-[90vh] backdrop-blur-lg rounded-[24px] border border-white/30 shadow-2xl overflow-y-auto">
       <ModalHeader title="Welcome to PlayerZone" onClose={onClose} />
 
       <div className="p-6">
@@ -41,8 +41,8 @@ export default function WelcomeIntro({
             business and build your legacy.
           </p>
 
-          <div className="bg-white/60 rounded-[16px] p-4 border border-blue-100/50 w-full max-w-[320px] mb-4">
-            <div className="flex items-center justify-center mb-3">
+          <div className="bg-white rounded-[16px] p-4 border border-blue-100/50 w-full max-w-[420px] mb-4">
+            <div className="flex items-center justify-center mb-3 py-4">
               <div className="flex -space-x-2">
                 <div className="relative size-10 shrink-0 rounded-full border-2 border-white overflow-hidden shadow-sm">
                   <img
@@ -86,7 +86,7 @@ export default function WelcomeIntro({
             <h3 className="text-[16px] font-semibold leading-[1.4] text-dark mb-2">
               Coaches who finish get 1.8× more engagement
             </h3>
-            <p className="text-[12px] font-normal leading-[1.4] text-dark/70">
+            <p className="text-[12px] font-normal leading-[1.4] text-dark/70 ">
               Join 2,847 successful coaches already using CoachPro
             </p>
           </div>
